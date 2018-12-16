@@ -1,4 +1,4 @@
-import time, pyautogui, sys, requests, urllib3, traceback, win32gui
+import time, pyautogui, sys, requests, urllib3, traceback, win32gui, os
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def main(r):
@@ -6,7 +6,7 @@ def main(r):
     win_pos_x = win_pos[0] + 7
     win_pos_y = win_pos[1]
 
-    path = 'C:\\Users\\Johann\\Desktop\\Bot\\'
+    path = str(os.path.dirname(__file__))
 
     e = 0
     i = 5
