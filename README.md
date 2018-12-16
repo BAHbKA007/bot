@@ -1,0 +1,1 @@
+%windir%\system32\cmd.exe /K python /Users/Johann/Desktop/Bot/bot.py
