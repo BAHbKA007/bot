@@ -1,1 +1,1 @@
-%windir%\system32\cmd.exe /K python /Users/Johann/Desktop/Bot/bot.py
+%windir%\system32\cmd.exe /K python /Users/{name}/Desktop/Bot/bot.py
