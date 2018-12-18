@@ -114,7 +114,7 @@ def main(r):
     try:
         while True:
             # Prüfen ob Disconnect Fehlermeldung auf dem Bildschirm
-            if pyautogui.locateCenterOnScreen(path + 'pic\\disc.png', region=(win_pos_x + 362, win_pos_y + 352,50,50),grayscale=True, confidence=.9) != None:
+            if pyautogui.locateCenterOnScreen(path + 'pic\\disc.png', region=(win_pos_x + 370, win_pos_y + 330,40,40),grayscale=True, confidence=.9) != None:
                 www_get(run, arc_count, 1, 0)
                 print('Disconnected')
                 time.sleep(5)
