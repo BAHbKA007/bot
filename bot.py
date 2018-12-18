@@ -27,7 +27,7 @@ def main(r):
     i = 5
     c = 0
     arc_count = 0
-    v = 0 #sleep auf den tasten
+    v = 0.05 #sleep auf den tasten
 
     #Windows Prozesse Nach lineage 2 durhsuchen
     wins = []
@@ -76,9 +76,11 @@ def main(r):
         win_pos_x = win_pos[0] + 7
         win_pos_y = win_pos[1]
 
-        def find_pic(a, conf=.9):
-            pyautogui.moveTo(pyautogui.locateCenterOnScreen(path + 'pic\\' + a, region=(win_pos_x, win_pos_y,1024,768),grayscale=True, confidence=conf))
-        
+        def find_pic(a, conf=.9, x=1024, y=768, x_inner=0, y_inner=0):
+            pos = pyautogui.locateCenterOnScreen(path + 'pic\\' + a, region=(win_pos_x + x_inner, win_pos_y + y_inner,x,y),grayscale=True, confidence=conf)
+            pyautogui.moveTo(pos)
+            return pos
+
         logIn()
         
     else:
@@ -88,7 +90,7 @@ def main(r):
         requests.get('http://s.leichtbewaff.net/?run='+str(run)+'&arc='+str(arc_count)+'&discon='+str(discon) + '&succes=' + str(succes), verify=False)
 
     def setzen():
-        find_pic('sit.png',1)
+        find_pic('sit.png',0.99,30,30,640,660)
         mausklick()
         time.sleep(2)   
 
@@ -104,7 +106,7 @@ def main(r):
 
     # Enchant Fenster Koordinaten
     if pyautogui.locateCenterOnScreen(path + 'pic\\ews.png', region=(win_pos_x, win_pos_y,1024,768),grayscale=True, confidence=.9) != None:
-        find_pic('ews.png')
+        find_pic('ews.png',0.9,30,30,380,710)
         mausklick()
         time.sleep(1)
         ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,1024,768),grayscale=True, confidence=.9)
@@ -131,7 +133,7 @@ def main(r):
                 logIn()
                 setzen()
             # Prüfe BWS und Spiel an?
-            if pyautogui.locateCenterOnScreen(path + 'pic\\ews.png', region=(win_pos_x, win_pos_y,1024,768),grayscale=True, confidence=.9) == None:
+            if find_pic('ews.png',0.99,30,30,380,710) == None:
                 if win32gui.FindWindow(None,'Lineage II') == 0:
                     print('Keine EWS?')
                     www_get(run, arc_count, 1, 0)
@@ -140,7 +142,7 @@ def main(r):
             # CP craft
             if run % 2000 == 0:
                 setzen()
-                find_pic('cp.png')
+                find_pic('cp.png',0.9,30,30,380,660)
                 mausklick()
                 time.sleep(30)
                 setzen()
@@ -148,25 +150,25 @@ def main(r):
 
             # relog nach 2000 runs
             if run % 6000 == 0:
-                find_pic('relog.png')
+                find_pic('relog.png',0.9,30,30,600,660)
                 mausklick()
                 time.sleep(10)
 
             # Echnant
-            find_pic('ews.png')
+            find_pic('ews.png',0.9,30,30,380,710)
             mausklick()
-            time.sleep(0.165 + v) # 0.16
+            time.sleep(v) # 0.16
 
             # Arc
             pyautogui.moveTo(ench_window_x + 24 + c, ench_window_y + 67)
             mausklick()
-            time.sleep(0.18 + v) #0.2
+            time.sleep(v) #0.2
 
             if no_arc18er():
                 #OK Button Enchant Fenster
                 pyautogui.moveTo(ench_window_x + 90, ench_window_y + 383)
                 mausklick()
-                time.sleep(0.09 + v) #0.16
+                time.sleep(v) #0.16
 
             else:
                 if arc_count >= 5:
