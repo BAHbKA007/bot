@@ -55,29 +55,29 @@ def main(r):
             # Login: 462,443
             find_pic('login.png')
             mausklick()
-            time.sleep(2)
+            time.sleep(4)
 
             # Agree: 473,609
             find_pic('agree.png')
             mausklick()
-            time.sleep(2)
+            time.sleep(4)
 
             # OK: 517,450
             find_pic('ok.png')
             mausklick()
-            time.sleep(3)
+            time.sleep(4)
 
             # Start: 514,714
             find_pic('start.png')
             mausklick()
-            time.sleep(5)
+            time.sleep(10)
 
         win_pos = win32gui.GetWindowRect(proc[len(proc)-1])
         win_pos_x = win_pos[0] + 7
         win_pos_y = win_pos[1]
 
         def find_pic(a):
-            pyautogui.moveTo(pyautogui.locateCenterOnScreen('C:\\Users\\Johann\\Desktop\\Bot\\pic\\' + a, region=(win_pos_x, win_pos_y,1024,768),grayscale=True, confidence=.9))
+            pyautogui.moveTo(pyautogui.locateCenterOnScreen(path + 'pic\\' + a, region=(win_pos_x, win_pos_y,1024,768),grayscale=True, confidence=.9))
         
         logIn()
         
@@ -88,9 +88,9 @@ def main(r):
         requests.get('http://s.leichtbewaff.net/?run='+str(run)+'&arc='+str(arc_count)+'&discon='+str(discon) + '&succes=' + str(succes), verify=False)
 
     def setzen():
-        pyautogui.moveTo(win_pos_x + 660, win_pos_y + 680)
+        find_pic('sit.png')
         mausklick()
-        #time.sleep(0.5)   
+        time.sleep(2)   
 
     def no_arc18er():
         arc18 = pyautogui.locateCenterOnScreen(path+'pic\\18er.png',region=(ench_window_x + 10 + c, ench_window_y + 48,15,15))
@@ -103,8 +103,8 @@ def main(r):
         setzen()
 
     # Enchant Fenster Koordinaten
-    if pyautogui.locateCenterOnScreen('C:\\Users\\Johann\\Desktop\\Bot\\pic\\ews.png', region=(win_pos_x, win_pos_y,1024,768),grayscale=True, confidence=.9) != None:
-        pyautogui.moveTo(win_pos_x + 396, win_pos_y + 729)
+    if pyautogui.locateCenterOnScreen(path + 'pic\\ews.png', region=(win_pos_x, win_pos_y,1024,768),grayscale=True, confidence=.9) != None:
+        find_pic('ews.png')
         mausklick()
         time.sleep(1)
         ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,1024,768),grayscale=True, confidence=.9)
@@ -131,7 +131,7 @@ def main(r):
                 logIn()
 
             # Prüfe BWS und Spiel an?
-            if find_pic('ews.png') == None:
+            if pyautogui.locateCenterOnScreen(path + 'pic\\ews.png', region=(win_pos_x, win_pos_y,1024,768),grayscale=True, confidence=.9) == None:
                 if win32gui.FindWindow(None,'Lineage II') == 0:
                     print('Keine EWS?')
                     www_get(run, arc_count, 1, 0)
@@ -140,25 +140,20 @@ def main(r):
             # CP craft
             if run % 2000 == 0:
                 setzen()
-                pyautogui.moveTo(win_pos_x + 396, win_pos_y + 683)
+                find_pic('cp.png')
                 mausklick()
                 time.sleep(30)
                 setzen()
-                pyautogui.moveTo(win_pos_x + 396, win_pos_y + 729)
-                mausklick()
                 time.sleep(3)
 
             # relog nach 2000 runs
             if run % 6000 == 0:
-                pyautogui.moveTo(win_pos_x + 623, win_pos_y + 680)
-                #time.sleep(0.2)
+                find_pic('relog.png')
                 mausklick()
-                pyautogui.moveTo(win_pos_x + 396, win_pos_y + 729)
-                mausklick()
-                time.sleep(8)
+                time.sleep(10)
 
             # Echnant
-            pyautogui.moveTo(win_pos_x + 396, win_pos_y + 729)
+            find_pic('ews.png')
             mausklick()
             time.sleep(0.165 + v) # 0.16
 
