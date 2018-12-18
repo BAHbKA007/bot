@@ -5,8 +5,6 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 class SCANCODE:
     INTERCEPTION_MOUSE_LEFT_BUTTON_DOWN   = 0x001
     INTERCEPTION_MOUSE_LEFT_BUTTON_UP     = 0x002
-    INTERCEPTION_MOUSE_RIGHT_BUTTON_DOWN  = 0x004
-    INTERCEPTION_MOUSE_RIGHT_BUTTON_UP    = 0x008
 
 def mausklick():
     context = lib.interception_create_context()
