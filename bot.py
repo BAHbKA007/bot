@@ -76,8 +76,8 @@ def main(r):
         win_pos_x = win_pos[0] + 7
         win_pos_y = win_pos[1]
 
-        def find_pic(a):
-            pyautogui.moveTo(pyautogui.locateCenterOnScreen(path + 'pic\\' + a, region=(win_pos_x, win_pos_y,1024,768),grayscale=True, confidence=.9))
+        def find_pic(a, conf=.9):
+            pyautogui.moveTo(pyautogui.locateCenterOnScreen(path + 'pic\\' + a, region=(win_pos_x, win_pos_y,1024,768),grayscale=True, confidence=conf))
         
         logIn()
         
@@ -88,7 +88,7 @@ def main(r):
         requests.get('http://s.leichtbewaff.net/?run='+str(run)+'&arc='+str(arc_count)+'&discon='+str(discon) + '&succes=' + str(succes), verify=False)
 
     def setzen():
-        find_pic('sit.png')
+        find_pic('sit.png',1)
         mausklick()
         time.sleep(2)   
 
@@ -117,7 +117,7 @@ def main(r):
             if pyautogui.locateCenterOnScreen(path + 'pic\\disc.png', region=(win_pos_x + 370, win_pos_y + 330,40,40),grayscale=True, confidence=.9) != None:
                 www_get(run, arc_count, 1, 0)
                 print('Disconnected')
-                time.sleep(5)
+                time.sleep(1)
 
                 if "03:30" < time.strftime("%H:%M") < "04:00":
                     print('sleep Nacht')
