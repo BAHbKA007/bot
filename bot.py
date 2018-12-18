@@ -93,7 +93,7 @@ def main(r):
         time.sleep(2)   
 
     def no_arc18er():
-        arc18 = pyautogui.locateCenterOnScreen(path+'pic\\18er.png',region=(ench_window_x + 10 + c, ench_window_y + 48,15,15))
+        arc18 = pyautogui.locateCenterOnScreen(path+'pic\\16er.png',region=(ench_window_x + 10 + c, ench_window_y + 48,15,15))
         if arc18 != None:
             return False
         else:
