@@ -1,18 +1,47 @@
-import time, pyautogui, sys, requests, urllib3, traceback, win32gui, os
+import time, pyautogui, sys, requests, urllib3, traceback, win32gui, os, datetime
+from interception import ffi, lib
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-def main(r):
-    win_pos = win32gui.GetWindowRect(win32gui.FindWindow(None,'Lineage II'))
-    win_pos_x = win_pos[0] + 7
-    win_pos_y = win_pos[1]
+class SCANCODE:
+    INTERCEPTION_MOUSE_LEFT_BUTTON_DOWN   = 0x001
+    INTERCEPTION_MOUSE_LEFT_BUTTON_UP     = 0x002
+    INTERCEPTION_MOUSE_RIGHT_BUTTON_DOWN  = 0x004
+    INTERCEPTION_MOUSE_RIGHT_BUTTON_UP    = 0x008
 
-    path = str(os.path.dirname(__file__))
+def mausklick():
+    context = lib.interception_create_context()
+
+    stroke = ffi.new('InterceptionMouseStroke *')
+        
+    stroke.state  = SCANCODE.INTERCEPTION_MOUSE_LEFT_BUTTON_DOWN
+    lib.interception_send(context, 11, stroke, 1)
+    stroke.state  = SCANCODE.INTERCEPTION_MOUSE_LEFT_BUTTON_UP
+    lib.interception_send(context, 11,  stroke, 1)
+
+datum_sql = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+requests.get('http://s.leichtbewaff.net/?start='+str(datum_sql), verify=False)
+
+def main(r):
+
+    path = str(os.path.dirname(__file__)) + '\\'
 
     e = 0
     i = 5
     c = 0
     arc_count = 0
     v = 0 #sleep auf den tasten
+
+    #Windows Prozesse Nach lineage 2 durhsuchen
+    wins = []
+    proc = []
+    win32gui.EnumWindows(lambda x, y: y.append(x), wins)
+    for winId in wins:
+        winName = win32gui.GetWindowText(winId)
+        if winName == 'Lineage II':
+            proc.append(winId)
+
+    # Fenster in Fordergrund bringen
+    win32gui.SetForegroundWindow(proc[len(proc)-1])
 
     with open(path + "bot.run", "r") as fh:
         run = int(fh.read())
@@ -22,29 +51,49 @@ def main(r):
         print('\b' * len(str(i)), end='', flush=True)
         time.sleep(1)
         i = i - 1
+    
+    if len(proc) > 0:
+        def logIn():
+            # Login: 462,443
+            find_pic('login.png')
+            mausklick()
+            time.sleep(2)
+
+            # Agree: 473,609
+            find_pic('agree.png')
+            mausklick()
+            time.sleep(2)
+
+            # OK: 517,450
+            find_pic('ok.png')
+            mausklick()
+            time.sleep(3)
+
+            # Start: 514,714
+            find_pic('start.png')
+            mausklick()
+            time.sleep(5)
+
+        win_pos = win32gui.GetWindowRect(proc[len(proc)-1])
+        win_pos_x = win_pos[0] + 7
+        win_pos_y = win_pos[1]
+
+        def find_pic(a):
+            pyautogui.moveTo(pyautogui.locateCenterOnScreen('C:\\Users\\Johann\\Desktop\\Bot\\pic\\' + a, region=(win_pos_x, win_pos_y,1024,768),grayscale=True, confidence=.9))
+        
+        logIn()
+        
+    else:
+        raise RuntimeError('Keine Lineage II Prozesse gefunden')
 
     def www_get(run, arc_count, discon, succes):
         requests.get('http://s.leichtbewaff.net/?run='+str(run)+'&arc='+str(arc_count)+'&discon='+str(discon) + '&succes=' + str(succes), verify=False)
 
     def setzen():
         pyautogui.moveTo(win_pos_x + 660, win_pos_y + 680)
-        time.sleep(0.5)   
+        mausklick()
+        #time.sleep(0.5)   
 
-    def find_pic(a):
-        pyautogui.moveTo(pyautogui.locateCenterOnScreen('C:\\Users\\Johann\\Desktop\\Bot\\pic\\' + a, region=(win_pos_x, win_pos_y,1024,768),grayscale=True, confidence=.9))
-
-
-    if r == 0:
-        setzen()
-
-    # Enchant Fenster Koordinaten
-    if pyautogui.locateCenterOnScreen('C:\\Users\\Johann\\Desktop\\Bot\\pic\\ews.png', region=(win_pos_x, win_pos_y,1024,768),grayscale=True, confidence=.9) != None:
-        pyautogui.moveTo(win_pos_x + 396, win_pos_y + 729)
-        time.sleep(1)
-        ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,1024,768),grayscale=True, confidence=.9)
-        ench_window_x = ench_window[0]
-        ench_window_y = ench_window[1]
-    
     def no_arc18er():
         arc18 = pyautogui.locateCenterOnScreen(path+'pic\\18er.png',region=(ench_window_x + 10 + c, ench_window_y + 48,15,15))
         if arc18 != None:
@@ -52,11 +101,20 @@ def main(r):
         else:
             return True
 
+    if r == 0:
+        setzen()
+
+    # Enchant Fenster Koordinaten
+    if pyautogui.locateCenterOnScreen('C:\\Users\\Johann\\Desktop\\Bot\\pic\\ews.png', region=(win_pos_x, win_pos_y,1024,768),grayscale=True, confidence=.9) != None:
+        pyautogui.moveTo(win_pos_x + 396, win_pos_y + 729)
+        mausklick()
+        time.sleep(1)
+        ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,1024,768),grayscale=True, confidence=.9)
+        ench_window_x = ench_window[0]
+        ench_window_y = ench_window[1]
+    
     try:
         while True:
-            # Auf Enchant springen
-            pyautogui.moveTo(win_pos_x + 396, win_pos_y + 729)
-
             # Prüfen ob Disconnect Fehlermeldung auf dem Bildschirm
             if pyautogui.pixelMatchesColor(win_pos_x + 382, win_pos_y + 364, (239, 239, 181)):
                 www_get(run, arc_count, 1, 0)
@@ -66,26 +124,13 @@ def main(r):
                 if "03:30" < time.strftime("%H:%M") < "04:00":
                     print('sleep Nacht')
                     time.sleep(3600)
-        
+
                 # OK: 513,463
                 find_pic('ok.png')
+                mausklick()
                 time.sleep(4)
 
-                # Login: 462,443
-                find_pic('login.png')
-                time.sleep(2)
-
-                # Agree: 473,609
-                find_pic('agree.png')
-                time.sleep(2)
-
-                # OK: 517,450
-                find_pic('ok.png')
-                time.sleep(3)
-
-                # Start: 514,714
-                find_pic('start.png')
-                time.sleep(5)
+                logIn()
 
             # Prüfe BWS und Spiel an?
             if find_pic('ews.png') == None:
@@ -98,29 +143,36 @@ def main(r):
             if run % 2000 == 0:
                 setzen()
                 pyautogui.moveTo(win_pos_x + 396, win_pos_y + 683)
+                mausklick()
                 time.sleep(30)
                 setzen()
                 pyautogui.moveTo(win_pos_x + 396, win_pos_y + 729)
+                mausklick()
                 time.sleep(3)
 
             # relog nach 2000 runs
             if run % 6000 == 0:
                 pyautogui.moveTo(win_pos_x + 623, win_pos_y + 680)
-                time.sleep(0.2)
+                #time.sleep(0.2)
+                mausklick()
                 pyautogui.moveTo(win_pos_x + 396, win_pos_y + 729)
+                mausklick()
                 time.sleep(8)
 
             # Echnant
             pyautogui.moveTo(win_pos_x + 396, win_pos_y + 729)
+            mausklick()
             time.sleep(0.165 + v) # 0.16
 
             # Arc
             pyautogui.moveTo(ench_window_x + 24 + c, ench_window_y + 67)
+            mausklick()
             time.sleep(0.18 + v) #0.2
 
             if no_arc18er():
                 #OK Button Enchant Fenster
                 pyautogui.moveTo(ench_window_x + 90, ench_window_y + 383)
+                mausklick()
                 time.sleep(0.09 + v) #0.16
 
             else:
