@@ -1,8 +1,7 @@
 import time, pyautogui
 
-path = 'C:\\Users\\Johann\\Desktop\\Bot\\'
-arc16 = pyautogui.locateCenterOnScreen(path+'18er.png',region=(7,159,20,20))
+path = 'C:\\Users\\Johann\\Desktop\\Bot\\pic\\'
 
-print(arc16)
+print(pyautogui.locateCenterOnScreen(path + 'disc.png', region=(362, 352,50,50),grayscale=True, confidence=.9) != None)
 
 input()
