@@ -129,7 +129,7 @@ def main(r):
                 time.sleep(4)
 
                 logIn()
-
+                setzen()
             # Prüfe BWS und Spiel an?
             if pyautogui.locateCenterOnScreen(path + 'pic\\ews.png', region=(win_pos_x, win_pos_y,1024,768),grayscale=True, confidence=.9) == None:
                 if win32gui.FindWindow(None,'Lineage II') == 0:
