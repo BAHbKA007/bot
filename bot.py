@@ -125,7 +125,7 @@ def main(r):
     ench_window_y = ench_window[1]
 
     # CP Koordinaten
-    cp = find_pic('cp.png',0.99)
+    cp = 0#find_pic('cp.png',0.99)
     
     # relog Koordinaten
     relog = find_pic('relog.png',0.99)
