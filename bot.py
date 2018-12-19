@@ -116,7 +116,7 @@ def main(r):
     pyautogui.screenshot('temp.png', region=(b[0],b[1], 300, 23))
     image = imread('temp.png')
     negative = 255 - image
-    ews_count = int(pytesseract.image_to_string(negative)[42:].split(')')[0].replace(",","").replace(" ",""))
+    ews_count = int(pytesseract.image_to_string(negative)[41:].split(')')[0].replace(",","").replace(" ",""))
 
     # Enchant Fenster Koordinaten
     mausklick()
