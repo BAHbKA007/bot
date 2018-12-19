@@ -160,7 +160,9 @@ def main(r):
                     mausklick()
                     time.sleep(4)
 
-                    logIn()
+                    while find_pic('ews.png',0.99) == None:
+                        logIn()
+                        
                     setzen()
 
                 #Spiel an?
@@ -212,7 +214,7 @@ def main(r):
                     requests.get('http://s.leichtbewaff.net/?stat='+str(run), verify=False)
                     run = 0
 
-                printstr = str(arc_count) + ' Arcana Mace ' + str(run) + ' Durchläufe' + str(ews_count) + ' EWS'
+                printstr = str(arc_count) + ' Arcana Mace ' + str(run) + ' Durchläufe ' + str(ews_count) + ' EWS'
                 print(printstr, end='')
                 print('\b' * len(printstr), end='', flush=True)
 
