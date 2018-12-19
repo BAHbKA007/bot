@@ -1,5 +1,11 @@
-import time, pyautogui, sys, requests, urllib3, traceback, win32gui, os, datetime
+import time, pyautogui, sys, requests, urllib3, traceback, win32gui, os, datetime, re
+import pytesseract
 from interception import ffi, lib
+from PIL import Image
+from skimage.io import imread
+
+#https://github.com/tesseract-ocr/tesseract/wiki
+pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files (x86)\\Tesseract-OCR\\tesseract'
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 class SCANCODE:
@@ -22,12 +28,13 @@ requests.get('http://s.leichtbewaff.net/?start='+str(datum_sql), verify=False)
 def main(r):
 
     path = str(os.path.dirname(__file__)) + '\\'
-
+ 
     e = 0
     i = 5
     c = 0
     arc_count = 0
     v = 0.05 #sleep auf den tasten
+    ok = 0.239 # + sleep auf OK
 
     #Windows Prozesse Nach lineage 2 durhsuchen
     wins = []
@@ -79,10 +86,7 @@ def main(r):
         def find_pic(a, conf=.9, x=1024, y=768, x_inner=0, y_inner=0):
             pos = pyautogui.locateCenterOnScreen(path + 'pic\\' + a, region=(win_pos_x + x_inner, win_pos_y + y_inner,x,y),grayscale=True, confidence=conf)
             pyautogui.moveTo(pos)
-            return pos
-
-        logIn()
-        
+            return pos      
     else:
         raise RuntimeError('Keine Lineage II Prozesse gefunden')
 
@@ -90,118 +94,146 @@ def main(r):
         requests.get('http://s.leichtbewaff.net/?run='+str(run)+'&arc='+str(arc_count)+'&discon='+str(discon) + '&succes=' + str(succes), verify=False)
 
     def setzen():
-        find_pic('sit.png',0.99,30,30,640,660)
+        pyautogui.moveTo(sit)
         mausklick()
         time.sleep(2)   
 
     def no_arc18er():
-        arc18 = pyautogui.locateCenterOnScreen(path+'pic\\16er.png',region=(ench_window_x + 10 + c, ench_window_y + 48,15,15))
+        arc18 = pyautogui.locateCenterOnScreen(path+'pic\\18er.png',region=(ench_window_x + 10 + c, ench_window_y + 48,15,15))
         if arc18 != None:
             return False
         else:
             return True
 
-    if r == 0:
-        setzen()
+    #logIn()
+
+    # ews Koordinaten + Anzahl BEWS
+    ews = find_pic('ews.png',0.99)
+    time.sleep(2)
+    b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
+
+    pyautogui.screenshot('temp.png', region=(b[0],b[1], 300, 23))
+    image = imread('temp.png')
+    negative = 255 - image
+    ews_count = int(pytesseract.image_to_string(negative)[42:].split(')')[0].replace(",",""))
 
     # Enchant Fenster Koordinaten
-    if pyautogui.locateCenterOnScreen(path + 'pic\\ews.png', region=(win_pos_x, win_pos_y,1024,768),grayscale=True, confidence=.9) != None:
-        find_pic('ews.png',0.9,30,30,380,710)
-        mausklick()
-        time.sleep(1)
-        ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,1024,768),grayscale=True, confidence=.9)
-        ench_window_x = ench_window[0]
-        ench_window_y = ench_window[1]
+    mausklick()
+    time.sleep(1)
+    ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,1024,768),grayscale=True, confidence=.9)
+    ench_window_x = ench_window[0]
+    ench_window_y = ench_window[1]
+
+    # CP Koordinaten
+    cp = find_pic('cp.png',0.99)
     
-    try:
-        while True:
-            # Prüfen ob Disconnect Fehlermeldung auf dem Bildschirm
-            if pyautogui.locateCenterOnScreen(path + 'pic\\disc.png', region=(win_pos_x + 370, win_pos_y + 330,40,40),grayscale=True, confidence=.9) != None:
-                www_get(run, arc_count, 1, 0)
-                print('Disconnected')
-                time.sleep(1)
+    # relog Koordinaten
+    relog = find_pic('relog.png',0.99)
 
-                if "03:30" < time.strftime("%H:%M") < "04:00":
-                    print('sleep Nacht')
-                    time.sleep(3600)
+    # relog Koordinaten
+    sit = find_pic('sit.png',0.99)
 
-                # OK: 513,463
-                find_pic('ok.png')
-                mausklick()
-                time.sleep(4)
+    if ews != None and cp != None and relog != None and sit != None:
 
-                logIn()
-                setzen()
-            # Prüfe BWS und Spiel an?
-            if find_pic('ews.png',0.99,30,30,380,710) == None:
-                if win32gui.FindWindow(None,'Lineage II') == 0:
-                    print('Keine EWS?')
+        if r == 0:
+            setzen()
+    
+        try:
+            while True:
+                # EWS Prüfung
+                if ews_count <= 0:
+                    print('Keine EWS mehr!')
+                    break
+
+                # Prüfen ob Disconnect Fehlermeldung auf dem Bildschirm
+                if pyautogui.locateCenterOnScreen(path + 'pic\\disc.png', region=(win_pos_x + 370, win_pos_y + 330,40,40),grayscale=True, confidence=.9) != None:
                     www_get(run, arc_count, 1, 0)
-                    break
+                    print('Disconnected')
+                    time.sleep(1)
 
-            # CP craft
-            if run % 2000 == 0:
-                setzen()
-                find_pic('cp.png',0.9,30,30,380,660)
+                    if "03:30" < time.strftime("%H:%M") < "04:00":
+                        print('sleep Nacht')
+                        time.sleep(1800)
+
+                    # OK: 513,463
+                    find_pic('ok.png')
+                    mausklick()
+                    time.sleep(4)
+
+                    logIn()
+                    setzen()
+
+                #Spiel an?
+                if run % 20 == 0:
+                    if win32gui.FindWindow(None,'Lineage II') == 0:
+                        print('Lineage nicht gefunden')
+                        www_get(run, arc_count, 1, 0)
+                        break
+
+                # CP craft
+                if run % 2000 == 0 and run != 0:
+                    setzen()
+                    pyautogui.moveTo(cp)
+                    mausklick()
+                    time.sleep(30)
+                    setzen()
+                    time.sleep(3)
+
+                # relog nach 2000 runs
+                if run % 6000 == 0 and run != 0:
+                    pyautogui.moveTo(relog)
+                    mausklick()
+                    time.sleep(10)
+
+                # Echnant
+                pyautogui.moveTo(ews)
                 mausklick()
-                time.sleep(30)
-                setzen()
-                time.sleep(3)
+                time.sleep(v)
 
-            # relog nach 2000 runs
-            if run % 6000 == 0:
-                find_pic('relog.png',0.9,30,30,600,660)
+                # Arc
+                pyautogui.moveTo(ench_window_x + 24 + c, ench_window_y + 67)
                 mausklick()
-                time.sleep(10)
+                time.sleep(v)
 
-            # Echnant
-            find_pic('ews.png',0.9,30,30,380,710)
-            mausklick()
-            time.sleep(v) # 0.16
+                if no_arc18er():
+                    #OK Button Enchant Fenster
+                    pyautogui.moveTo(ench_window_x + 90, ench_window_y + 383)
+                    mausklick()
+                    time.sleep(v + ok) #0.25
 
-            # Arc
-            pyautogui.moveTo(ench_window_x + 24 + c, ench_window_y + 67)
-            mausklick()
-            time.sleep(v) #0.2
+                else:
+                    if arc_count >= 5:
+                        www_get(run, arc_count, 1, 1)
+                        print('Mehr als 6 Gegenstände 18+')
+                        break
+                    arc_count = arc_count + 1
+                    c = c + 36
 
-            if no_arc18er():
-                #OK Button Enchant Fenster
-                pyautogui.moveTo(ench_window_x + 90, ench_window_y + 383)
-                mausklick()
-                time.sleep(v) #0.16
+                    requests.get('http://s.leichtbewaff.net/?stat='+str(run), verify=False)
+                    run = 0
 
-            else:
-                if arc_count >= 5:
-                    www_get(run, arc_count, 1, 1)
-                    print('Mehr als 6 Gegenstände 18+')
-                    break
-                arc_count = arc_count + 1
-                c = c + 36
+                printstr = str(arc_count) + ' Arcana Mace ' + str(run) + ' Durchläufe' + str(ews_count) + ' EWS'
+                print(printstr, end='')
+                print('\b' * len(printstr), end='', flush=True)
 
-                requests.get('http://s.leichtbewaff.net/?stat='+str(run), verify=False)
-                run = 0
+                www_get(run, arc_count, 0, 0)
 
-            printstr = str(arc_count) + ' Arcana Mace ' + str(run) + ' Durchläufe'
-            print(printstr, end='')
-            print('\b' * len(printstr), end='', flush=True)
+                #bot.run beschreiben
+                with open(path + "bot.run", "w") as fh:
+                    fh.write(str(run))
 
-            www_get(run, arc_count, 0, 0)
+                run = run + 1
+                ews_count = ews_count - 1
 
-            #bot.run beschreiben
+        except Exception as e:
+            www_get(0, 0, 1, 0)
+
             with open(path + "bot.run", "w") as fh:
                 fh.write(str(run))
 
-            run = run + 1
+            print("type error: " + str(e))
+            print(traceback.format_exc())
 
-    except Exception as e:
-        www_get(0, 0, 1, 0)
-
-        with open(path + "bot.run", "w") as fh:
-            fh.write(str(run))
-
-        print("type error: " + str(e))
-        print(traceback.format_exc())
-
-        main(1)
+            main(1)
 
 main(0)

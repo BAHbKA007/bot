@@ -1,4 +1,8 @@
-import time, pyautogui, win32gui, os
+import time, pyautogui, win32gui, os, re
+import pytesseract
+pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files (x86)\\Tesseract-OCR\\tesseract'
+from PIL import Image
+from skimage.io import imread
 
 path = str(os.path.dirname(__file__)) + '\\'
 
@@ -22,6 +26,11 @@ def find_pic(a, conf=.9, x=1024, y=768, x_inner=0, y_inner=0):
     pyautogui.moveTo(pos)
     return pos
 
-print(find_pic('ews.png',0.9,30,30,380,710))
+a = find_pic('ews.png',0.9,30,30,380,710)
+time.sleep(2)
+b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
 
-input()
+pyautogui.screenshot('temp.png', region=(b[0],b[1], 300, 23))
+image = imread('temp.png')
+negative = 255 - image
+ews_count = int(pytesseract.image_to_string(negative)[42:].split(')')[0].replace(",",""))
