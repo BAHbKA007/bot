@@ -171,13 +171,13 @@ def main(r):
                         break
 
                 # CP craft
-                if run % 2000 == 0 and run != 0:
-                    setzen()
-                    pyautogui.moveTo(cp)
-                    mausklick()
-                    time.sleep(30)
-                    setzen()
-                    time.sleep(3)
+                # if run % 2000 == 0 and run != 0:
+                #     setzen()
+                #     pyautogui.moveTo(cp)
+                #     mausklick()
+                #     time.sleep(30)
+                #     setzen()
+                #     time.sleep(3)
 
                 # relog nach 2000 runs
                 if run % 6000 == 0 and run != 0:
