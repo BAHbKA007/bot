@@ -23,7 +23,7 @@ def mausklick():
     lib.interception_send(context, 11,  stroke, 1)
 
 datum_sql = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-requests.get('http://s.leichtbewaff.net/?start='+str(datum_sql), verify=False)
+#requests.get('http://s.leichtbewaff.net/?start='+str(datum_sql), verify=False)
 
 def main(r):
 
@@ -91,7 +91,8 @@ def main(r):
         raise RuntimeError('Keine Lineage II Prozesse gefunden')
 
     def www_get(run, arc_count, discon, succes):
-        requests.get('http://s.leichtbewaff.net/?run='+str(run)+'&arc='+str(arc_count)+'&discon='+str(discon) + '&succes=' + str(succes), verify=False)
+        #requests.get('http://s.leichtbewaff.net/?run='+str(run)+'&arc='+str(arc_count)+'&discon='+str(discon) + '&succes=' + str(succes), verify=False)
+        print()
 
     def setzen():
         pyautogui.moveTo(sit)
@@ -99,7 +100,7 @@ def main(r):
         time.sleep(2)   
 
     def no_arc18er():
-        arc18 = pyautogui.locateCenterOnScreen(path+'pic\\18er.png',region=(ench_window_x + 10 + c, ench_window_y + 48,15,15))
+        arc18 = pyautogui.locateCenterOnScreen(path+'pic\\bai14.png',region=(ench_window_x + 10 + c, ench_window_y + 48,15,15))
         if arc18 != None:
             return False
         else:
@@ -162,7 +163,7 @@ def main(r):
 
                     while find_pic('ews.png',0.99) == None:
                         logIn()
-                        
+
                     setzen()
 
                 #Spiel an?
@@ -204,14 +205,14 @@ def main(r):
                     time.sleep(v + ok) #0.25
 
                 else:
-                    if arc_count >= 5:
+                    if arc_count >= 1:
                         www_get(run, arc_count, 1, 1)
                         print('Mehr als 6 Gegenstände 18+')
                         break
                     arc_count = arc_count + 1
                     c = c + 36
 
-                    requests.get('http://s.leichtbewaff.net/?stat='+str(run), verify=False)
+                    #requests.get('http://s.leichtbewaff.net/?stat='+str(run), verify=False)
                     run = 0
 
                 printstr = str(arc_count) + ' Arcana Mace ' + str(run) + ' Durchläufe ' + str(ews_count) + ' EWS'
