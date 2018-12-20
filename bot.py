@@ -107,7 +107,7 @@ def main(r):
         
         print('Anzahl gefundener Gegenstände: ' + str(i))
 
-        if arc_count == i:
+        if arc_count >= i:
             return True
         else:
             return False
