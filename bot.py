@@ -4,7 +4,7 @@ from interception import ffi, lib
 from PIL import Image
 from skimage.io import imread
 
-https://github.com/tesseract-ocr/tesseract/wiki
+#https://github.com/tesseract-ocr/tesseract/wiki
 pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files (x86)\\Tesseract-OCR\\tesseract'
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -90,6 +90,9 @@ def main(r):
     else:
         raise RuntimeError('Keine Lineage II Prozesse gefunden')
 
+    if find_pic('login.png') != None:
+        logIn()
+
     def www_get(run, arc_count, discon, succes):
         requests.get('http://s.leichtbewaff.net/?run='+str(run)+'&arc='+str(arc_count)+'&discon='+str(discon) + '&succes=' + str(succes), verify=False)
 
@@ -99,7 +102,7 @@ def main(r):
         time.sleep(2)   
 
     def no_arc18er():
-        a = pyautogui.locateAllOnScreen(path + 'pic\\14.png', region=(ench_window_x + 6, ench_window_y + 40, 230, 25), grayscale=False, confidence=.75)
+        a = pyautogui.locateAllOnScreen(path + 'pic\\18er.png', region=(ench_window_x + 6, ench_window_y + 40, 230, 25), grayscale=False, confidence=.75)
         i = 0
         for pos in a:
             i = i + 1
