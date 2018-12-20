@@ -1,5 +1,5 @@
 import time, pyautogui, win32gui, os, re
-from PIL import Image
+from PIL import Image,ImageGrab
 
 wins = []
 proc = []
@@ -24,8 +24,6 @@ def find_pic(a, conf=.9, x=800, y=600, x_inner=0, y_inner=0):
     pos = pyautogui.locateCenterOnScreen(path + 'pic\\' + a, region=(win_pos_x + x_inner, win_pos_y + y_inner,x,y),grayscale=True, confidence=conf)
     return pos
 
-ews = find_pic('ews.png')
-x = ews[0]
-y = ews[1]
-
-print(y)
+ews = list(find_pic('ews.png',0.99))
+r,g,b = pyautogui.pixel(ews)
+print(len(b))

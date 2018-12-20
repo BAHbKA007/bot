@@ -83,7 +83,7 @@ def main(r):
         win_pos_x = win_pos[0] + 7
         win_pos_y = win_pos[1]
 
-        def find_pic(a, conf=.9, x=1024, y=768, x_inner=0, y_inner=0):
+        def find_pic(a, conf=.9, x=800, y=600, x_inner=0, y_inner=0):
             pos = pyautogui.locateCenterOnScreen(path + 'pic\\' + a, region=(win_pos_x + x_inner, win_pos_y + y_inner,x,y),grayscale=True, confidence=conf)
             pyautogui.moveTo(pos)
             return pos      
@@ -128,8 +128,6 @@ def main(r):
 
     # ews Koordinaten, Farbe + Anzahl BEWS
     ews = find_pic('ews.png',0.99)
-    x,y = ews
-    r,g,b = pyautogui.pixel( int(x), int(y) )
     time.sleep(2)
     b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
 
@@ -162,7 +160,7 @@ def main(r):
         try:
             while True:
                 # EWS Prüfung             
-                if not pyautogui.pixelMatchesColor(int(x), int(y), ( int(r), int(g), int(b) ) ):
+                if find_pic('ews.png',0.99,800,600,ews[0]-50,ews[1]-50) == None:
                     print('Keine EWS mehr (verschoben?)!')
                     break
 
