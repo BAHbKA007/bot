@@ -53,8 +53,7 @@ def main(r):
         run = int(fh.read())
 
     while i != -1:
-        print(str(i), end='')
-        print('\b' * len(str(i)), end='', flush=True)
+        print(str(i))
         time.sleep(1)
         i = i - 1
     
@@ -242,8 +241,7 @@ def main(r):
                     run = 0
 
                 printstr = str(arc_count) + ' Arcana Mace ' + str(run) + ' Durchläufe ' + str(ews_count) + ' EWS'
-                print(printstr, end='')
-                print('\b' * len(printstr), end='', flush=True)
+                print(printstr)
 
                 www_get(run, arc_count, 0, 0)
 
