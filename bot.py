@@ -103,14 +103,24 @@ def main(r):
         time.sleep(2)   
 
     def no_arc18er():
-        a = pyautogui.locateAllOnScreen(path + 'pic\\14.png', region=(ench_window_x + 10, ench_window_y + 51, 198, 43), grayscale=False, confidence=.8)
-        i = 0
-        for pos in a:
-            i = i + 1
-        
+        pyautogui.screenshot('ench_screen.png', region=(ench_window_x + 10, ench_window_y + 51, 198, 43))
+        picture = Image.open("ench_screen.png")
+
+        width, height = picture.size
+
+        for x in range(0, width):
+            for y in range(0, height):
+                current_color = picture.getpixel( (x,y) )
+                if current_color != (255,0,0):
+                    picture.putpixel( (x,y), (0, 0, 0))
+
+        picture.save("ench_screen.png")
+
+        temp = pyautogui.locateAll(path + "pic\\14.png", "ench_screen.png", grayscale=False)
+        i = list(temp)
         print('Anzahl gefundener Gegenstände: ' + str(i))
 
-        if arc_count >= i:
+        if arc_count >= len(i):
             return True
         else:
             return False

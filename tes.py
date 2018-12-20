@@ -22,14 +22,19 @@ ench_window_y = ench_window[1]
 
 pyautogui.locateAllOnScreen(path + 'pic\\14.png', region=(ench_window_x + 6, ench_window_y + 90, 230, 25), grayscale=False, confidence=.8)
 
-#pyautogui.screenshot('ench_screen.png', region=(ench_window_x + 10, ench_window_y + 51, 198, 43))
-# picture = Image.open("ench_screen.png")
-# width, height = picture.size
+pyautogui.screenshot('ench_screen.png', region=(ench_window_x + 10, ench_window_y + 51, 198, 43))
+picture = Image.open("ench_screen.png")
 
-# for x in width:
-#    for y in height:
-#        current_color = picture.getpixel( (x,y) )
-#        print(current_color)
-#         if current_color != :
-#             pass
-#        picture.putpixel( (x,y), new_color)
+width, height = picture.size
+
+for x in range(0, width):
+    for y in range(0, height):
+        current_color = picture.getpixel( (x,y) )
+        if current_color != (255,0,0):
+            picture.putpixel( (x,y), (0, 0, 0))
+
+picture.save("ench_screen.png")
+
+temp = pyautogui.locateAll(path + "pic\\14.png", "ench_screen.png", grayscale=False)
+
+print()
