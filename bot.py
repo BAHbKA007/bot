@@ -126,8 +126,10 @@ def main(r):
 
     #logIn()
 
-    # ews Koordinaten + Anzahl BEWS
+    # ews Koordinaten, Farbe + Anzahl BEWS
     ews = find_pic('ews.png',0.99)
+    x,y = ews
+    r,g,b = pyautogui.pixel( int(x), int(y) )
     time.sleep(2)
     b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
 
@@ -159,12 +161,9 @@ def main(r):
     
         try:
             while True:
-                # EWS Prüfung
-                x,y = ews
-                r,g,b = pyautogui.pixel( int(x), int(y) )
-                
-                if ews_count <= 0 or pyautogui.pixelMatchesColor(int(x), int(y), ( int(r), int(g), int(b) ) ):
-                    print('Keine EWS mehr!')
+                # EWS Prüfung             
+                if not pyautogui.pixelMatchesColor(int(x), int(y), ( int(r), int(g), int(b) ) ):
+                    print('Keine EWS mehr (verschoben?)!')
                     break
 
                 # Prüfen ob Disconnect Fehlermeldung auf dem Bildschirm
