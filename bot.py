@@ -162,7 +162,7 @@ def main(r):
         try:
             while True:
                 # EWS Prüfung             
-                if not pyautogui.pixelMatchesColor(int(x), int(y), ( int(r), int(g), int(b) ) ):
+                if not pyautogui.pixelMatchesColor(int(x), int(y), ( r, g, b ) ):
                     print('Keine EWS mehr (verschoben?)!')
                     break
 

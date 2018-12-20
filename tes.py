@@ -27,4 +27,4 @@ def find_pic(a, conf=.9, x=1024, y=768, x_inner=0, y_inner=0):
 ews = find_pic('ews.png')
 x,y = ews
 r,g,b = pyautogui.pixel( int(x), int(y) )
-print(not pyautogui.pixelMatchesColor(int(x), int(y), ( int(r), int(g), int(b) ) ) )
+print(not pyautogui.pixelMatchesColor(int(x), int(y), ( r, g, b ) ) )
