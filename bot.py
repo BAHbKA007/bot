@@ -100,11 +100,15 @@ def main(r):
         time.sleep(2)   
 
     def no_arc18er():
-        arc18 = pyautogui.locateCenterOnScreen(path+'pic\\bai14.png',region=(ench_window_x + 10 + c, ench_window_y + 48,15,15))
-        if arc18 != None:
-            return False
-        else:
+        a = pyautogui.locateAllOnScreen(path + 'pic\\14.png', grayscale=False, confidence=.9)
+        i = 0
+        for pos in a:
+            i = i + 1
+
+        if arc_count == i:
             return True
+        else:
+            return False
 
     #logIn()
 
