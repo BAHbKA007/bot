@@ -221,11 +221,9 @@ def main(r):
                         c = c - 36 * 6
                         k = k + 36
                     if arc_count == 12:
-                        # www_get(run, arc_count, 1, 1)
-                        # print('Mehr als 6 Gegenstände 18+')
-                        # break
-                        c = c - 36 * 6
-                        k = k + 36
+                        www_get(run, arc_count, 1, 1)
+                        print('Mehr als 6 Gegenstände 18+')
+                        break
 
                     arc_count = arc_count + 1
                     c = c + 36
