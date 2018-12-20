@@ -160,7 +160,10 @@ def main(r):
         try:
             while True:
                 # EWS Prüfung
-                if ews_count <= 0:
+                x,y = ews
+                r,g,b = pyautogui.pixel( int(x), int(y) )
+                
+                if ews_count <= 0 or pyautogui.pixelMatchesColor(int(x), int(y), ( int(r), int(g), int(b) ) ):
                     print('Keine EWS mehr!')
                     break
 
