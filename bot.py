@@ -104,6 +104,8 @@ def main(r):
         i = 0
         for pos in a:
             i = i + 1
+        
+        print('Anzahl gefundener Gegenstände: ' + str(i))
 
         if arc_count == i:
             return True
