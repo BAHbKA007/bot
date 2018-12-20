@@ -211,7 +211,7 @@ def main(r):
                     time.sleep(v + ok) #0.25
 
                 else:
-                    if arc_count >= 6
+                    if arc_count >= 6:
                         www_get(run, arc_count, 1, 1)
                         print('Mehr als 6 Gegenstände 18+')
                         break
