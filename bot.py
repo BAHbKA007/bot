@@ -35,6 +35,7 @@ def main(r):
     arc_count = 0
     v = 0.05 # 0.05 sleep auf den tasten
     ok = 0.239 # + sleep auf OK
+    k = 0
 
     #Windows Prozesse Nach lineage 2 durhsuchen
     wins = []
@@ -102,7 +103,7 @@ def main(r):
         time.sleep(2)   
 
     def no_arc18er():
-        a = pyautogui.locateAllOnScreen(path + 'pic\\18er.png', region=(ench_window_x + 6, ench_window_y + 40, 230, 25), grayscale=False, confidence=.9)
+        a = pyautogui.locateAllOnScreen(path + 'pic\\14.png', region=(ench_window_x + 6, ench_window_y + 40, 230, 25), grayscale=False, confidence=.8)
         i = 0
         for pos in a:
             i = i + 1
@@ -202,7 +203,7 @@ def main(r):
                 time.sleep(v)
 
                 # Arc
-                pyautogui.moveTo(ench_window_x + 24 + c, ench_window_y + 67)
+                pyautogui.moveTo(ench_window_x + 24 + c, ench_window_y + k + 67)
                 mausklick()
                 time.sleep(v)
 
@@ -214,9 +215,11 @@ def main(r):
 
                 else:
                     if arc_count >= 6:
-                        www_get(run, arc_count, 1, 1)
-                        print('Mehr als 6 Gegenstände 18+')
-                        break
+                        # www_get(run, arc_count, 1, 1)
+                        # print('Mehr als 6 Gegenstände 18+')
+                        # break
+                        c = c - 36 * 6
+                        k = k + 36
                     arc_count = arc_count + 1
                     c = c + 36
 
