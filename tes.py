@@ -20,11 +20,12 @@ win_pos_y = win_pos[1]
 # ench_window_x = ench_window[0]
 # ench_window_y = ench_window[1]
 
-def find_pic(a, conf=.9, x=1024, y=768, x_inner=0, y_inner=0):
+def find_pic(a, conf=.9, x=800, y=600, x_inner=0, y_inner=0):
     pos = pyautogui.locateCenterOnScreen(path + 'pic\\' + a, region=(win_pos_x + x_inner, win_pos_y + y_inner,x,y),grayscale=True, confidence=conf)
-    pyautogui.moveTo(pos)
     return pos
+
 ews = find_pic('ews.png')
-x,y = ews
-r,g,b = pyautogui.pixel( int(x), int(y) )
-print(not pyautogui.pixelMatchesColor(int(x), int(y), ( r, g, b ) ) )
+x = ews[0]
+y = ews[1]
+
+print(y)
