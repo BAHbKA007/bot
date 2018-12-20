@@ -33,7 +33,7 @@ def main(r):
     i = 5
     c = 0
     arc_count = 0
-    v = 0.1 # 0.05 sleep auf den tasten
+    v = 0.14 # 0.05 sleep auf den tasten
     ok = 0.239 # + sleep auf OK
 
     #Windows Prozesse Nach lineage 2 durhsuchen
