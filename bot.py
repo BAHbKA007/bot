@@ -4,7 +4,7 @@ from interception import ffi, lib
 from PIL import Image
 from skimage.io import imread
 
-#https://github.com/tesseract-ocr/tesseract/wiki
+https://github.com/tesseract-ocr/tesseract/wiki
 pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files (x86)\\Tesseract-OCR\\tesseract'
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -23,7 +23,7 @@ def mausklick():
     lib.interception_send(context, 11,  stroke, 1)
 
 datum_sql = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-#requests.get('http://s.leichtbewaff.net/?start='+str(datum_sql), verify=False)
+requests.get('http://s.leichtbewaff.net/?start='+str(datum_sql), verify=False)
 
 def main(r):
 
@@ -33,7 +33,7 @@ def main(r):
     i = 5
     c = 0
     arc_count = 0
-    v = 0.14 # 0.05 sleep auf den tasten
+    v = 0.05 # 0.05 sleep auf den tasten
     ok = 0.239 # + sleep auf OK
 
     #Windows Prozesse Nach lineage 2 durhsuchen
@@ -91,8 +91,7 @@ def main(r):
         raise RuntimeError('Keine Lineage II Prozesse gefunden')
 
     def www_get(run, arc_count, discon, succes):
-        #requests.get('http://s.leichtbewaff.net/?run='+str(run)+'&arc='+str(arc_count)+'&discon='+str(discon) + '&succes=' + str(succes), verify=False)
-        print()
+        requests.get('http://s.leichtbewaff.net/?run='+str(run)+'&arc='+str(arc_count)+'&discon='+str(discon) + '&succes=' + str(succes), verify=False)
 
     def setzen():
         pyautogui.moveTo(sit)
@@ -218,7 +217,7 @@ def main(r):
                     arc_count = arc_count + 1
                     c = c + 36
 
-                    #requests.get('http://s.leichtbewaff.net/?stat='+str(run), verify=False)
+                    requests.get('http://s.leichtbewaff.net/?stat='+str(run), verify=False)
                     run = 0
 
                 printstr = str(arc_count) + ' Arcana Mace ' + str(run) + ' Durchläufe ' + str(ews_count) + ' EWS'
