@@ -100,14 +100,14 @@ def main(r):
         time.sleep(2)   
 
     def no_arc18er():
-        a = pyautogui.locateAllOnScreen(path + 'pic\\14.png', grayscale=False, confidence=.8)
+        a = pyautogui.locateAllOnScreen(path + 'pic\\14.png', grayscale=False, confidence=.75)
         i = 0
         for pos in a:
             i = i + 1
         
         print('Anzahl gefundener Gegenstände: ' + str(i))
 
-        if arc_count == i:
+        if arc_count <= i:
             return True
         else:
             return False
