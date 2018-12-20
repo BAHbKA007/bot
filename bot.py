@@ -100,7 +100,7 @@ def main(r):
         time.sleep(2)   
 
     def no_arc18er():
-        a = pyautogui.locateAllOnScreen(path + 'pic\\14.png', grayscale=False, confidence=.75)
+        a = pyautogui.locateAllOnScreen(path + 'pic\\14.png', region=(ench_window_x + 6, ench_window_y + 40, 230, 25), grayscale=False, confidence=.75)
         i = 0
         for pos in a:
             i = i + 1
