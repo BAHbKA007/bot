@@ -160,7 +160,7 @@ def main(r):
         try:
             while True:
                 # EWS Prüfung             
-                if find_pic('ews.png') == None:
+                if ews_count == 0:
                     print('Keine EWS mehr (verschoben?)!')
                     break
 
