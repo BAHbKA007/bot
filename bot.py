@@ -119,7 +119,6 @@ def main(r):
 
         temp = pyautogui.locateAll(path + "pic\\14.png", "ench_screen.png", grayscale=False)
         i = len(list(temp))
-        print('Anzahl gefundener Gegenstände: ' + str(i))
 
         if arc_count >= i:
             return True
