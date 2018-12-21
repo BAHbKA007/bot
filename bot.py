@@ -37,7 +37,7 @@ def main(r):
     v = 0.05 # 0.05 sleep auf den tasten
     ok = 0.239 # + sleep auf OK .239
     k = 0
-    while_count = 0
+    while_count = -1
 
     #Windows Prozesse Nach lineage 2 durhsuchen
     wins = []
