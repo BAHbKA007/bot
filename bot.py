@@ -263,7 +263,7 @@ def main(r):
                 with open(path + "bot.run", "w") as fh:
                     fh.write(str(run))
 
-                printstr = str(ews_count) + ' EWS || ' + str(time.time() - start_time_loop) + 's Laufzeit'
+                printstr = str(ews_count) + ' EWS || ' + str(time.time() - start_time_loop) + 's Laufzeit || run = ' + str(run)
                 print(printstr)
 
                 run = run + 1
