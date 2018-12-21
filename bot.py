@@ -37,9 +37,6 @@ def main(r):
     v = 0.05 # 0.05 sleep auf den tasten
     ok = 0.239 # + sleep auf OK .239
     k = 0
-    ench_window_x = 0
-    ench_window_y = 0
-
 
     #Windows Prozesse Nach lineage 2 durhsuchen
     wins = []
@@ -97,11 +94,6 @@ def main(r):
     if find_pic('login.png') != None:
         logIn()
 
-    def find_enchant_koordinaten():
-        ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,800,600),grayscale=True, confidence=.9)
-        ench_window_x = ench_window[0]
-        ench_window_y = ench_window[1]    
-
     def www_get(run, arc_count, discon, succes):
         requests.get('http://s.leichtbewaff.net/?run='+str(run)+'&arc='+str(arc_count)+'&discon='+str(discon) + '&succes=' + str(succes), verify=False)
 
@@ -147,7 +139,9 @@ def main(r):
     # Enchant Fenster Koordinaten
     mausklick()
     time.sleep(1)
-    find_enchant_koordinaten()
+    ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,800,600),grayscale=True, confidence=.9)
+    ench_window_x = ench_window[0]
+    ench_window_y = ench_window[1] 
 
     # CP Koordinaten
     cp = 0#find_pic('cp.png',0.99)
@@ -174,7 +168,9 @@ def main(r):
 
                 # alle 100 Durchläufe
                 if run % 100 == 0 and run != 0:
-                    find_enchant_koordinaten()
+                    ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,800,600),grayscale=True, confidence=.9)
+                    ench_window_x = ench_window[0]
+                    ench_window_y = ench_window[1]
 
                 # alle 20 Durchläufe
                 if run % 20 == 0 and run != 0:
