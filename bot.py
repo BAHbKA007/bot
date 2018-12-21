@@ -167,28 +167,30 @@ def main(r):
                     print('Keine EWS mehr (verschoben?)!')
                     break
 
-                # Prüfen ob Disconnect Fehlermeldung auf dem Bildschirm
-                if pyautogui.locateCenterOnScreen(path + 'pic\\disc.png', region=(win_pos_x + 370, win_pos_y + 330,40,40),grayscale=True, confidence=.9) != None:
-                    www_get(run, arc_count, 1, 0)
-                    print('Disconnected')
-                    time.sleep(1)
+                #alle 20 Durchläufe
+                if run % 20 == 0 and run != 0:
+                    print('Prüfungen: Disconnect und Spiel an')
+                    # Prüfen ob Disconnect Fehlermeldung auf dem Bildschirm
+                    if pyautogui.locateCenterOnScreen(path + 'pic\\disc.png', region=(win_pos_x + 258, win_pos_y + 270,40,40),grayscale=True, confidence=.9) != None:
+                        www_get(run, arc_count, 1, 0)
+                        print('Disconnected')
+                        time.sleep(1)
 
-                    if "03:30" < time.strftime("%H:%M") < "04:00":
-                        print('sleep Nacht')
-                        time.sleep(1800)
+                        if "03:30" < time.strftime("%H:%M") < "04:00":
+                            print('sleep Nacht')
+                            time.sleep(1800)
 
-                    # OK: 513,463
-                    find_pic('ok.png')
-                    mausklick()
-                    time.sleep(4)
+                        # OK: 513,463
+                        find_pic('ok.png')
+                        mausklick()
+                        time.sleep(4)
 
-                    while find_pic('ews.png',0.99) == None:
-                        logIn()
+                        while find_pic('ews.png',0.99) == None:
+                            logIn()
 
-                    setzen()
+                        setzen()
 
-                #Spiel an?
-                if run % 20 == 0:
+                    #Spiel an?
                     if win32gui.FindWindow(None,'Lineage II') == 0:
                         print('Lineage nicht gefunden')
                         www_get(run, arc_count, 1, 0)
