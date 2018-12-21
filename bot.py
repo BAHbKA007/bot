@@ -223,7 +223,7 @@ def main(r):
                 time.sleep(v)
 
                 # alle 100 Durchläufe
-                if run % 20 == 0 and run != 0:
+                if run % 100 == 0 and run != 0:
                     print('Reset Koordinaten Enchant window')
                     ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,800,600),grayscale=True, confidence=.9)
                     ench_window_x = ench_window[0]
