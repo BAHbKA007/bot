@@ -166,12 +166,6 @@ def main(r):
                     print('Keine EWS mehr (verschoben?)!')
                     break
 
-                # alle 100 Durchläufe
-                if run % 100 == 0 and run != 0:
-                    ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,800,600),grayscale=True, confidence=.9)
-                    ench_window_x = ench_window[0]
-                    ench_window_y = ench_window[1]
-
                 # alle 20 Durchläufe
                 if run % 20 == 0 and run != 0:
                     print('Prüfungen: Disconnect und Spiel an')
@@ -223,6 +217,12 @@ def main(r):
                 mausklick()
                 time.sleep(v)
 
+                # alle 100 Durchläufe
+                if run % 100 == 0 and run != 0:
+                    ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,800,600),grayscale=True, confidence=.9)
+                    ench_window_x = ench_window[0]
+                    ench_window_y = ench_window[1]
+                    
                 # Arc
                 pyautogui.moveTo(ench_window_x + 24 + c, ench_window_y + k + 67)
                 mausklick()
