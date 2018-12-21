@@ -37,6 +37,8 @@ def main(r):
     v = 0.05 # 0.05 sleep auf den tasten
     ok = 0.239 # + sleep auf OK .239
     k = 0
+    ench_window_x = 0
+    ench_window_y = 0
 
 
     #Windows Prozesse Nach lineage 2 durhsuchen
