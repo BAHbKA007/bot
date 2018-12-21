@@ -24,6 +24,7 @@ def mausklick():
 
 datum_sql = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 requests.get('http://s.leichtbewaff.net/?start='+str(datum_sql), verify=False)
+start_time = int(str(time.time())[0:10])
 
 def main(r):
 
@@ -36,6 +37,7 @@ def main(r):
     v = 0.05 # 0.05 sleep auf den tasten
     ok = 0.239 # + sleep auf OK
     k = 0
+
 
     #Windows Prozesse Nach lineage 2 durhsuchen
     wins = []
@@ -200,8 +202,10 @@ def main(r):
                 #     setzen()
                 #     time.sleep(3)
 
-                # relog nach 2000 runs
-                if run % 6000 == 0 and run != 0:
+                # relog nach 30min
+                uhrzeit = int(str(time.time())[0:10])
+                if (uhrzeit - start_time) % 1800 == 0 and (uhrzeit - start_time) != 0:
+                    print('Relogg')
                     pyautogui.moveTo(relog)
                     mausklick()
                     time.sleep(10)
