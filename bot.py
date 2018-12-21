@@ -232,6 +232,10 @@ def main(r):
                     if arc_count == 11:
                         www_get(run, arc_count, 1, 1)
                         print('Mehr als 6 Gegenstände 18+')
+
+                        #bot.run beschreiben
+                        with open(path + "bot.run", "w") as fh:
+                            fh.write(str(0))
                         break
 
                     arc_count = arc_count + 1
