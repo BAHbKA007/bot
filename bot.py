@@ -140,7 +140,7 @@ def main(r):
     # Enchant Fenster Koordinaten
     mausklick()
     time.sleep(1)
-    ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,1024,768),grayscale=True, confidence=.9)
+    ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,800,600),grayscale=True, confidence=.9)
     ench_window_x = ench_window[0]
     ench_window_y = ench_window[1]
 
@@ -226,7 +226,8 @@ def main(r):
                 if no_arc18er():
                     #OK Button Enchant Fenster
                     pyautogui.moveTo(ench_window_x + 90, ench_window_y + 383)
-                    mausklick()
+                    while pyautogui.locateOnScreen(path + 'pic\\cancel.png', region=(ench_window_x + 160, ench_window_y + 382, 6, 8),grayscale=True, confidence=.99) != None:
+                        mausklick()
                     time.sleep(v + ok) #0.25
 
                 else:
