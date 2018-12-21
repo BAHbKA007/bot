@@ -272,6 +272,9 @@ def main(r):
         except Exception as e:
             www_get(0, 0, 1, 0)
 
+            with open(path + "bot.run", "w") as fh:
+                fh.write(str(run))
+
             print("type error: " + str(e))
             print(traceback.format_exc())
 
