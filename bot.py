@@ -239,7 +239,7 @@ def main(r):
 
                         #bot.run beschreiben
                         with open(path + "bot.run", "w") as fh:
-                            fh.write(str(run))
+                            fh.write(str(0))
                         break
 
                     arc_count = arc_count + 1
