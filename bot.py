@@ -37,7 +37,7 @@ def main(r):
     v = 0.05 # 0.05 sleep auf den tasten
     ok = 0.239 # + sleep auf OK .239
     k = 0
-    while_count = -1
+    while_count = 0
 
     #Windows Prozesse Nach lineage 2 durhsuchen
     wins = []
@@ -255,7 +255,7 @@ def main(r):
                             fh.write(str(0))
                         break
 
-                    if while_count > arc_count:
+                    if while_count < arc_count:
                         run = 0
 
                     arc_count = arc_count + 1

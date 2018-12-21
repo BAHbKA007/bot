@@ -23,7 +23,5 @@ path = str(os.path.dirname(__file__)) + '\\'
 # while pyautogui.locateOnScreen(path + 'pic\\cancel.png', region=(ench_window_x + 160, ench_window_y + 382, 6, 8),grayscale=True, confidence=.99) != None:
 #     print('da')
 
-with open(path + "bot.run", "r") as fh:
-    run = int(fh.read())
 
-print(run)
+print(1 < 1)
