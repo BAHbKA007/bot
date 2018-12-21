@@ -226,8 +226,7 @@ def main(r):
                 if no_arc18er():
                     #OK Button Enchant Fenster
                     pyautogui.moveTo(ench_window_x + 90, ench_window_y + 383)
-                    while pyautogui.locateOnScreen(path + 'pic\\cancel.png', region=(ench_window_x + 160, ench_window_y + 382, 6, 8),grayscale=True, confidence=.99) != None:
-                        mausklick()
+                    mausklick()
                     time.sleep(v + ok) #0.25
 
                 else:
