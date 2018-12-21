@@ -37,6 +37,7 @@ def main(r):
     v = 0.05 # 0.05 sleep auf den tasten
     ok = 0.239 # + sleep auf OK .239
     k = 0
+    while_count = 0
 
     #Windows Prozesse Nach lineage 2 durhsuchen
     wins = []
@@ -57,6 +58,7 @@ def main(r):
         print(str(i))
         time.sleep(1)
         i = i - 1
+    i = 0
     
     if len(proc) > 0:
         def logIn():
@@ -159,9 +161,10 @@ def main(r):
     
         try:
             while True:
+                while_count = while_count + 1
                 start_time_loop = time.time()
 
-                # EWS Prüfung             
+                #EWS Prüfung             
                 if ews_count == 0:
                     print('Keine EWS mehr (verschoben?)!')
                     break
@@ -169,7 +172,7 @@ def main(r):
                 # alle 20 Durchläufe
                 if run % 20 == 0 and run != 0:
                     print('Prüfungen: Disconnect und Spiel an')
-                    # Prüfen ob Disconnect Fehlermeldung auf dem Bildschirm
+                    #Prüfen ob Disconnect Fehlermeldung auf dem Bildschirm
                     if pyautogui.locateCenterOnScreen(path + 'pic\\disc.png', region=(win_pos_x + 258, win_pos_y + 270,40,40),grayscale=True, confidence=.9) != None:
                         www_get(run, arc_count, 1, 0)
                         print('Disconnected')
@@ -207,10 +210,10 @@ def main(r):
                 # relog nach 30min
                 uhrzeit = int(math.ceil(time.time()))
                 if (uhrzeit - start_time) % 1800 == 0 and (uhrzeit - start_time) != 0:
-                    print('Relogg')
+                    print('Relog')
                     pyautogui.moveTo(relog)
                     mausklick()
-                    time.sleep(10)
+                    time.sleep(13)
 
                 # Echnant
                 pyautogui.moveTo(ews)
@@ -234,7 +237,7 @@ def main(r):
                     pyautogui.moveTo(ench_window_x + 90, ench_window_y + 383)
                     mausklick()
                     time.sleep(v + ok) #0.25
-
+                
                 else:
                     if arc_count == 5:
                         # www_get(run, arc_count, 1, 1)
@@ -243,19 +246,22 @@ def main(r):
                         c = -36
                         k = k + 36
                     if arc_count == 11:
-                        www_get(run, arc_count, 1, 1)
-                        print('Mehr als 6 Gegenstände 18+')
+                        c = -36
+                        k = k + 36
 
+                    if arc_count == 13:
                         #bot.run beschreiben
                         with open(path + "bot.run", "w") as fh:
                             fh.write(str(0))
                         break
 
+                    if while_count > arc_count:
+                        run = 0
+
                     arc_count = arc_count + 1
                     c = c + 36
 
                     requests.get('http://s.leichtbewaff.net/?stat='+str(run), verify=False)
-                    run = 0
 
                 www_get(run, arc_count, 0, 0)
 
