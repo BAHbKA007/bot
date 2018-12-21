@@ -161,6 +161,8 @@ def main(r):
     
         try:
             while True:
+                start_time_loop = time.time()
+
                 # EWS Prüfung             
                 if ews_count == 0:
                     print('Keine EWS mehr (verschoben?)!')
@@ -248,14 +250,14 @@ def main(r):
                     requests.get('http://s.leichtbewaff.net/?stat='+str(run), verify=False)
                     run = 0
 
-                printstr = str(arc_count) + ' Arcana Mace ' + str(run) + ' Durchläufe ' + str(ews_count) + ' EWS'
-                print(printstr)
-
                 www_get(run, arc_count, 0, 0)
 
                 #bot.run beschreiben
                 with open(path + "bot.run", "w") as fh:
                     fh.write(str(run))
+
+                printstr = str(ews_count) + ' EWS || ' + str(time.time() - start_time_loop) + 's Laufzeit'
+                print(printstr)
 
                 run = run + 1
                 ews_count = ews_count - 1
