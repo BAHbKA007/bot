@@ -232,6 +232,13 @@ def main(r):
                     ench_window_x = ench_window[0]
                     ench_window_y = ench_window[1]
 
+                    if find_pic('login.png',.9,352,359,20,20) != None:
+                        print('relog')
+                        logIn()
+                    else:
+                        print('kein login on Screen')
+                        pass
+
                 if no_arc18er():
                     #OK Button Enchant Fenster
                     pyautogui.moveTo(ench_window_x + 90, ench_window_y + 383)
