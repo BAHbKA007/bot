@@ -70,7 +70,7 @@ def main(r):
             # Agree: 473,609
             find_pic('agree.png')
             mausklick()
-            time.sleep(4)
+            time.sleep(6)
 
             # OK: 517,450
             find_pic('ok.png')
