@@ -262,7 +262,7 @@ def main(r):
                             fh.write(str(0))
                         break
 
-                    if while_count < arc_count:
+                    if while_count > 20:
                         run = 0
                         requests.get('http://s.leichtbewaff.net/?stat='+str(run), verify=False)
 
