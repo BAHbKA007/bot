@@ -257,11 +257,10 @@ def main(r):
 
                     if while_count < arc_count:
                         run = 0
+                        requests.get('http://s.leichtbewaff.net/?stat='+str(run), verify=False)
 
                     arc_count = arc_count + 1
                     c = c + 36
-
-                    requests.get('http://s.leichtbewaff.net/?stat='+str(run), verify=False)
 
                 www_get(run, arc_count, 0, 0)
 
