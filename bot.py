@@ -80,7 +80,7 @@ def main(r):
             # Start: 514,714
             find_pic('start.png')
             mausklick()
-            time.sleep(10)
+            time.sleep(14)
 
         win_pos = win32gui.GetWindowRect(proc[len(proc)-1])
         win_pos_x = win_pos[0] + 7
