@@ -35,7 +35,7 @@ def main(r):
     c = 0
     arc_count = 0
     v = 0.05 # 0.05 sleep auf den tasten
-    ok = 0.25 # + sleep auf OK .239
+    ok = 0.27 # + sleep auf OK .239
     k = 0
     while_count = 0
 
