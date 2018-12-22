@@ -263,8 +263,8 @@ def main(r):
                         break
 
                     if while_count > 20:
-                        run = 0
                         requests.get('http://s.leichtbewaff.net/?stat='+str(run), verify=False)
+                        run = 0
 
                     arc_count = arc_count + 1
                     c = c + 36
