@@ -124,9 +124,14 @@ def main(r):
         if arc_count >= i:
             return True
         else:
-            return False    
+            return False 
 
-    #logIn()
+        if find_pic('login.png',.9,352,359,20,20) != None:
+            print('reLoginlog')
+            logIn()
+        else:
+            print('kein login on Screen')
+            pass
 
     # ews Koordinaten, Farbe + Anzahl BEWS
     ews = find_pic('ews.png',0.99)
