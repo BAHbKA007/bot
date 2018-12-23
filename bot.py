@@ -64,8 +64,10 @@ def login_versuche(start):
         for proc in psutil.process_iter():
             # check whether the process name matches
             if proc.name() == 'l2.bin':
+                print('beende L2 Prozess')
                 proc.kill()
                 time.sleep(2)
+                print('starte L2')
                 main(0)
 
 def main(r):
