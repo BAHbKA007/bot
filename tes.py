@@ -69,17 +69,12 @@ def find_proc():
             proc.append(winId)
     return proc
 
-
-if find_proc() == 0:
-    p = subprocess.Popen([r"C:\\Users\\Johann\\Desktop\\Euro-PvP_Client_ru_en\\system\\l2.exe"], stdout=subprocess.PIPE)
-    p.wait()
-    time.sleep(15)
-
-    anmelden('bahbka1','090587')
-
 # Fenster in Fordergrund bringen
 #win32gui.SetForegroundWindow(proc[len(proc)-1])
-for proc in psutil.process_iter():
-    # check whether the process name matches
-    if proc.name() == 'l2.bin':
-        proc.kill()
+
+win32gui.SetForegroundWindow(find_proc()[len(find_proc())-1])
+win_pos = win32gui.GetWindowRect(find_proc()[len(proc)-1])
+win_pos_x = win_pos[0] + 7
+win_pos_y = win_pos[1]
+
+print(win_pos_y)

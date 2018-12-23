@@ -190,12 +190,17 @@ def main(r):
 
         anmelden('bahbka1','090587')
 
-        logIn()
+        win32gui.SetForegroundWindow(find_proc()[len(find_proc())-1])
+        win_pos = win32gui.GetWindowRect(find_proc()[len(proc)-1])
+        win_pos_x = win_pos[0] + 7
+        win_pos_y = win_pos[1]
 
-    win32gui.SetForegroundWindow(find_proc()[len(find_proc())-1])
-    win_pos = win32gui.GetWindowRect(find_proc()[len(proc)-1])
-    win_pos_x = win_pos[0] + 7
-    win_pos_y = win_pos[1]
+        logIn()
+    else:
+        win32gui.SetForegroundWindow(find_proc()[len(find_proc())-1])
+        win_pos = win32gui.GetWindowRect(find_proc()[len(proc)-1])
+        win_pos_x = win_pos[0] + 7
+        win_pos_y = win_pos[1]
 
     with open(path + "bot.run", "r") as fh:
         run = int(fh.read())
