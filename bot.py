@@ -194,7 +194,7 @@ def main(r):
         p.wait()
 
         while len(find_proc()) == 0:
-            time.sleep(2)
+            time.sleep(5)
             print('warte auf Programmstart')
             if (time.time() - start) > 30:
                 for proc in psutil.process_iter():
