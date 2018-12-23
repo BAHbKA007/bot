@@ -189,11 +189,22 @@ def main(r):
             login_versuche(start)
 
     if len(find_proc()) == 0:
+        start = time.time()
         p = subprocess.Popen([r"C:\\Euro-PvP_Client_ru_en\\system\\l2.exe"], stdout=subprocess.PIPE)
         p.wait()
 
         while len(find_proc()) == 0:
             time.sleep(1)
+            print('warte auf Programmstart')
+            if (time.time() - start) > 30:
+                for proc in psutil.process_iter():
+                    # check whether the process name matches
+                    if proc.name() == 'l2.bin':
+                        print('beende L2 Prozess')
+                        proc.kill()
+                        time.sleep(2)
+                        print('starte L2')
+                        main(0)
 
         # Fenster in Fordergrund bringen
         win32gui.SetForegroundWindow(find_proc()[len(find_proc())-1])
