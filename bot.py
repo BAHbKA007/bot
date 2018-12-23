@@ -258,27 +258,7 @@ def main(r):
                         www_get(run, arc_count, 1, 0)
                         print('Disconnected')
                         time.sleep(1)
-
-                        if "03:30" < time.strftime("%H:%M") < "04:00":
-                            print('sleep Nacht')
-                            time.sleep(1800)
-
-                        # OK: 513,463
-                        find_pic('ok.png')
-                        mausklick()
-                        time.sleep(4)
-
-                        while find_pic('ews.png',0.99) == None:
-                            logIn()
-
-                        setzen()
-
-                    #Spiel an?
-                    if win32gui.FindWindow(None,'Lineage II') == 0:
-                        print('Lineage nicht gefunden')
-                        www_get(run, arc_count, 1, 0)
-                        break
-
+                        
                 # CP craft
                 # if run % 2000 == 0 and run != 0:
                 #     setzen()
@@ -287,6 +267,16 @@ def main(r):
                 #     time.sleep(30)
                 #     setzen()
                 #     time.sleep(3)
+
+                # Serverrestart umgehen
+                if "03:30" < time.strftime("%H:%M") < "04:00":
+                    print('sleep Nacht')
+                    for proc in psutil.process_iter():
+                        # check whether the process name matches
+                        if proc.name() == 'l2.bin':
+                            proc.kill()
+                    time.sleep(1800)
+                    main(0)
 
                 # relog nach 30min
                 if ( start_time - int(math.ceil(time.time())) ) % 1800 == 0:

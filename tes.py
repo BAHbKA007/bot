@@ -72,9 +72,4 @@ def find_proc():
 # Fenster in Fordergrund bringen
 #win32gui.SetForegroundWindow(proc[len(proc)-1])
 
-win32gui.SetForegroundWindow(find_proc()[len(find_proc())-1])
-win_pos = win32gui.GetWindowRect(find_proc()[len(proc)-1])
-win_pos_x = win_pos[0] + 7
-win_pos_y = win_pos[1]
-
-print(win_pos_y)
+print("02:30" < time.strftime("%H:%M") < "04:00")
