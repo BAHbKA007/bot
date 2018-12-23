@@ -72,4 +72,12 @@ def find_proc():
 # Fenster in Fordergrund bringen
 #win32gui.SetForegroundWindow(proc[len(proc)-1])
 
-print("03:30" < time.strftime("%H:%M") < "04:00")
+
+def discon(address):
+    return not not os.system('ping %s -n 1 > NUL' % (address,))
+
+while discon('192.168.178.22'):
+    print('Server offline, warte ...')
+    time.sleep(10)
+
+print('con')

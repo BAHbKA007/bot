@@ -30,6 +30,9 @@ datum_sql = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 requests.get('http://s.leichtbewaff.net/?start='+str(datum_sql), verify=False)
 start_time = int(math.ceil(time.time()))
 
+def discon(address):
+    return not not os.system('ping %s -n 1 > NUL' % (address,))
+
 def anmelden(benutzer,pw):
     context = lib.interception_create_context()
     kstroke = ffi.new('InterceptionKeyStroke *')
@@ -284,7 +287,9 @@ def main(r):
                         # check whether the process name matches
                         if proc.name() == 'l2.bin':
                             proc.kill()
-                    time.sleep(1800)
+                    while discon('185.121.243.33'):
+                        print('Server offline, warte ...')
+                        time.sleep(10)
                     main(0)
 
                 # relog nach 30min
