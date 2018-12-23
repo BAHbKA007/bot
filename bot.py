@@ -258,6 +258,15 @@ def main(r):
                         www_get(run, arc_count, 1, 0)
                         print('Disconnected')
                         time.sleep(1)
+
+                        for proc in psutil.process_iter():
+                            # check whether the process name matches
+                            if proc.name() == 'l2.bin':
+                                print('L2 Prozess beenden')
+                                proc.kill()
+                        time.sleep(3)
+                        print('L2 neustarten')
+                        main(0)
                         
                 # CP craft
                 # if run % 2000 == 0 and run != 0:
