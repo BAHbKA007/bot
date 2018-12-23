@@ -311,6 +311,8 @@ def main(r):
                         # check whether the process name matches
                         if proc.name() == 'l2.bin':
                             proc.kill()
+                            time.sleep(360)
+                            print('Warte 6 Minuten auf Serverdown')
                     while discon('185.121.243.33'):
                         print('Server offline, warte ...')
                         time.sleep(10)
@@ -373,7 +375,7 @@ def main(r):
                         c = -36
                         k = k + 36
 
-                    if arc_count == 13:
+                    if arc_count == 8:
                         #bot.run beschreiben
                         with open(path + "bot.run", "w") as fh:
                             fh.write(str(0))
