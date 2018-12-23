@@ -73,13 +73,4 @@ def find_proc():
 #win32gui.SetForegroundWindow(proc[len(proc)-1])
 
 
-def login_versuche(start):
-    if time.time() - start > 20:
-        print('führe aus')
-    else:
-        print('nichts')
-start = int(math.ceil(time.time()))
-
-while True:
-    login_versuche(start)
-    time.sleep(2)
+print(len(find_proc()))
