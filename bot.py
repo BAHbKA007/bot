@@ -102,7 +102,12 @@ def main(r):
         return pos  
 
     def www_get(run, arc_count, discon, succes):
-        requests.get('http://s.leichtbewaff.net/?run='+str(run)+'&arc='+str(arc_count)+'&discon='+str(discon) + '&succes=' + str(succes), verify=False)
+        try:
+            requests.get('http://s.leichtbewaff.net/?run='+str(run)+'&arc='+str(arc_count)+'&discon='+str(discon) + '&succes=' + str(succes), verify=False)
+        except Exception as e:
+            print("type error: " + str(e))
+            print(traceback.format_exc())
+            main(1)
 
     def setzen():
         pyautogui.moveTo(sit)
@@ -215,14 +220,20 @@ def main(r):
         time.sleep(1)
 
     # ews Koordinaten, Farbe + Anzahl BEWS
-    ews = find_pic('ews.png',0.99)
-    time.sleep(2)
-    b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
+    try:
+        print('Scroll Anzahl holen.')
+        ews = find_pic('ews.png',0.99)
+        time.sleep(2)
+        b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
 
-    pyautogui.screenshot('temp.png', region=(b[0],b[1], 300, 23))
-    image = imread('temp.png')
-    negative = 255 - image
-    ews_count = int(pytesseract.image_to_string(negative)[41:].split(')')[0].replace(",","").replace(" ","").replace("(",""))
+        pyautogui.screenshot('temp.png', region=(b[0],b[1], 300, 23))
+        image = imread('temp.png')
+        negative = 255 - image
+        ews_count = int(pytesseract.image_to_string(negative)[41:].split(')')[0].replace(",","").replace(" ","").replace("(",""))
+    except Exception as e:
+        print("type error: " + str(e))
+        print(traceback.format_exc())
+        main(1)
 
     # Enchant Fenster Koordinaten
     mausklick()

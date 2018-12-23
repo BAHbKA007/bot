@@ -73,11 +73,13 @@ def find_proc():
 #win32gui.SetForegroundWindow(proc[len(proc)-1])
 
 
-def discon(address):
-    return not not os.system('ping %s -n 1 > NUL' % (address,))
+def login_versuche(start):
+    if time.time() - start > 20:
+        print('führe aus')
+    else:
+        print('nichts')
+start = int(math.ceil(time.time()))
 
-while discon('192.168.178.22'):
-    print('Server offline, warte ...')
-    time.sleep(10)
-
-print('con')
+while True:
+    login_versuche(start)
+    time.sleep(2)
