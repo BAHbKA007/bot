@@ -179,7 +179,7 @@ def main(r):
             login_versuche(start)
 
     if len(find_proc()) == 0:
-        p = subprocess.Popen([r"C:\\Users\\Johann\\Desktop\\Euro-PvP_Client_ru_en\\system\\l2.exe"], stdout=subprocess.PIPE)
+        p = subprocess.Popen([r"C:\\Euro-PvP_Client_ru_en\\system\\l2.exe"], stdout=subprocess.PIPE)
         p.wait()
 
         while len(find_proc()) == 0:
