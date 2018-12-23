@@ -295,6 +295,13 @@ def main(r):
                     while find_pic('ews.png') == None:
                         print('suche ews.png')
                         time.sleep(1)
+                    find_pic('ews.png',0.99)
+                    time.sleep(1)
+                    mausklick()
+                    print('Reset Koordinaten Enchant window')
+                    ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,800,600),grayscale=True, confidence=.9)
+                    ench_window_x = ench_window[0]
+                    ench_window_y = ench_window[1]
 
                 # Echnant
                 pyautogui.moveTo(ews)
