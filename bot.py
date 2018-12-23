@@ -251,7 +251,7 @@ def main(r):
                     break
 
                 # alle 20 Durchläufe
-                if ( start_time - int(math.ceil(time.time())) ) % 10 == 0:
+                if ( start_time - int(math.ceil(time.time())) ) % 30 == 0:
                     print('Prüfungen: Disconnect und Spiel an')
                     #Prüfen ob Disconnect Fehlermeldung auf dem Bildschirm
                     if pyautogui.locateCenterOnScreen(path + 'pic\\disc.png', region=(win_pos_x + 258, win_pos_y + 270,40,40),grayscale=True, confidence=.9) != None:
@@ -293,7 +293,9 @@ def main(r):
                     print('Relog')
                     pyautogui.moveTo(relog)
                     mausklick()
-                    time.sleep(13)
+                    while find_pic('ews.png') == None:
+                        print('suche ews.png')
+                        time.sleep(1)
 
                 # Echnant
                 pyautogui.moveTo(ews)
