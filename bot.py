@@ -128,7 +128,7 @@ def main(r):
 
         picture.save("ench_screen.png")
 
-        temp = pyautogui.locateAll(path + "pic\\18.png", "ench_screen.png", grayscale=False)
+        temp = pyautogui.locateAll(path + "pic\\14.png", "ench_screen.png", grayscale=False)
         i = len(list(temp))
 
         if arc_count >= i:
