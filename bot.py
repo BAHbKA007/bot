@@ -345,8 +345,8 @@ def main(r):
                         # check whether the process name matches
                         if proc.name() == 'l2.bin':
                             proc.kill()
-                            print('Warte 6 Minuten auf Serverdown')
-                            time.sleep(360)
+                            print('Warte 20 Minuten auf Serverdown')
+                            time.sleep(1200)
                     main(0)
 
                 # relog nach 30min
