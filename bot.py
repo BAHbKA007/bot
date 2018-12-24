@@ -276,10 +276,20 @@ def main(r):
             setzen()
     
         try:
-            while True:
+            while True:             
                 while_count = while_count + 1
                 start_time_loop = time.time()
 
+                if ( start_time - int(math.ceil(time.time())) ) % 3600 == 0:
+                    for proc in psutil.process_iter():
+                        # check whether the process name matches
+                        if proc.name() == 'l2.bin' or proc.name() == 'l2.exe':
+                            print('L2 Prozess beenden')
+                            proc.kill()
+                    time.sleep(3)
+                    print('L2 neustarten')
+                    main(0)
+                    
                 #EWS Prüfung             
                 if ews_count == 0:
                     print('Keine EWS mehr (verschoben?)!')

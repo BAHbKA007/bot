@@ -65,7 +65,7 @@ def find_proc():
     win32gui.EnumWindows(lambda x, y: y.append(x), wins)
     for winId in wins:
         winName = win32gui.GetWindowText(winId)
-        if winName == 'Lineage II':
+        if winName == 'WhatsApp':
             proc.append(winId)
     return proc
 def discon(address):
@@ -73,4 +73,7 @@ def discon(address):
 # Fenster in Fordergrund bringen
 #win32gui.SetForegroundWindow(proc[len(proc)-1])
 
-print(time.strftime("%H:%M") == "03:55")
+process = psutil.Process(os.getpid())
+print(process.memory_info().rss)
+
+print(os.getpid())
