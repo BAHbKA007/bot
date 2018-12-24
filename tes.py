@@ -72,6 +72,12 @@ def discon(address):
     return not not os.system('ping %s -n 1 > NUL' % (address,))
 # Fenster in Fordergrund bringen
 #win32gui.SetForegroundWindow(proc[len(proc)-1])
-a = 'absdfsdfsdfsdfsdfsdfsdc'
+PICTURE = 'ews.png'
+#
+#
+if PICTURE.find('w') != -1:
+    max_enchant = '18.png'
+else:
+    max_enchant = '14.png'
 
-print(a.find('x'))
+print(max_enchant)

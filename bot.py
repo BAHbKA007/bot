@@ -23,7 +23,7 @@ start_time = int(math.ceil(time.time()))
 PICTURE = 'ews.png'
 #
 #
-if PICTURE.find('w') == -1:
+if PICTURE.find('w') != -1:
     max_enchant = '18.png'
 else:
     max_enchant = '14.png'
