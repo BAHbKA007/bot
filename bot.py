@@ -4,7 +4,10 @@ from interception import ffi, lib
 from PIL import Image
 from skimage.io import imread
 
-#https://github.com/tesseract-ocr/tesseract/wiki
+# https://github.com/tesseract-ocr/tesseract/wiki
+# pip install pyautogui requests urllib3 pypiwin32 pytesseract psutil interception scipy
+# https://github.com/oblitum/interception/releases/tag/v1.0.1
+# %windir%\system32\cmd.exe /K python /Users/Johann/Desktop/Bot/bot.py
 pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files (x86)\\Tesseract-OCR\\tesseract'
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -63,7 +66,7 @@ def login_versuche(start):
     if time.time() - start > 120:
         for proc in psutil.process_iter():
             # check whether the process name matches
-            if proc.name() == 'l2.bin':
+            if proc.name() == 'l2.bin' or proc.name() == 'l2.exe':
                 print('beende L2 Prozess')
                 proc.kill()
                 time.sleep(2)
@@ -200,7 +203,7 @@ def main(r):
                 if (time.time() - start) > 30:
                     for proc in psutil.process_iter():
                         # check whether the process name matches
-                        if proc.name() == 'l2.bin':
+                        if proc.name() == 'l2.bin' or proc.name() == 'l2.exe':
                             print('beende L2 Prozess')
                             proc.kill()
                             time.sleep(2)
@@ -293,7 +296,7 @@ def main(r):
 
                         for proc in psutil.process_iter():
                             # check whether the process name matches
-                            if proc.name() == 'l2.bin':
+                            if proc.name() == 'l2.bin' or proc.name() == 'l2.exe':
                                 print('L2 Prozess beenden')
                                 proc.kill()
                         time.sleep(3)

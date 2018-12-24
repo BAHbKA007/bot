@@ -73,6 +73,4 @@ def discon(address):
 # Fenster in Fordergrund bringen
 #win32gui.SetForegroundWindow(proc[len(proc)-1])
 
-while True:
-    print(discon('185.121.243.33'))
-    time.sleep(2)
+print(time.strftime("%H:%M") == "03:55")
