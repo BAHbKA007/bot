@@ -253,20 +253,22 @@ def main(r):
         time.sleep(1)
 
     # ews Koordinaten, Farbe + Anzahl BEWS
-    try:
+    print('Scroll Anzahl holen.')
+    ews = find_pic(PICTURE,0.99)
+    time.sleep(2)
+    b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
+
+    while b == None:
         print('Scroll Anzahl holen.')
         ews = find_pic(PICTURE,0.99)
         time.sleep(2)
         b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
 
-        pyautogui.screenshot('temp.png', region=(b[0],b[1], 300, 23))
-        image = imread('temp.png')
-        negative = 255 - image
-        ews_count = int(pytesseract.image_to_string(negative)[41:].split(')')[0].replace(",","").replace(" ","").replace("(",""))
-    except Exception as e:
-        print("type error: " + str(e))
-        print(traceback.format_exc())
-        main(1)
+    pyautogui.screenshot('temp.png', region=(b[0],b[1], 300, 23))
+    image = imread('temp.png')
+    negative = 255 - image
+    ews_count = int(pytesseract.image_to_string(negative)[41:].split(')')[0].replace(",","").replace(" ","").replace("(",""))
+
 
     # Enchant Fenster Koordinaten
     mausklick()
