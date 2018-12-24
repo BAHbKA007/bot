@@ -73,7 +73,7 @@ def discon(address):
 # Fenster in Fordergrund bringen
 #win32gui.SetForegroundWindow(proc[len(proc)-1])
 
-process = psutil.Process(os.getpid())
-print(process.memory_info().rss)
+process = [p.memory_info().rss for p in psutil.process_iter(attrs=['pid', 'name']) if 'l2.bin' in p.info['name']]
 
-print(os.getpid())
+print(process)
+print(process[0] / 1024 ** 2)
