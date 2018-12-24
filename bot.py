@@ -375,7 +375,7 @@ def main(r):
                 mausklick()
                 time.sleep(v)
 
-                # alle 100 Durchläufe
+                # alle 5 Minuten
                 if ( start_time - int(math.ceil(time.time())) ) % 300 == 0:
                     print('Reset Koordinaten Enchant window')
                     ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,800,600),grayscale=True, confidence=.9)
@@ -406,7 +406,7 @@ def main(r):
                         c = -36
                         k = k + 36
 
-                    if arc_count == 8:
+                    if arc_count == 11:
                         #bot.run beschreiben
                         with open(path + "bot.run", "w") as fh:
                             fh.write(str(0))
