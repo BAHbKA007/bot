@@ -209,7 +209,7 @@ def main(r):
         # Fenster in Fordergrund bringen
         win32gui.SetForegroundWindow(find_proc()[len(find_proc())-1])
 
-        anmelden('bahbka1','090587')
+        anmelden('bahbka','090587')
 
         win32gui.SetForegroundWindow(find_proc()[len(find_proc())-1])
         win_pos = win32gui.GetWindowRect(find_proc()[len(proc)-1])
