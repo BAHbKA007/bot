@@ -15,10 +15,11 @@ datum_sql = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 requests.get('http://s.leichtbewaff.net/?start='+str(datum_sql), verify=False)
 start_time = int(math.ceil(time.time()))
 
-# 
+
+#               PICTURE
 #
 #
-#   PICTURE
+#
 PICTURE = 'ews.png'
 #
 #
