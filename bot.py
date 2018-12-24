@@ -20,7 +20,7 @@ start_time = int(math.ceil(time.time()))
 #
 #
 #
-PICTURE = 'ews.png'
+PICTURE = 'eaa.png'
 #
 #
 if PICTURE.find('w') != -1:
