@@ -310,17 +310,14 @@ def main(r):
                 #     time.sleep(3)
 
                 # Serverrestart umgehen
-                if "03:30" < time.strftime("%H:%M") < "04:00":
+                if time.strftime("%H:%M") == "03:33":
                     print('sleep Nacht')
                     for proc in psutil.process_iter():
                         # check whether the process name matches
                         if proc.name() == 'l2.bin':
                             proc.kill()
-                            time.sleep(360)
                             print('Warte 6 Minuten auf Serverdown')
-                    while discon('185.121.243.33'):
-                        print('Server offline, warte ...')
-                        time.sleep(10)
+                            time.sleep(360)
                     main(0)
 
                 # relog nach 30min
