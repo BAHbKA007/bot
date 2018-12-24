@@ -11,6 +11,25 @@ from skimage.io import imread
 pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files (x86)\\Tesseract-OCR\\tesseract'
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+datum_sql = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+requests.get('http://s.leichtbewaff.net/?start='+str(datum_sql), verify=False)
+start_time = int(math.ceil(time.time()))
+
+# 
+#
+#
+#   PICTURE
+PICTURE = 'ews.png'
+#
+#
+if PICTURE.find('w') == -1:
+    max_enchant = '18.png'
+else:
+    max_enchant = '14.png'
+#
+
+
+
 class SCANCODE:
     INTERCEPTION_MOUSE_LEFT_BUTTON_DOWN   = 0x001
     INTERCEPTION_MOUSE_LEFT_BUTTON_UP     = 0x002
@@ -28,10 +47,6 @@ class SCANCODE:
         '8' : 0x9,
         '9' : 0x0A
     }
-
-datum_sql = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-requests.get('http://s.leichtbewaff.net/?start='+str(datum_sql), verify=False)
-start_time = int(math.ceil(time.time()))
 
 def discon(address):
     return not not os.system('ping %s -n 1 > NUL' % (address,))
@@ -85,8 +100,6 @@ def main(r):
     k = 0
     while_count = 0
 
-
-
     #Windows Prozesse Nach lineage 2 durhsuchen
     wins = []
     proc = []
@@ -131,7 +144,7 @@ def main(r):
 
         picture.save("ench_screen.png")
 
-        temp = pyautogui.locateAll(path + "pic\\14.png", "ench_screen.png", grayscale=False)
+        temp = pyautogui.locateAll(path + "pic\\" + max_enchant, "ench_screen.png", grayscale=False)
         i = len(list(temp))
 
         if arc_count >= i:
@@ -234,14 +247,14 @@ def main(r):
     with open(path + "bot.run", "r") as fh:
         run = int(fh.read())
 
-    while find_pic('ews.png') == None:
+    while find_pic(PICTURE) == None:
         print('suche ews.png')
         time.sleep(1)
 
     # ews Koordinaten, Farbe + Anzahl BEWS
     try:
         print('Scroll Anzahl holen.')
-        ews = find_pic('ews.png',0.99)
+        ews = find_pic(PICTURE,0.99)
         time.sleep(2)
         b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
 
@@ -338,10 +351,10 @@ def main(r):
                     print('Relog')
                     pyautogui.moveTo(relog)
                     mausklick()
-                    while find_pic('ews.png') == None:
+                    while find_pic(PICTURE) == None:
                         print('suche ews.png')
                         time.sleep(1)
-                    find_pic('ews.png',0.99)
+                    find_pic(PICTURE,0.99)
                     time.sleep(1)
                     mausklick()
                     print('Reset Koordinaten Enchant window')

@@ -72,8 +72,6 @@ def discon(address):
     return not not os.system('ping %s -n 1 > NUL' % (address,))
 # Fenster in Fordergrund bringen
 #win32gui.SetForegroundWindow(proc[len(proc)-1])
+a = 'absdfsdfsdfsdfsdfsdfsdc'
 
-process = [p.memory_info().rss for p in psutil.process_iter(attrs=['pid', 'name']) if 'l2.bin' in p.info['name']]
-
-print(process)
-print(process[0] / 1024 ** 2)
+print(a.find('x'))
