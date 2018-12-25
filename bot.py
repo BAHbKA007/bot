@@ -428,7 +428,7 @@ def main(r):
                         # Speicherfehlermeldung
                         if pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
                             print('Speicherfehlermeldung auf dem Bildschirm - starte neu.')
-                            pyautogui.moveTo(pyautogui.locateCenterOnScreen('OK_Error.png'))
+                            pyautogui.moveTo(pyautogui.locateCenterOnScreen('pic\\OK_Error.png'))
                             mausklick()
                             break
 
