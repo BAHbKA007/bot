@@ -1,4 +1,4 @@
-import time, pyautogui, win32gui, os, re, math, subprocess, psutil
+import time, pyautogui, win32gui, os, re, math, subprocess, psutil, traceback
 from PIL import Image,ImageGrab
 from interception import ffi, lib
 
@@ -70,14 +70,11 @@ def find_proc():
     return proc
 def discon(address):
     return not not os.system('ping %s -n 1 > NUL' % (address,))
-# Fenster in Fordergrund bringen
-#win32gui.SetForegroundWindow(proc[len(proc)-1])
-PICTURE = 'ews.png'
-#
-#
-if PICTURE.find('w') != -1:
-    max_enchant = '18.png'
-else:
-    max_enchant = '14.png'
 
-print(max_enchant)
+#print(pyautogui.pixelMatchesColor(int(pyautogui.size()[0]) / 2, int(pyautogui.size()[1]) / 2, (240, 240, 240)))
+
+desktop_size = []
+for i in pyautogui.size():
+    desktop_size.append(int(i/2))
+
+print(pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)))
