@@ -247,7 +247,7 @@ def main(r):
             p = subprocess.Popen([r"C:\\Euro-PvP_Client_ru_en\\system\\l2.exe"], stdout=subprocess.PIPE)
             p.wait()
 
-            while len(find_proc()) == 0:
+            while len(find_proc()) == 0 or :
                 try:
                     time.sleep(5)
                     print('warte auf Programmstart')
@@ -264,6 +264,7 @@ def main(r):
                 except Exception as e:
                     print("type error: " + str(e))
                     print(traceback.format_exc())
+                    break
 
             if break_var:
                 print('Neustart')
