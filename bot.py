@@ -17,6 +17,7 @@ requests.get('http://s.leichtbewaff.net/?start='+str(datum_sql), verify=False)
 start_time = int(math.ceil(time.time()))
 v = 0.05 # 0.05 sleep auf den tasten
 ok = 0.3 # + sleep auf OK .239
+arc_count = 0
 while_count = 0
 break_var = False
 x_schieber = 0
@@ -103,13 +104,13 @@ def main(r):
 
     while True:   
         e = 0
-        arc_count = 0
         while_count = 0
         break_var = False
-        global run, ok, v, y_schieber, x_schieber, finder_count
+        global run, ok, v, y_schieber, x_schieber, finder_count, arc_count
         x_schieber = 0
         y_schieber = 0
         finder_count = 0
+        arc_count = 0
 
         # Windows Prozesse Nach lineage 2 durhsuchen
         wins = []
