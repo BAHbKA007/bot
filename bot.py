@@ -3,7 +3,6 @@ import pytesseract, subprocess, psutil
 from interception import ffi, lib
 from PIL import Image
 from skimage.io import imread
-from screeninfo import get_monitors
 
 # https://github.com/tesseract-ocr/tesseract/wiki
 # pip install pyautogui requests urllib3 pypiwin32 pytesseract psutil interception scipy screeninfo
@@ -388,7 +387,7 @@ def main(r):
                         else:
                             print('kein login on Screen')
                             pass
-                            
+
                         # Speicherfehlermeldung
                         if pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
                             print('Speicherfehlermeldung auf dem Bildschirm - starte neu.')
