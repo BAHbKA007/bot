@@ -11,9 +11,19 @@ from skimage.io import imread
 pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files (x86)\\Tesseract-OCR\\tesseract'
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+path = str(os.path.dirname(__file__)) + '\\'
 datum_sql = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 requests.get('http://s.leichtbewaff.net/?start='+str(datum_sql), verify=False)
 start_time = int(math.ceil(time.time()))
+v = 0.05 # 0.05 sleep auf den tasten
+ok = 0.27 # + sleep auf OK .239
+while_count = 0
+break_var = False
+x_schieber = 0
+y_schieber = 0
+finder_count = 0
+with open(path + "bot.run", "r") as fh:
+    run = int(fh.read())
 
 
 #               PICTURE
@@ -91,17 +101,15 @@ def login_versuche(start):
 
 def main(r):
 
-    while True:
-
-        path = str(os.path.dirname(__file__)) + '\\'
-    
+    while True:   
         e = 0
-        c = 0
         arc_count = 0
-        v = 0.05 # 0.05 sleep auf den tasten
-        ok = 0.27 # + sleep auf OK .239
-        k = 0
         while_count = 0
+        break_var = False
+        global run, ok, v, y_schieber, x_schieber, finder_count
+        x_schieber = 0
+        y_schieber = 0
+        finder_count = 0
 
         # Windows Prozesse Nach lineage 2 durhsuchen
         wins = []
@@ -136,8 +144,22 @@ def main(r):
             mausklick()
             time.sleep(2)   
 
-        def no_arc18er():
-            pyautogui.screenshot('ench_screen.png', region=(ench_window_x + 10, ench_window_y + 51, 198, 43))
+        def item_finder():
+            global x_schieber, y_schieber, arc_count, run, finder_count
+
+            finder_count = finder_count + 1
+            if pyautogui.pixelMatchesColor(int(ench_window_x + 10 + x_schieber * 37), int(ench_window_y + 51 + y_schieber * 35), (16, 16, 16)):
+                # for proc in psutil.process_iter():
+                # # check whether the process name matches
+                #     if proc.name() == 'l2.bin' or proc.name() == 'l2.exe':
+                #         print('L2 Prozess beenden')
+                #         proc.kill()
+                with open(path + "bot.run", "w") as fh:
+                    fh.write(str(0))
+                print('Keine Gegenstände mehr zum verbessern! Beende Spiel')        
+                input()
+
+            pyautogui.screenshot('ench_screen.png', region=(ench_window_x + 10 + x_schieber * 37, ench_window_y + 51 + y_schieber * 35, 12, 8))
             picture = Image.open("ench_screen.png")
 
             width, height = picture.size
@@ -153,10 +175,20 @@ def main(r):
             temp = pyautogui.locateAll(path + "pic\\" + max_enchant, "ench_screen.png", grayscale=False)
             i = len(list(temp))
 
-            if arc_count >= i:
-                return True
-            else:
-                return False
+            if i == 1:
+                print(str(y_schieber) + ' Gegenstand gefunden ' + str(x_schieber))
+                x_schieber = x_schieber + 1
+                if x_schieber != 0 and x_schieber % 6 == 0:
+                    y_schieber = y_schieber + 1
+                    x_schieber = 0
+                
+                if run < 5 or item_finder == 1:
+                    finder_count = 0
+                    run = run - 1
+                else:
+                    requests.get('http://s.leichtbewaff.net/?stat='+str(run), verify=False)
+                    run = 0
+                    arc_count = arc_count + 1
 
         
         def logIn():
@@ -227,10 +259,15 @@ def main(r):
                                 proc.kill()
                                 time.sleep(2)
                                 print('starte L2')
-                                main(0)
+                                break_var = True
+                                break
                 except Exception as e:
                     print("type error: " + str(e))
                     print(traceback.format_exc())
+
+            if break_var:
+                print('Neustart')
+                break
 
             # Fenster in Fordergrund bringen
             win32gui.SetForegroundWindow(find_proc()[len(find_proc())-1])
@@ -249,8 +286,6 @@ def main(r):
             win_pos_x = win_pos[0] + 7
             win_pos_y = win_pos[1]
 
-        with open(path + "bot.run", "r") as fh:
-            run = int(fh.read())
 
         while find_pic(PICTURE) == None:
             print('suche ews.png')
@@ -370,7 +405,7 @@ def main(r):
                     time.sleep(v)
 
                     # Arc
-                    pyautogui.moveTo(ench_window_x + 24 + c, ench_window_y + k + 67)
+                    pyautogui.moveTo(ench_window_x + 10 + x_schieber * 37 + 16, ench_window_y + 51 + y_schieber * 35 + 16)
                     mausklick()
                     time.sleep(v)
 
@@ -391,37 +426,17 @@ def main(r):
                         # Speicherfehlermeldung
                         if pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
                             print('Speicherfehlermeldung auf dem Bildschirm - starte neu.')
+                            pyautogui.moveTo(pyautogui.locateCenterOnScreen('OK_Error.png'))
+                            mausklick()
                             break
 
-                    if no_arc18er():
-                        #OK Button Enchant Fenster
-                        pyautogui.moveTo(ench_window_x + 90, ench_window_y + 383)
-                        mausklick()
-                        time.sleep(v + ok) #0.25
+                    #OK Button Enchant Fenster
+                    pyautogui.moveTo(ench_window_x + 90, ench_window_y + 383)
+                    mausklick()
+                    time.sleep(v + ok) #0.25
                     
-                    else:
-                        if arc_count == 5:
-                            # www_get(run, arc_count, 1, 1)
-                            # print('Mehr als 6 Gegenstände 18+')
-                            # break
-                            c = -36
-                            k = k + 36
-                        if arc_count == 11:
-                            c = -36
-                            k = k + 36
-
-                        if arc_count == 11:
-                            #bot.run beschreiben
-                            with open(path + "bot.run", "w") as fh:
-                                fh.write(str(0))
-                            break
-
-                        if while_count > 20:
-                            requests.get('http://s.leichtbewaff.net/?stat='+str(run), verify=False)
-                            run = 0
-
-                        arc_count = arc_count + 1
-                        c = c + 36
+                    # Koordinaten Kontrolle
+                    item_finder()
 
                     www_get(run, arc_count, 0, 0)
 
@@ -429,11 +444,11 @@ def main(r):
                     with open(path + "bot.run", "w") as fh:
                         fh.write(str(run))
 
-                    printstr = str(ews_count) + ' EWS || ' + str(time.time() - start_time_loop) + 's Laufzeit || run = ' + str(run)
-                    print(printstr)
-
                     run = run + 1
                     ews_count = ews_count - 1
+
+                    printstr = str(ews_count) + ' EWS || ' + str(time.time() - start_time_loop) + 's Laufzeit || run = ' + str(run)
+                    print(printstr)
 
                 except Exception as e:
                     www_get(0, 0, 1, 0)
