@@ -16,7 +16,7 @@ datum_sql = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 requests.get('http://s.leichtbewaff.net/?start='+str(datum_sql), verify=False)
 start_time = int(math.ceil(time.time()))
 v = 0.05 # 0.05 sleep auf den tasten
-ok = 0.27 # + sleep auf OK .239
+ok = 0.3 # + sleep auf OK .239
 while_count = 0
 break_var = False
 x_schieber = 0
