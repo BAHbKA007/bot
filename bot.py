@@ -87,7 +87,7 @@ def login_versuche(start):
                 proc.kill()
                 time.sleep(2)
                 print('starte L2')
-                main(0)
+                break
 
 def main(r):
 
