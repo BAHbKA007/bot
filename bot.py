@@ -418,7 +418,7 @@ def main(r):
                         ench_window_x = ench_window[0]
                         ench_window_y = ench_window[1]
 
-                        if find_pic('login.png',.9,352,359,20,20) != None:
+                        if find_pic('pic\\login.png',.9,352,359,20,20) != None:
                             print('relog')
                             logIn()
                         else:
