@@ -110,7 +110,6 @@ def main(r):
         x_schieber = 0
         y_schieber = 0
         finder_count = 0
-        arc_count = 0
 
         # Windows Prozesse Nach lineage 2 durhsuchen
         wins = []
@@ -150,11 +149,11 @@ def main(r):
 
             finder_count = finder_count + 1
             if pyautogui.pixelMatchesColor(int(ench_window_x + 10 + x_schieber * 37), int(ench_window_y + 51 + y_schieber * 35), (16, 16, 16)):
-                # for proc in psutil.process_iter():
-                # # check whether the process name matches
-                #     if proc.name() == 'l2.bin' or proc.name() == 'l2.exe':
-                #         print('L2 Prozess beenden')
-                #         proc.kill()
+                for proc in psutil.process_iter():
+                # check whether the process name matches
+                    if proc.name() == 'l2.bin' or proc.name() == 'l2.exe':
+                        print('L2 Prozess beenden')
+                        proc.kill()
                 with open(path + "bot.run", "w") as fh:
                     fh.write(str(0))
                 print('Keine Gegenstände mehr zum verbessern! Beende Spiel')        
@@ -390,16 +389,6 @@ def main(r):
                                 print('Warte 20 Minuten auf Serverdown')
                                 time.sleep(1200)
                         break
-
-                    # Enchantwindow Koordinaten holen
-                    if ( start_time - int(math.ceil(time.time())) ) % 1800 == 0:
-                        find_pic(PICTURE,0.99)
-                        time.sleep(2)
-                        mausklick()
-                        print('Reset Koordinaten Enchant window')
-                        ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,800,600),grayscale=True, confidence=.9)
-                        ench_window_x = ench_window[0]
-                        ench_window_y = ench_window[1]
 
                     # Echnant
                     pyautogui.moveTo(ews)
