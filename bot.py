@@ -247,7 +247,7 @@ def main(r):
             p = subprocess.Popen([r"C:\\Euro-PvP_Client_ru_en\\system\\l2.exe"], stdout=subprocess.PIPE)
             p.wait()
 
-            while len(find_proc()) == 0 or :
+            while len(find_proc()) == 0:
                 try:
                     time.sleep(5)
                     print('warte auf Programmstart')
