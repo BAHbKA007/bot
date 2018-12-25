@@ -176,6 +176,8 @@ def main(r):
             i = len(list(temp))
 
             if i == 1:
+                arc_count = arc_count + 1
+
                 print(str(y_schieber) + ' Gegenstand gefunden ' + str(x_schieber))
                 x_schieber = x_schieber + 1
                 if x_schieber != 0 and x_schieber % 6 == 0:
@@ -188,8 +190,6 @@ def main(r):
                 else:
                     requests.get('http://s.leichtbewaff.net/?stat='+str(run), verify=False)
                     run = 0
-                    arc_count = arc_count + 1
-
         
         def logIn():
             start = int(math.ceil(time.time()))
