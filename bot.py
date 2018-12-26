@@ -102,7 +102,12 @@ def login_versuche(start):
 
 def main(r):
 
-    while True:   
+    while True:
+
+        if break_var:
+            print('Neustart')
+            break
+
         e = 0
         while_count = 0
         break_var = False
@@ -339,12 +344,12 @@ def main(r):
                         print('L2 neustarten')
                         main(0)
                         
-                    #EWS Prüfung             
+                    # EWS Prüfung             
                     if ews_count == 0:
                         print('Keine EWS mehr (verschoben?)!')
                         break
 
-                    # alle 20 Durchläufe
+                    # alle 30 Sekunden
                     if ( start_time - int(math.ceil(time.time())) ) % 30 == 0:
                         print('Prüfungen: Disconnect und Spiel an')
                         #Prüfen ob Disconnect Fehlermeldung auf dem Bildschirm
@@ -367,8 +372,10 @@ def main(r):
                             print('Speicherfehlermeldung auf dem Bildschirm - starte neu.')
                             pyautogui.moveTo(pyautogui.locateCenterOnScreen('pic\\OK_Error.png'))
                             mausklick()
+                            break_var = True
                             break
-                            
+                    
+                           
                     # CP craft
                     # if run % 2000 == 0 and run != 0:
                     #     setzen()
