@@ -101,13 +101,12 @@ def login_versuche(start):
         return False
 
 def main(r):
-    arc_count = 0
+    global run, ok, v, y_schieber, x_schieber, finder_count, arc_count, break_var
 
     while True:
 
         e = 0
         while_count = 0
-        global run, ok, v, y_schieber, x_schieber, finder_count, arc_count, break_var
         x_schieber = 0
         y_schieber = 0
         finder_count = 0
