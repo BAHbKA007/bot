@@ -361,6 +361,13 @@ def main(r):
                             time.sleep(3)
                             print('L2 neustarten')
                             break
+                        
+                        # Speicherfehlermeldung
+                        if pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
+                            print('Speicherfehlermeldung auf dem Bildschirm - starte neu.')
+                            pyautogui.moveTo(pyautogui.locateCenterOnScreen('pic\\OK_Error.png'))
+                            mausklick()
+                            break
                             
                     # CP craft
                     # if run % 2000 == 0 and run != 0:
@@ -405,13 +412,6 @@ def main(r):
                         else:
                             print('kein login on Screen')
                             pass
-
-                        # Speicherfehlermeldung
-                        if pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
-                            print('Speicherfehlermeldung auf dem Bildschirm - starte neu.')
-                            pyautogui.moveTo(pyautogui.locateCenterOnScreen('pic\\OK_Error.png'))
-                            mausklick()
-                            break
 
                     #OK Button Enchant Fenster
                     pyautogui.moveTo(ench_window_x + 90, ench_window_y + 383)
