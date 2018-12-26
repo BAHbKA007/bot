@@ -80,6 +80,24 @@ def discon(address):
 # win_pos_x = win_pos[0] + 7
 # win_pos_y = win_pos[1]
 
-win32gui.MoveWindow(win32gui.FindWindow(None, "Lineage II"), 550, 0, 816, 639, True)
+i = 0
+e = 0
+b = False
+def main():
+    global i, e
+    while True:
+        print(str(i) + ' Main')
+        i = i + 1
 
-print(win32gui.FindWindow(None, "Lineage II"))
+        while True:
+            print(str(e) + '2nd Loop')
+            e = e + 1
+            if e >= 1000:
+                b = True
+                break
+        if b:
+            break
+
+
+while True:
+    main()

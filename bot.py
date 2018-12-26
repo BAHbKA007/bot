@@ -98,7 +98,9 @@ def login_versuche(start):
                 proc.kill()
                 time.sleep(2)
                 print('starte L2')
-                break
+        return True
+    else:
+        return False
 
 def main(r):
 
@@ -113,6 +115,7 @@ def main(r):
 
         if break_var:
             print('Neustart')
+            break_var = False
             break
 
         # Windows Prozesse Nach lineage 2 durhsuchen
@@ -191,7 +194,6 @@ def main(r):
 
             while find_pic('login.png') == None:
                 time.sleep(1)
-                login_versuche(start)
 
             while find_pic('login.png') != None:
                 # Login: 462,443
@@ -199,11 +201,13 @@ def main(r):
                 find_pic('login.png')
                 mausklick()
                 time.sleep(1)
-                login_versuche(start)
+                if login_versuche(start):
+                    break
 
             while find_pic('agree.png') == None:
                 time.sleep(1)
-                login_versuche(start)
+                if login_versuche(start):
+                    break
 
             while find_pic('agree.png') != None:
                 # Agree: 473,609
@@ -211,11 +215,13 @@ def main(r):
                 find_pic('agree.png')
                 mausklick()
                 time.sleep(1)
-                login_versuche(start)
+                if login_versuche(start):
+                    break
 
             while find_pic('ok.png') == None:
                 time.sleep(1)
-                login_versuche(start)
+                if login_versuche(start):
+                    break
 
             while find_pic('ok.png') != None:
                 # OK: 517,450
@@ -223,11 +229,13 @@ def main(r):
                 find_pic('ok.png')
                 mausklick()
                 time.sleep(1)
-                login_versuche(start)
+                if login_versuche(start):
+                    break
 
             while find_pic('start.png') == None:
                 time.sleep(1)
-                login_versuche(start)
+                if login_versuche(start):
+                    break
 
             while find_pic('start.png') != None:
                 # Start: 514,714
@@ -235,8 +243,9 @@ def main(r):
                 find_pic('start.png')
                 mausklick()
                 time.sleep(1)
-                login_versuche(start)
-
+                if login_versuche(start):
+                    break
+                    
         if win32gui.FindWindow(None, "Lineage II") == 0:
             start = time.time()
             p = subprocess.Popen([r"C:\\Euro-PvP_Client_ru_en\\system\\l2.exe"], stdout=subprocess.PIPE)
@@ -449,4 +458,8 @@ def main(r):
                     print(traceback.format_exc())
                     break
 
-main(0)
+while True:
+    if time.time() - start_time > 5:
+        main(1)
+    else:
+        main(0)
