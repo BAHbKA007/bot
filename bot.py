@@ -101,6 +101,7 @@ def login_versuche(start):
         return False
 
 def main(r):
+    arc_count = 0
 
     while True:
 
@@ -110,7 +111,6 @@ def main(r):
         x_schieber = 0
         y_schieber = 0
         finder_count = 0
-        arc_count = 0
 
         if break_var:
             print('Neustart')
