@@ -40,9 +40,7 @@ else:
     max_enchant = '14.png'
 #
 
-
-
-class SCANCODE:
+class SCANCODE: 
     INTERCEPTION_MOUSE_LEFT_BUTTON_DOWN   = 0x001
     INTERCEPTION_MOUSE_LEFT_BUTTON_UP     = 0x002
     TAB = 0x0F
@@ -112,6 +110,7 @@ def main(r):
         x_schieber = 0
         y_schieber = 0
         finder_count = 0
+        arc_count = 0
 
         if break_var:
             print('Neustart')
