@@ -107,7 +107,6 @@ def main(r):
         e = 0
         while_count = 0
         global run, ok, v, y_schieber, x_schieber, finder_count, arc_count, break_var
-        break_var = False
         x_schieber = 0
         y_schieber = 0
         finder_count = 0
