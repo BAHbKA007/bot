@@ -23,6 +23,7 @@ break_var = False
 x_schieber = 0
 y_schieber = 0
 finder_count = 0
+break_var = False
 with open(path + "bot.run", "r") as fh:
     run = int(fh.read())
 
@@ -104,17 +105,17 @@ def main(r):
 
     while True:
 
-        if break_var:
-            print('Neustart')
-            break
-
         e = 0
         while_count = 0
         break_var = False
-        global run, ok, v, y_schieber, x_schieber, finder_count, arc_count
+        global run, ok, v, y_schieber, x_schieber, finder_count, arc_count, break_var
         x_schieber = 0
         y_schieber = 0
         finder_count = 0
+
+        if break_var:
+            print('Neustart')
+            break
 
         # Windows Prozesse Nach lineage 2 durhsuchen
         wins = []
