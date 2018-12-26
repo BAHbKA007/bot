@@ -290,6 +290,7 @@ def main(r):
         # ews Koordinaten, Farbe + Anzahl BEWS
         print('Scroll Anzahl holen.')
         ews = find_pic(PICTURE,0.99)
+        mausklick()
         time.sleep(2)
         b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
 
