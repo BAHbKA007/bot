@@ -2,31 +2,31 @@ import time, pyautogui, win32gui, os, re, math, subprocess, psutil, traceback
 from PIL import Image,ImageGrab
 from interception import ffi, lib
 
-wins = []
-proc = []
-win32gui.EnumWindows(lambda x, y: y.append(x), wins)
-for winId in wins:
-    winName = win32gui.GetWindowText(winId)
-    if winName == 'Lineage II':
-        proc.append(winId)
+# wins = []
+# proc = []
+# win32gui.EnumWindows(lambda x, y: y.append(x), wins)
+# for winId in wins:
+#     winName = win32gui.GetWindowText(winId)
+#     if winName == 'Lineage II':
+#         proc.append(winId)
 
-path = str(os.path.dirname(__file__)) + '\\'
-win_pos = win32gui.GetWindowRect(proc[len(proc)-1])
-win_pos_x = win_pos[0] + 7
-win_pos_y = win_pos[1]
+# path = str(os.path.dirname(__file__)) + '\\'
+# win_pos = win32gui.GetWindowRect(proc[len(proc)-1])
+# win_pos_x = win_pos[0] + 7
+# win_pos_y = win_pos[1]
 
-ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,800,600),grayscale=True, confidence=.9)
-ench_window_x = ench_window[0]
-ench_window_y = ench_window[1]
+# ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,800,600),grayscale=True, confidence=.9)
+# ench_window_x = ench_window[0]
+# ench_window_y = ench_window[1]
 
-PICTURE = 'eaa.png'
-#
-#
-if PICTURE.find('w') != -1:
-    max_enchant = '18.png'
-else:
-    max_enchant = '14.png'
-#
+# PICTURE = 'eaa.png'
+# #
+# #
+# if PICTURE.find('w') != -1:
+#     max_enchant = '18.png'
+# else:
+#     max_enchant = '14.png'
+# #
 
 class SCANCODE:
     INTERCEPTION_MOUSE_LEFT_BUTTON_DOWN   = 0x001
@@ -61,12 +61,14 @@ def anmelden(benutzer,pw):
         kstroke.code = SCANCODE.anmeldedaten[key]
         lib.interception_send(context, 1,  kstroke, 1)
 
+wins = []
+proc = []
 
 def find_proc():
     win32gui.EnumWindows(lambda x, y: y.append(x), wins)
     for winId in wins:
         winName = win32gui.GetWindowText(winId)
-        if winName == 'WhatsApp':
+        if winName == 'Lineage II':
             proc.append(winId)
     return proc
 def discon(address):
@@ -74,14 +76,10 @@ def discon(address):
 
 #print(pyautogui.pixelMatchesColor(int(pyautogui.size()[0]) / 2, int(pyautogui.size()[1]) / 2, (240, 240, 240)))
 
-x_schieber = 0
-y_schieber = 0
-item_finder_count = 0
+# win_pos = win32gui.GetWindowRect(find_proc()[len(proc)-1])
+# win_pos_x = win_pos[0] + 7
+# win_pos_y = win_pos[1]
 
-def item_finder():
-    global item_finder_count, x_schieber, y_schieber
-    item_finder_count = item_finder_count + 1 
-    print(item_finder_count)
+win32gui.MoveWindow(win32gui.FindWindow(None, "Lineage II"), 550, 0, 816, 639, True)
 
-
-item_finder()
+print(win32gui.FindWindow(None, "Lineage II"))

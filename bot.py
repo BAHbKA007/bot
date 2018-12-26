@@ -119,14 +119,6 @@ def main(r):
         for i in pyautogui.size():
             desktop_size.append(int(i/2))
 
-        def find_proc():
-            win32gui.EnumWindows(lambda x, y: y.append(x), wins)
-            for winId in wins:
-                winName = win32gui.GetWindowText(winId)
-                if winName == 'Lineage II':
-                    proc.append(winId)
-            return proc
-
         def find_pic(a, conf=.9, x=800, y=600, x_inner=0, y_inner=0):
             pos = pyautogui.locateCenterOnScreen(path + 'pic\\' + a, region=(win_pos_x + x_inner, win_pos_y + y_inner,x,y),grayscale=True, confidence=conf)
             pyautogui.moveTo(pos)
@@ -242,12 +234,12 @@ def main(r):
                 time.sleep(1)
                 login_versuche(start)
 
-        if len(find_proc()) == 0:
+        if win32gui.FindWindow(None, "Lineage II") == 0:
             start = time.time()
             p = subprocess.Popen([r"C:\\Euro-PvP_Client_ru_en\\system\\l2.exe"], stdout=subprocess.PIPE)
             p.wait()
 
-            while len(find_proc()) == 0:
+            while win32gui.FindWindow(None, "Lineage II") == 0:
                 try:
                     time.sleep(5)
                     print('warte auf Programmstart')
@@ -271,19 +263,19 @@ def main(r):
                 break
 
             # Fenster in Fordergrund bringen
-            win32gui.SetForegroundWindow(find_proc()[len(find_proc())-1])
-
+            win32gui.MoveWindow(win32gui.FindWindow(None, "Lineage II"), 550, 0, 816, 639, True)
+            win32gui.SetForegroundWindow(win32gui.FindWindow(None, "Lineage II"))
+            
             anmelden('bahbka1','090587')
 
-            win32gui.SetForegroundWindow(find_proc()[len(find_proc())-1])
-            win_pos = win32gui.GetWindowRect(find_proc()[len(proc)-1])
+            win_pos = win32gui.GetWindowRect(win32gui.FindWindow(None, "Lineage II"))
             win_pos_x = win_pos[0] + 7
             win_pos_y = win_pos[1]
 
             logIn()
         else:
-            win32gui.SetForegroundWindow(find_proc()[len(find_proc())-1])
-            win_pos = win32gui.GetWindowRect(find_proc()[len(proc)-1])
+            win32gui.SetForegroundWindow(win32gui.FindWindow(None, "Lineage II"))
+            win_pos = win32gui.GetWindowRect(win32gui.FindWindow(None, "Lineage II"))
             win_pos_x = win_pos[0] + 7
             win_pos_y = win_pos[1]
 
