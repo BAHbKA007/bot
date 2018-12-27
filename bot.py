@@ -437,18 +437,29 @@ def main(r):
 
                     # alle 5 Minuten
                     if ( start_time - int(math.ceil(time.time())) ) % 300 == 0:
-                        print('Reset Koordinaten Enchant window')
-                        ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,800,600),grayscale=True, confidence=.9)
-                        ench_window_x = ench_window[0]
-                        ench_window_y = ench_window[1]
+                        try:
+                            print('Reset Koordinaten Enchant window')
+                            ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,800,600),grayscale=True, confidence=.9)
+                            ench_window_x = ench_window[0]
+                            ench_window_y = ench_window[1]
 
-                        if find_pic('login.png',.9,352,359,20,20) != None:
-                            print('relog')
-                            logIn()
-                        else:
-                            print('kein login on Screen')
-                            pass
+                            if find_pic('login.png',.9,352,359,20,20) != None:
+                                print('relog')
+                                logIn()
+                            else:
+                                print('kein login on Screen')
+                                pass
+                        except Exception as e:
+                            www_get(0, 0, 1, 0)
 
+                            with open(path + "bot.run", "w") as fh:
+                                fh.write(str(run))
+
+                            print("type error: " + str(e))
+                            print(traceback.format_exc())
+                            break_var = True
+                            break
+                            
                     #OK Button Enchant Fenster
                     pyautogui.moveTo(ench_window_x + 90, ench_window_y + 383)
                     mausklick()
