@@ -88,14 +88,14 @@ def mausklick():
     lib.interception_destroy_context(context)
 
 def login_versuche(start):
-    if time.time() - start > 15:
+    if time.time() - start > 20:
         for proc in psutil.process_iter():
             # check whether the process name matches
             if proc.name() == 'l2.bin' or proc.name() == 'l2.exe':
-                print('beende L2 Prozess')
+                print('beende L2 Prozess (login_versuche)')
                 proc.kill()
                 time.sleep(2)
-                print('starte L2')
+                print('starte L2 (login_versuche)')
                 time.sleep(5)
         return True
     else:
