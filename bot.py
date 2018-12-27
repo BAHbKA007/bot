@@ -437,8 +437,8 @@ def main(r):
                     time.sleep(v)
 
                     # alle 5 Minuten
-                    win32gui.SendMessage(win32con.HWND_BROADCAST, win32con.WM_SYSCOMMAND, win32con.SC_MONITORPOWER, 2)
                     if ( start_time - int(math.ceil(time.time())) ) % 300 == 0:
+                        win32gui.SendMessage(win32con.HWND_BROADCAST, win32con.WM_SYSCOMMAND, win32con.SC_MONITORPOWER, 2)
                         try:
                             print('Reset Koordinaten Enchant window')
                             pyautogui.moveTo(ews)
