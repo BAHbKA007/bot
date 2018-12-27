@@ -1,7 +1,7 @@
-import time, pyautogui, win32gui, os, re, math, subprocess, psutil, traceback
+import time, pyautogui, win32gui, os, re, math, subprocess, psutil, traceback, win32api
 from PIL import Image,ImageGrab
 from interception import ffi, lib
-
+start_time = int(time.time())
 # wins = []
 # proc = []
 # win32gui.EnumWindows(lambda x, y: y.append(x), wins)
@@ -103,4 +103,6 @@ def other():
     e = time.time() - s
     runs.append(e)
 
-print(time.time() - time.time())
+while True:
+    print(str(int(start_time + 9000 - time.time())))
+#os.system("shutdown -t 0 -r -f")

@@ -23,6 +23,7 @@ break_var = False
 x_schieber = 0
 y_schieber = 0
 finder_count = 0
+neustart = 300 # 9000
 with open(path + "bot.run", "r") as fh:
     run = int(fh.read())
 
@@ -102,7 +103,7 @@ def login_versuche(start):
         return False
 
 def main(r):
-    global run, ok, v, y_schieber, x_schieber, finder_count, arc_count, break_var
+    global run, ok, v, y_schieber, x_schieber, finder_count, arc_count, break_var, neustart
 
     while True:
 
@@ -457,8 +458,12 @@ def main(r):
                     run = run + 1
                     ews_count = ews_count - 1
 
-                    printstr = str(ews_count) + ' EWS || ' + str(time.time() - start_time_loop) + 's Laufzeit || run = ' + str(run)
+                    printstr = str(ews_count) + ' EWS || ' + str(time.time() - start_time_loop)[0:9] + ' s Laufzeit || run = ' + str(run) + ' || Neustart in: ' + str(int(start_time + neustart - time.time()))
                     print(printstr)
+
+                    if (start_time + neustart - time.time()) < 0:
+                        print('Reboot PC...')
+                        os.system("shutdown -t 0 -r -f")
 
                 except Exception as e:
                     www_get(0, 0, 1, 0)
@@ -472,7 +477,13 @@ def main(r):
                     break
 
 while True:
-    if time.time() - start_time > 5:
-        main(1)
-    else:
-        main(0)
+    try:
+        if time.time() - start_time > 5:
+            main(1)
+        else:
+            main(0)
+    except Exception as e:
+        if time.time() - start_time > 5:
+            main(1)
+        else:
+            main(0)
