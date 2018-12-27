@@ -305,6 +305,10 @@ def main(r):
                 break
             time.sleep(1)
 
+        if break_var:
+            print('Neustart')
+            break
+
         # ews Koordinaten, Farbe + Anzahl BEWS
         print('Scroll Anzahl holen.')
         ews = find_pic(PICTURE,0.99)
