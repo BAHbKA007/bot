@@ -1,11 +1,11 @@
 import time, pyautogui, sys, requests, urllib3, traceback, win32gui, os, datetime, re, math
-import pytesseract, subprocess, psutil
+import pytesseract, subprocess, psutil, win32con
 from interception import ffi, lib
 from PIL import Image
 from skimage.io import imread
 
 # https://github.com/tesseract-ocr/tesseract/wiki
-# pip install pyautogui requests urllib3 pypiwin32 pytesseract psutil interception scipy screeninfo
+# pip install pyautogui requests urllib3 pypiwin32 pytesseract psutil interception scipy screeninfo win32con
 # https://github.com/oblitum/interception/releases/tag/v1.0.1
 # %windir%\system32\cmd.exe /K python /Users/Johann/Desktop/Bot/bot.py
 pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files (x86)\\Tesseract-OCR\\tesseract'
@@ -45,6 +45,7 @@ class SCANCODE:
     INTERCEPTION_MOUSE_LEFT_BUTTON_DOWN   = 0x001
     INTERCEPTION_MOUSE_LEFT_BUTTON_UP     = 0x002
     TAB = 0x0F
+    MONITORPOWER = 0xF170
 
     anmeldedaten = {
         'a' : 0x1E,
@@ -313,19 +314,19 @@ def main(r):
         print('Scroll Anzahl holen.')
         ews = find_pic(PICTURE,0.99)
         mausklick()
-        # time.sleep(2)
-        # b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
+        time.sleep(2)
+        b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
 
-        # while b == None:
-        #     print('Scroll Anzahl holen.')
-        #     ews = find_pic(PICTURE,0.99)
-        #     time.sleep(2)
-        #     b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
+        while b == None:
+            print('Scroll Anzahl holen.')
+            ews = find_pic(PICTURE,0.99)
+            time.sleep(2)
+            b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
 
-        # pyautogui.screenshot('temp.png', region=(b[0],b[1], 300, 23))
-        # image = imread('temp.png')
-        # negative = 255 - image
-        # ews_count = int(pytesseract.image_to_string(negative)[41:].split(')')[0].replace(",","").replace(" ","").replace("(",""))
+        pyautogui.screenshot('temp.png', region=(b[0],b[1], 300, 23))
+        image = imread('temp.png')
+        negative = 255 - image
+        ews_count = int(pytesseract.image_to_string(negative)[41:].split(')')[0].replace(",","").replace(" ","").replace("(",""))
 
 
         # Enchant Fenster Koordinaten
@@ -366,10 +367,10 @@ def main(r):
                         main(0)
                         
                     # # EWS Prüfung             
-                    # if ews_count == 0:
-                    #     print('Keine EWS mehr (verschoben?)!')
-                    #     break_var = True
-                    #     break
+                    if ews_count == 0:
+                        print('Keine EWS mehr (verschoben?)!')
+                        break_var = True
+                        break
 
                     # alle 30 Sekunden
                     if ( start_time - int(math.ceil(time.time())) ) % 30 == 0:
@@ -436,9 +437,12 @@ def main(r):
                     time.sleep(v)
 
                     # alle 5 Minuten
+                    win32gui.SendMessage(win32con.HWND_BROADCAST, win32con.WM_SYSCOMMAND, win32con.SC_MONITORPOWER, 2)
                     if ( start_time - int(math.ceil(time.time())) ) % 300 == 0:
                         try:
                             print('Reset Koordinaten Enchant window')
+                            pyautogui.moveTo(ews)
+                            mausklick()
                             ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,800,600),grayscale=True, confidence=.9)
                             ench_window_x = ench_window[0]
                             ench_window_y = ench_window[1]
@@ -475,7 +479,7 @@ def main(r):
                         fh.write(str(run))
 
                     run = run + 1
-                    # ews_count = ews_count - 1
+                    ews_count = ews_count - 1
 
                     printstr = str(time.time() - start_time_loop)[0:5] + ' Laufzeit | run = ' + str(run) + ' | Neustart in: ' + str(int(start_time + neustart - time.time()))
                     print(printstr)

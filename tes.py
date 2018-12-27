@@ -1,4 +1,4 @@
-import time, pyautogui, win32gui, os, re, math, subprocess, psutil, traceback, win32api
+import time, pyautogui, win32gui, os, re, math, subprocess, psutil, traceback, win32api, win32con
 from PIL import Image,ImageGrab
 from interception import ffi, lib
 start_time = int(time.time())
@@ -103,6 +103,7 @@ def other():
     e = time.time() - s
     runs.append(e)
 
-while True:
-    print(str(int(start_time + 9000 - time.time())))
 #os.system("shutdown -t 0 -r -f")
+win32gui.SendMessage(win32con.HWND_BROADCAST, win32con.WM_SYSCOMMAND, win32con.SC_MONITORPOWER, 2)
+
+print(win32con.SC_MONITORPOWER)
