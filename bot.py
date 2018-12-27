@@ -110,6 +110,7 @@ def main(r):
         x_schieber = 0
         y_schieber = 0
         finder_count = 0
+        arc_count = 0
 
         if break_var:
             print('Neustart')
@@ -454,6 +455,7 @@ def main(r):
 
                     print("type error: " + str(e))
                     print(traceback.format_exc())
+                    break_var = True
                     break
 
 while True:
