@@ -23,7 +23,7 @@ break_var = False
 x_schieber = 0
 y_schieber = 0
 finder_count = 0
-neustart = 300 # 9000
+neustart = 9000 # 9000
 with open(path + "bot.run", "r") as fh:
     run = int(fh.read())
 
@@ -458,7 +458,7 @@ def main(r):
                     run = run + 1
                     ews_count = ews_count - 1
 
-                    printstr = str(ews_count) + ' EWS || ' + str(time.time() - start_time_loop)[0:5] + ' Laufzeit || run = ' + str(run) + ' || Neustart in: ' + str(int(start_time + neustart - time.time()))
+                    printstr = str(ews_count) + ' EWS | ' + str(time.time() - start_time_loop)[0:5] + ' Laufzeit | run = ' + str(run) + ' | Neustart in: ' + str(int(start_time + neustart - time.time()))
                     print(printstr)
 
                     if (start_time + neustart - time.time()) < 0:
