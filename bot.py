@@ -305,8 +305,8 @@ def main(r):
         print('Scroll Anzahl holen.')
         ews = find_pic(PICTURE,0.99)
         mausklick()
-        time.sleep(2)
-        b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
+        # time.sleep(2)
+        # b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
 
         # while b == None:
         #     print('Scroll Anzahl holen.')
