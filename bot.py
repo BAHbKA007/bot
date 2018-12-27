@@ -88,7 +88,7 @@ def mausklick():
     lib.interception_destroy_context(context)
 
 def login_versuche(start):
-    if time.time() - start > 120:
+    if time.time() - start > 15:
         for proc in psutil.process_iter():
             # check whether the process name matches
             if proc.name() == 'l2.bin' or proc.name() == 'l2.exe':
