@@ -271,6 +271,10 @@ def main(r):
                     break_var = True
                     break
 
+            if break_var:
+                print('Neustart')
+                break
+
             # Fenster in Fordergrund bringen
             win32gui.MoveWindow(win32gui.FindWindow(None, "Lineage II"), 550, 0, 816, 639, True)
             win32gui.SetForegroundWindow(win32gui.FindWindow(None, "Lineage II"))
