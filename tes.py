@@ -103,4 +103,4 @@ def other():
     e = time.time() - s
     runs.append(e)
 
-print(win32gui.FindWindow(None, "Lineage II"))
+print(time.time() - time.time())

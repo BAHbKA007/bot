@@ -181,7 +181,7 @@ def main(r):
                     y_schieber = y_schieber + 1
                     x_schieber = 0
                 
-                if run < 5 or item_finder == 1:
+                if run < 5 or finder_count == 1:
                     finder_count = 0
                     run = run - 1
                 else:
@@ -385,6 +385,7 @@ def main(r):
                             break_var = True
                             break
                         
+                        # Spiel an
                         if win32gui.FindWindow(None, "Lineage II") == 0:
                             print('Siel nicht gefunden!!!')
                             break_var = True
