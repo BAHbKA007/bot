@@ -96,6 +96,7 @@ def login_versuche(start):
                 proc.kill()
                 time.sleep(2)
                 print('starte L2')
+                time.sleep(5)
         return True
     else:
         return False
