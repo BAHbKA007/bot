@@ -271,10 +271,6 @@ def main(r):
                     break_var = True
                     break
 
-            if break_var:
-                print('Neustart')
-                break
-
             # Fenster in Fordergrund bringen
             win32gui.MoveWindow(win32gui.FindWindow(None, "Lineage II"), 550, 0, 816, 639, True)
             win32gui.SetForegroundWindow(win32gui.FindWindow(None, "Lineage II"))
@@ -292,6 +288,9 @@ def main(r):
             win_pos_x = win_pos[0] + 7
             win_pos_y = win_pos[1]
 
+        if break_var:
+            print('Neustart')
+            break
 
         while find_pic(PICTURE) == None:
             print('suche ews.png')
