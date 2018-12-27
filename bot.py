@@ -297,8 +297,12 @@ def main(r):
             print('Neustart')
             break
 
+        start = int(math.ceil(time.time())) 
         while find_pic(PICTURE) == None:
             print('suche ews.png')
+            if login_versuche(start):
+                break_var = True
+                break
             time.sleep(1)
 
         # ews Koordinaten, Farbe + Anzahl BEWS
