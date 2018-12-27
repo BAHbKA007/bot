@@ -83,21 +83,24 @@ def discon(address):
 i = 0
 e = 0
 b = False
+runs = []
+
 def main():
-    global i, e
-    while True:
-        print(str(i) + ' Main')
-        i = i + 1
+    global runs
+    s = time.time()
+    x = win32gui.FindWindow(None, "Lineage II")
+    e = time.time() - s
+    runs.append(e)
+    print(e)
 
-        while True:
-            print(str(e) + '2nd Loop')
-            e = e + 1
-            if e >= 1000:
-                b = True
-                break
-        if b:
-            break
+def other():
+    global runs
+    s = time.time()
+    for proc in psutil.process_iter():
+    # check whether the process name matches
+        if proc.name() == 'l2.bin' or proc.name() == 'l2.exe':
+            pass
+    e = time.time() - s
+    runs.append(e)
 
-
-while True:
-    main()
+print(win32gui.FindWindow(None, "Lineage II"))

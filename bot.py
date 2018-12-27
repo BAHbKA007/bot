@@ -267,6 +267,7 @@ def main(r):
                 except Exception as e:
                     print("type error: " + str(e))
                     print(traceback.format_exc())
+                    break_var = True
                     break
 
             if break_var:
@@ -354,6 +355,7 @@ def main(r):
                     # EWS Prüfung             
                     if ews_count == 0:
                         print('Keine EWS mehr (verschoben?)!')
+                        break_var = True
                         break
 
                     # alle 30 Sekunden
@@ -372,6 +374,7 @@ def main(r):
                                     proc.kill()
                             time.sleep(3)
                             print('L2 neustarten')
+                            break_var = True
                             break
                         
                         # Speicherfehlermeldung
@@ -381,8 +384,12 @@ def main(r):
                             mausklick()
                             break_var = True
                             break
+                        
+                        if win32gui.FindWindow(None, "Lineage II") == 0:
+                            print('Siel nicht gefunden!!!')
+                            break_var = True
+                            break
                     
-                           
                     # CP craft
                     # if run % 2000 == 0 and run != 0:
                     #     setzen()
@@ -401,6 +408,7 @@ def main(r):
                                 proc.kill()
                                 print('Warte 20 Minuten auf Serverdown')
                                 time.sleep(1200)
+                        break_var = True
                         break
 
                     # Echnant
