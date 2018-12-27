@@ -483,10 +483,6 @@ def main(r):
                     printstr = str(time.time() - start_time_loop)[0:5] + ' Laufzeit | run = ' + str(run) + ' | Neustart in: ' + str(int(start_time + neustart - time.time())) + ' | EWS: ' + str(ews_count)
                     print(printstr)
 
-                    if (start_time + neustart - time.time()) < 0:
-                        print('Reboot PC...')
-                        os.system("shutdown -t 0 -r -f")
-
                 except Exception as e:
                     www_get(0, 0, 1, 0)
 
@@ -497,7 +493,6 @@ def main(r):
                     print(traceback.format_exc())
                     break_var = True
                     break
-
 while True:
     try:
         if time.time() - start_time > 5:
