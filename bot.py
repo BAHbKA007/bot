@@ -1,11 +1,11 @@
 import time, pyautogui, sys, requests, urllib3, traceback, win32gui, os, datetime, re, math
-import pytesseract, subprocess, psutil, win32con
+import pytesseract, subprocess, psutil
 from interception import ffi, lib
 from PIL import Image
 from skimage.io import imread
 
 # https://github.com/tesseract-ocr/tesseract/wiki
-# pip install pyautogui requests urllib3 pypiwin32 pytesseract psutil interception scipy screeninfo win32con
+# pip install pyautogui requests urllib3 pypiwin32 pytesseract psutil interception scipy screeninfo
 # https://github.com/oblitum/interception/releases/tag/v1.0.1
 # %windir%\system32\cmd.exe /K python /Users/Johann/Desktop/Bot/bot.py
 pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files (x86)\\Tesseract-OCR\\tesseract'
@@ -438,7 +438,6 @@ def main(r):
 
                     # alle 5 Minuten
                     if ( start_time - int(math.ceil(time.time())) ) % 300 == 0:
-                        win32gui.SendMessage(win32con.HWND_BROADCAST, win32con.WM_SYSCOMMAND, win32con.SC_MONITORPOWER, 2)
                         try:
                             print('Reset Koordinaten Enchant window')
                             pyautogui.moveTo(ews)
