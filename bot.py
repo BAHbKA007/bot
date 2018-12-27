@@ -481,7 +481,7 @@ def main(r):
                     run = run + 1
                     ews_count = ews_count - 1
 
-                    printstr = str(time.time() - start_time_loop)[0:5] + ' Laufzeit | run = ' + str(run) + ' | Neustart in: ' + str(int(start_time + neustart - time.time()))
+                    printstr = str(time.time() - start_time_loop)[0:5] + ' Laufzeit | run = ' + str(run) + ' | Neustart in: ' + str(int(start_time + neustart - time.time())) + ' | EWS: ' + str(ews_count)
                     print(printstr)
 
                     if (start_time + neustart - time.time()) < 0:
