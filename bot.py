@@ -308,16 +308,16 @@ def main(r):
         time.sleep(2)
         b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
 
-        while b == None:
-            print('Scroll Anzahl holen.')
-            ews = find_pic(PICTURE,0.99)
-            time.sleep(2)
-            b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
+        # while b == None:
+        #     print('Scroll Anzahl holen.')
+        #     ews = find_pic(PICTURE,0.99)
+        #     time.sleep(2)
+        #     b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
 
-        pyautogui.screenshot('temp.png', region=(b[0],b[1], 300, 23))
-        image = imread('temp.png')
-        negative = 255 - image
-        ews_count = int(pytesseract.image_to_string(negative)[41:].split(')')[0].replace(",","").replace(" ","").replace("(",""))
+        # pyautogui.screenshot('temp.png', region=(b[0],b[1], 300, 23))
+        # image = imread('temp.png')
+        # negative = 255 - image
+        # ews_count = int(pytesseract.image_to_string(negative)[41:].split(')')[0].replace(",","").replace(" ","").replace("(",""))
 
 
         # Enchant Fenster Koordinaten
@@ -357,11 +357,11 @@ def main(r):
                         print('L2 neustarten')
                         main(0)
                         
-                    # EWS Prüfung             
-                    if ews_count == 0:
-                        print('Keine EWS mehr (verschoben?)!')
-                        break_var = True
-                        break
+                    # # EWS Prüfung             
+                    # if ews_count == 0:
+                    #     print('Keine EWS mehr (verschoben?)!')
+                    #     break_var = True
+                    #     break
 
                     # alle 30 Sekunden
                     if ( start_time - int(math.ceil(time.time())) ) % 30 == 0:
@@ -456,9 +456,9 @@ def main(r):
                         fh.write(str(run))
 
                     run = run + 1
-                    ews_count = ews_count - 1
+                    # ews_count = ews_count - 1
 
-                    printstr = str(ews_count) + ' EWS | ' + str(time.time() - start_time_loop)[0:5] + ' Laufzeit | run = ' + str(run) + ' | Neustart in: ' + str(int(start_time + neustart - time.time()))
+                    printstr = str(time.time() - start_time_loop)[0:5] + ' Laufzeit | run = ' + str(run) + ' | Neustart in: ' + str(int(start_time + neustart - time.time()))
                     print(printstr)
 
                     if (start_time + neustart - time.time()) < 0:
