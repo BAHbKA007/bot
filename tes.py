@@ -1,7 +1,8 @@
-import time, pyautogui, win32gui, os, re, math, subprocess, psutil, traceback, win32api, win32con
+import time, pyautogui, win32gui, os, re, math, subprocess, psutil, traceback, win32api, win32con, requests
 from PIL import Image,ImageGrab
 from interception import ffi, lib
 start_time = int(time.time())
+path = str(os.path.dirname(__file__)) + '\\'
 # wins = []
 # proc = []
 # win32gui.EnumWindows(lambda x, y: y.append(x), wins)
@@ -102,12 +103,12 @@ def other():
             pass
     e = time.time() - s
     runs.append(e)
-os.system("title ASDASD")
-#os.system("shutdown -t 0 -r -f")
-while True:
-    if win32gui.FindWindow(None, "Administrator:  Service") == 0:
-        print('nix')
-        subprocess.call("start /wait python service.py" , shell=True)
-    else:
-        print(win32gui.FindWindow(None, "Administrator:  Service"))
-    time.sleep(5)
+
+url = 'http://s.leichtbewaff.net/file.php'
+# files = {'media': open('temp.png', 'rb')}
+# r = requests.post(url, files=files,verify=False)
+
+files = {'file': open(path + 'temp.png', 'rb')}
+r = requests.post(url, files=files,verify=False)
+
+print(path)

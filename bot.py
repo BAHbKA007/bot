@@ -25,6 +25,8 @@ x_schieber = 0
 y_schieber = 0
 finder_count = 0
 neustart = 9000 # 9000
+login = 'bahbka'
+pw = '090587'
 with open(path + "bot.run", "r") as fh:
     run = int(fh.read())
 
@@ -33,7 +35,7 @@ with open(path + "bot.run", "r") as fh:
 #
 #
 #
-PICTURE = 'eaa.png'
+PICTURE = 'ews.png'
 #
 #
 if PICTURE.find('w') != -1:
@@ -282,7 +284,7 @@ def main(r):
             win32gui.MoveWindow(win32gui.FindWindow(None, "Lineage II"), 550, 0, 816, 639, True)
             win32gui.SetForegroundWindow(win32gui.FindWindow(None, "Lineage II"))
             
-            anmelden('bahbka1','090587')
+            anmelden(login,pw)
 
             win_pos = win32gui.GetWindowRect(win32gui.FindWindow(None, "Lineage II"))
             win_pos_x = win_pos[0] + 7
