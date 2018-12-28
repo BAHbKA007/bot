@@ -1,5 +1,5 @@
 import os, time
-neustart = 9000
+neustart = 3600
 start_time = time.time()
 
 while True:
