@@ -25,7 +25,7 @@ x_schieber = 0
 y_schieber = 0
 finder_count = 0
 neustart = 9000 # 9000
-login = 'bahbka'
+login = 'bahbka1'
 pw = '090587'
 with open(path + "bot.run", "r") as fh:
     run = int(fh.read())
