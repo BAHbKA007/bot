@@ -102,8 +102,12 @@ def other():
             pass
     e = time.time() - s
     runs.append(e)
-
+os.system("title ASDASD")
 #os.system("shutdown -t 0 -r -f")
-win32gui.SendMessage(win32con.HWND_BROADCAST, win32con.WM_SYSCOMMAND, win32con.SC_MONITORPOWER, 2)
-
-print(win32con.SC_MONITORPOWER)
+while True:
+    if win32gui.FindWindow(None, "Administrator:  Service") == 0:
+        print('nix')
+        subprocess.call("start /wait python service.py" , shell=True)
+    else:
+        print(win32gui.FindWindow(None, "Administrator:  Service"))
+    time.sleep(5)

@@ -10,6 +10,7 @@ from skimage.io import imread
 # %windir%\system32\cmd.exe /K python /Users/Johann/Desktop/Bot/bot.py
 pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files (x86)\\Tesseract-OCR\\tesseract'
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+os.system("title Bot")
 
 path = str(os.path.dirname(__file__)) + '\\'
 datum_sql = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
