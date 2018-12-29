@@ -446,8 +446,8 @@ def main(r):
                     #OK Button Enchant Fenster
                     pyautogui.moveTo(ench_window_x + 90, ench_window_y + 383)
                     while pyautogui.pixelMatchesColor(int(ench_window_x + 83),int(ench_window_y + 382), (230, 217, 190)):
+                        time.sleep(v) #0.25
                         mausklick()
-                    time.sleep(v) #0.25
 
                     # alle 5 Minuten
                     if ( start_time - int(math.ceil(time.time())) ) % 300 == 0:
