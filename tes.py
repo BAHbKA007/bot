@@ -3,22 +3,22 @@ from PIL import Image,ImageGrab
 from interception import ffi, lib
 start_time = int(time.time())
 path = str(os.path.dirname(__file__)) + '\\'
-# wins = []
-# proc = []
-# win32gui.EnumWindows(lambda x, y: y.append(x), wins)
-# for winId in wins:
-#     winName = win32gui.GetWindowText(winId)
-#     if winName == 'Lineage II':
-#         proc.append(winId)
+wins = []
+proc = []
+win32gui.EnumWindows(lambda x, y: y.append(x), wins)
+for winId in wins:
+    winName = win32gui.GetWindowText(winId)
+    if winName == 'Lineage II':
+        proc.append(winId)
 
-# path = str(os.path.dirname(__file__)) + '\\'
-# win_pos = win32gui.GetWindowRect(proc[len(proc)-1])
-# win_pos_x = win_pos[0] + 7
-# win_pos_y = win_pos[1]
+path = str(os.path.dirname(__file__)) + '\\'
+win_pos = win32gui.GetWindowRect(proc[len(proc)-1])
+win_pos_x = win_pos[0] + 7
+win_pos_y = win_pos[1]
 
-# ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,800,600),grayscale=True, confidence=.9)
-# ench_window_x = ench_window[0]
-# ench_window_y = ench_window[1]
+ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,800,600),grayscale=True, confidence=.9)
+ench_window_x = ench_window[0]
+ench_window_y = ench_window[1]
 
 # PICTURE = 'eaa.png'
 # #
@@ -81,34 +81,34 @@ def discon(address):
 # win_pos_x = win_pos[0] + 7
 # win_pos_y = win_pos[1]
 
-i = 0
-e = 0
-b = False
-runs = []
 
-def main():
-    global runs
-    s = time.time()
-    x = win32gui.FindWindow(None, "Lineage II")
-    e = time.time() - s
-    runs.append(e)
-    print(e)
 
-def other():
-    global runs
-    s = time.time()
-    for proc in psutil.process_iter():
-    # check whether the process name matches
-        if proc.name() == 'l2.bin' or proc.name() == 'l2.exe':
-            pass
-    e = time.time() - s
-    runs.append(e)
+# i=10
+# x=0
+# a = []
+# while x < i:
+#     t = time.time()
+#     pyautogui.locateCenterOnScreen(path + 'pic\\ok.png',grayscale=True)
+#     a.append(time.time() - t)
+#     x = x + 1
+# print('ok.png auf ganzem Bildschirm: ' +  str(sum(a) / len(a)))
 
-url = 'http://s.leichtbewaff.net/file.php'
-# files = {'media': open('temp.png', 'rb')}
-# r = requests.post(url, files=files,verify=False)
+# x=0
+# a = []
+# while x < i:
+#     t = time.time()
+#     pyautogui.locateOnScreen(path + 'pic\\ok.png', region=(ench_window_x + 83, ench_window_y + 372,13,21),grayscale=True)
+#     a.append(time.time() - t)
+#     x = x + 1
+# print('ok.png eingegrenzt: ' +  str(sum(a) / len(a)))
 
-files = {'file': open(path + 'temp.png', 'rb')}
-r = requests.post(url, files=files,verify=False)
+# x=0
+# a = []
+# while x < i:
+#     t = time.time()
+#     r = pyautogui.pixelMatchesColor(int(ench_window_x + 83),int(ench_window_y + 382), (230, 217, 190))
+#     a.append(time.time() - t)
+#     x = x + 1
+# print(str(not r)+' Pixelmatching: ' +  str(sum(a) / len(a)))
 
-print(path)
+pyautogui.moveTo(ench_window_x + 90, ench_window_y + 383)

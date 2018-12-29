@@ -440,6 +440,15 @@ def main(r):
                     mausklick()
                     time.sleep(v)
 
+                    # Koordinaten Kontrolle
+                    item_finder()
+
+                    #OK Button Enchant Fenster
+                    pyautogui.moveTo(ench_window_x + 90, ench_window_y + 383)
+                    while not pyautogui.pixelMatchesColor(int(ench_window_x + 83),int(ench_window_y + 382), (230, 217, 190)):
+                        mausklick()
+                    time.sleep(v) #0.25
+
                     # alle 5 Minuten
                     if ( start_time - int(math.ceil(time.time())) ) % 300 == 0:
                         try:
@@ -466,15 +475,7 @@ def main(r):
                             print(traceback.format_exc())
                             break_var = True
                             break
-                            
-                    #OK Button Enchant Fenster
-                    pyautogui.moveTo(ench_window_x + 90, ench_window_y + 383)
-                    mausklick()
-                    time.sleep(v + ok) #0.25
-                    
-                    # Koordinaten Kontrolle
-                    item_finder()
-
+                                              
                     www_get(run, arc_count, 0, 0)
 
                     #bot.run beschreiben
