@@ -35,7 +35,7 @@ with open(path + "bot.run", "r") as fh:
 #
 #
 #
-PICTURE = 'eaa.png'
+PICTURE = 'ews.png'
 #
 #
 if PICTURE.find('w') != -1:
@@ -376,7 +376,7 @@ def main(r):
                     #     break
 
                     # alle 30 Sekunden
-                    if ( start_time - int(math.ceil(time.time())) ) % 30 == 0:
+                    if ( start_time - int(math.ceil(time.time())) ) % 15 == 0:
                         print('Prüfungen: Disconnect und Spiel an')
                         #Prüfen ob Disconnect Fehlermeldung auf dem Bildschirm
                         if pyautogui.locateCenterOnScreen(path + 'pic\\disc.png', region=(win_pos_x + 258, win_pos_y + 270,40,40),grayscale=True, confidence=.9) != None:
