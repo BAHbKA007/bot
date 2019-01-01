@@ -123,6 +123,15 @@ def main(r):
             break_var = False
             break
 
+        # Speicherfehlermeldung
+        if pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
+            while pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
+                print('Speicherfehlermeldung auf dem Bildschirm - starte neu.')
+                pyautogui.moveTo(pyautogui.locateCenterOnScreen('pic\\OK_Error.png'))
+                mausklick()
+                time.sleep(1)
+            break
+
         # Windows Prozesse Nach lineage 2 durhsuchen
         proc = []
         # Auflösung holen
@@ -397,9 +406,10 @@ def main(r):
                         # Speicherfehlermeldung
                         if pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
                             print('Speicherfehlermeldung auf dem Bildschirm - starte neu.')
-                            while pyautogui.locateCenterOnScreen('pic\\OK_Error.png',grayscale=True, confidence=.9) != None:
+                            while pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
                                 pyautogui.moveTo(pyautogui.locateCenterOnScreen('pic\\OK_Error.png'))
                                 mausklick()
+                                time.sleep(1)
                             break_var = True
                             break
                         
