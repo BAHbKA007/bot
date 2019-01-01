@@ -123,6 +123,14 @@ def main(r):
             break_var = False
             break
 
+        # Windows Prozesse Nach lineage 2 durhsuchen
+        proc = []
+        # Auflösung holen
+        desktop_size = []
+        for i in pyautogui.size():
+            desktop_size.append(int(i/2))
+
+
         # Speicherfehlermeldung
         if pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
             while pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
@@ -131,13 +139,6 @@ def main(r):
                 mausklick()
                 time.sleep(1)
             break
-
-        # Windows Prozesse Nach lineage 2 durhsuchen
-        proc = []
-        # Auflösung holen
-        desktop_size = []
-        for i in pyautogui.size():
-            desktop_size.append(int(i/2))
 
         def find_pic(a, conf=.9, x=800, y=600, x_inner=0, y_inner=0):
             pos = pyautogui.locateCenterOnScreen(path + 'pic\\' + a, region=(win_pos_x + x_inner, win_pos_y + y_inner,x,y),grayscale=True, confidence=conf)
