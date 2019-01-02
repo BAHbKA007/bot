@@ -169,7 +169,8 @@ def main(r):
                         proc.kill()
                 with open(path + "bot.run", "w") as fh:
                     fh.write(str(0))
-                print('Keine Gegenstände mehr zum verbessern! Beende Spiel')        
+                print('Keine Gegenstände mehr zum verbessern! Beende Spiel')
+                subprocess.call(["shutdown", "/s"])     
                 input()
 
             pyautogui.screenshot('ench_screen.png', region=(ench_window_x + 10 + x_schieber * 37, ench_window_y + 51 + y_schieber * 35, 12, 8))
