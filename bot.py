@@ -135,7 +135,7 @@ def main(r):
         if pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
             while pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
                 print('Speicherfehlermeldung auf dem Bildschirm - starte neu.')
-                pyautogui.moveTo(pyautogui.locateCenterOnScreen('pic\\OK_Error.png'))
+                pyautogui.moveTo(pyautogui.locateCenterOnScreen('pic\\OK_Error.png',grayscale=True, confidence=.9))
                 mausklick()
                 time.sleep(1)
             break
@@ -408,7 +408,7 @@ def main(r):
                         if pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
                             print('Speicherfehlermeldung auf dem Bildschirm - starte neu.')
                             while pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
-                                pyautogui.moveTo(pyautogui.locateCenterOnScreen('pic\\OK_Error.png'))
+                                pyautogui.moveTo(pyautogui.locateCenterOnScreen('pic\\OK_Error.png',grayscale=True, confidence=.9))
                                 mausklick()
                                 time.sleep(1)
                             break_var = True
