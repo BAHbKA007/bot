@@ -135,7 +135,7 @@ def main(r):
         if pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
             while pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
                 print('Speicherfehlermeldung auf dem Bildschirm - starte neu.')
-                pyautogui.moveTo(pyautogui.locateCenterOnScreen('pic\\OK_Error.png',grayscale=True, confidence=.9))
+                pyautogui.moveTo(pyautogui.locateCenterOnScreen(path + 'pic\\OK_Error.png',grayscale=True, confidence=.9))
                 mausklick()
                 time.sleep(1)
             break
@@ -291,6 +291,13 @@ def main(r):
                 print('Neustart')
                 break
 
+            if pyautogui.locateCenterOnScreen(path + 'pic\\unable_to_connect.png',grayscale=True, confidence=.9) != None:
+                print('Unable to connect to server Fehlermeldung')
+                while pyautogui.locateCenterOnScreen(path + 'pic\\unable_to_connect.png',grayscale=True, confidence=.9) != None:
+                    pyautogui.moveTo(pyautogui.locateCenterOnScreen(path + 'pic\\unable_to_connect.png',grayscale=True, confidence=.9))
+                    mausklick()
+                    time.sleep(1)
+
             # Fenster in Fordergrund bringen
             win32gui.MoveWindow(win32gui.FindWindow(None, "Lineage II"), 550, 0, 816, 639, True)
             win32gui.SetForegroundWindow(win32gui.FindWindow(None, "Lineage II"))
@@ -409,7 +416,7 @@ def main(r):
                         if pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
                             print('Speicherfehlermeldung auf dem Bildschirm - starte neu.')
                             while pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
-                                pyautogui.moveTo(pyautogui.locateCenterOnScreen('pic\\OK_Error.png',grayscale=True, confidence=.9))
+                                pyautogui.moveTo(pyautogui.locateCenterOnScreen(path + 'pic\\OK_Error.png',grayscale=True, confidence=.9))
                                 mausklick()
                                 time.sleep(1)
                             break_var = True
