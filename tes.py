@@ -1,24 +1,26 @@
 import time, pyautogui, win32gui, os, re, math, subprocess, psutil, traceback, win32api, win32con, requests
 from PIL import Image,ImageGrab
 from interception import ffi, lib
+
+
 start_time = int(time.time())
 path = str(os.path.dirname(__file__)) + '\\'
 wins = []
 proc = []
-win32gui.EnumWindows(lambda x, y: y.append(x), wins)
-for winId in wins:
-    winName = win32gui.GetWindowText(winId)
-    if winName == 'Lineage II':
-        proc.append(winId)
+# win32gui.EnumWindows(lambda x, y: y.append(x), wins)
+# for winId in wins:
+#     winName = win32gui.GetWindowText(winId)
+#     if winName == 'Lineage II':
+#         proc.append(winId)
 
-path = str(os.path.dirname(__file__)) + '\\'
-win_pos = win32gui.GetWindowRect(proc[len(proc)-1])
-win_pos_x = win_pos[0] + 7
-win_pos_y = win_pos[1]
+# path = str(os.path.dirname(__file__)) + '\\'
+# win_pos = win32gui.GetWindowRect(proc[len(proc)-1])
+# win_pos_x = win_pos[0] + 7
+# win_pos_y = win_pos[1]
 
-ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,800,600),grayscale=True, confidence=.9)
-ench_window_x = ench_window[0]
-ench_window_y = ench_window[1]
+# ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,800,600),grayscale=True, confidence=.9)
+# ench_window_x = ench_window[0]
+# ench_window_y = ench_window[1]
 
 # PICTURE = 'eaa.png'
 # #
@@ -111,4 +113,8 @@ def discon(address):
 #     x = x + 1
 # print(str(not r)+' Pixelmatching: ' +  str(sum(a) / len(a)))
 
-pyautogui.moveTo(ench_window_x + 90, ench_window_y + 383)
+while pyautogui.locateCenterOnScreen(path + 'asd.png',grayscale=True, confidence=.9):
+    pyautogui.moveTo(pyautogui.locateCenterOnScreen(path + 'asd.png',grayscale=True, confidence=.9))
+    print('yes')
+    time.sleep(5)
+print('no')
