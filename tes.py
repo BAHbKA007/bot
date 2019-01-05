@@ -137,4 +137,4 @@ def mausklick():
 #         time.sleep(1)
 #         mausklick()
 
-print('asasdasda.wewewe'.split('.')[0].upper())
+print(pyautogui.pixelMatchesColor(49, 76, (181, 0, 24)))

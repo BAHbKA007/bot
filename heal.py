@@ -20,6 +20,7 @@ class SCANCODE:
     F8=0x42
     F9=0x43
     F10=0x44
+    F11=0x45
 
 win_pos = win32gui.GetWindowRect(win32gui.FindWindow(None, "Lineage II"))
 win_pos_x = win_pos[0] + 7
@@ -65,6 +66,12 @@ while True:
     if not life_pix(75):
         while not life_pix(130):
             print('heal')
+            klick(SCANCODE.F1)
+
+    if not pyautogui.pixelMatchesColor(49, 76, (181, 0, 24)):
+        while not pyautogui.pixelMatchesColor(165, 76, (181, 0, 24)):
+            klick(SCANCODE.F11)
+            print('heal self')
             klick(SCANCODE.F1)
 
     # Balance
