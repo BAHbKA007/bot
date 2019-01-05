@@ -60,9 +60,10 @@ while True:
 
     klick(SCANCODE.F10)
 
-    while not life_pix(75):
-        print('heal')
-        klick(SCANCODE.F1)
+    if not life_pix(130)
+        while not life_pix(75):
+            print('heal')
+            klick(SCANCODE.F1)
 
     # Balance
     # if ( start_time - int(math.ceil(time.time())) ) % 20 == 0:
