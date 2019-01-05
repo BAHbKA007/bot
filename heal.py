@@ -25,6 +25,9 @@ win_pos = win32gui.GetWindowRect(win32gui.FindWindow(None, "Lineage II"))
 win_pos_x = win_pos[0] + 7
 win_pos_y = win_pos[1]
 
+win32gui.MoveWindow(win32gui.FindWindow(None, "Lineage II"), 550, 0, 816, 639, True)
+win32gui.SetForegroundWindow(win32gui.FindWindow(None, "Lineage II"))
+
 #Party Fenster Koordinaten und Lebesanzeige Position
 b = pyautogui.locateOnScreen(path+'party.png', grayscale=True)
 #pyautogui.screenshot('temp.png', region=(b[0]+15,b[1]+8, 150, 1)) 
@@ -46,9 +49,6 @@ def life_pix(pix):
     return pyautogui.pixelMatchesColor(int(leben_x + pix), int(leben_y), (231, 73, 132)) #(226, 58, 112)
 
 time.sleep(5)
-
-win32gui.MoveWindow(win32gui.FindWindow(None, "Lineage II"), 550, 0, 816, 639, True)
-win32gui.SetForegroundWindow(win32gui.FindWindow(None, "Lineage II"))
 
 klick(SCANCODE.F10)
 time.sleep(1)
