@@ -70,7 +70,7 @@ while True:
 
     if not pyautogui.pixelMatchesColor(win_pos_x + 49, win_pos_y + 76, (181, 0, 24)):
         while not pyautogui.pixelMatchesColor(win_pos_x + 165, win_pos_y + 76, (181, 0, 24)):
-            klick(SCANCODE.F11)
+            klick(SCANCODE.F8)
             print('heal self')
             klick(SCANCODE.F1)
 
