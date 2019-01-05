@@ -55,6 +55,8 @@ time.sleep(1)
 klick(SCANCODE.F4)
 time.sleep(0.5)
 klick(SCANCODE.F5)
+time.sleep(0.5)
+klick(SCANCODE.F6)
 
 while True:
 
