@@ -35,7 +35,7 @@ with open(path + "bot.run", "r") as fh:
 #
 #
 #
-PICTURE = 'eaa.png'
+PICTURE = 'eas.png'
 #
 #
 if PICTURE.find('w') != -1:
@@ -403,7 +403,7 @@ def main(r):
                         image = imread('temp.png')
                         negative = 255 - image
                         ews_count = int(pytesseract.image_to_string(negative)[41:].split(')')[0].replace(",","").replace(" ","").replace("(",""))
-                                     
+
                         print('Prüfungen: Disconnect und Spiel an')
                         #Prüfen ob Disconnect Fehlermeldung auf dem Bildschirm
                         if pyautogui.locateCenterOnScreen(path + 'pic\\disc.png', region=(win_pos_x + 258, win_pos_y + 270,40,40),grayscale=True, confidence=.9) != None:
