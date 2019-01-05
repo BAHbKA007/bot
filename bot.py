@@ -399,6 +399,12 @@ def main(r):
                     # alle 30 Sekunden
                     if ( start_time - int(math.ceil(time.time())) ) % 15 == 0:
 
+                        #ews Koordinaten, Farbe + Anzahl BEWS
+                        print('Scroll Anzahl holen.')
+                        ews = find_pic(PICTURE,0.99)
+                        mausklick()
+                        time.sleep(2)
+                        b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
                         pyautogui.screenshot('temp.png', region=(b[0],b[1], 300, 23))
                         image = imread('temp.png')
                         negative = 255 - image
