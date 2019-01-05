@@ -65,11 +65,11 @@ while True:
         klick(SCANCODE.F1)
 
     # Balance
-    if ( start_time - int(math.ceil(time.time())) ) % 20 == 0:
-        print('Balance')
-        klick(SCANCODE.F2)
-        time.sleep(0.5)
-        klick(SCANCODE.F10)
+    # if ( start_time - int(math.ceil(time.time())) ) % 20 == 0:
+    #     print('Balance')
+    #     klick(SCANCODE.F2)
+    #     time.sleep(0.5)
+    #     klick(SCANCODE.F10)
 
     # Bank
     if ( start_time - int(math.ceil(time.time())) ) % 45 == 0:
