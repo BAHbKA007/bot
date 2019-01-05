@@ -69,14 +69,13 @@ while True:
         print('Balance')
         klick(SCANCODE.F2)
         time.sleep(0.5)
-        klick(SCANCODE.F3)
         klick(SCANCODE.F10)
 
     # Bank
     if ( start_time - int(math.ceil(time.time())) ) % 45 == 0:
         print('Bank')
         klick(SCANCODE.F9)
-        time.sleep(0.5)
+        time.sleep(2)
         klick(SCANCODE.F10)
 
     time.sleep(0.5)
