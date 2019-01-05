@@ -81,8 +81,10 @@ while True:
             klick(SCANCODE.F2)
             time.sleep(0.5)
             klick(SCANCODE.F3)
-            time.sleep(0.5)
+            time.sleep(1)
             klick(SCANCODE.F3)
+            time.sleep(1)
+            klick(SCANCODE.F10)
             time.sleep(0.2)
             klick(SCANCODE.F10)
 
