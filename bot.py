@@ -319,7 +319,7 @@ def main(r):
 
         start = int(math.ceil(time.time())) 
         while find_pic(PICTURE) == None:
-            print('suche ews.png')
+            print('suche: ' + PICTURE.split('.')[0].upper())
             if login_versuche(start):
                 break_var = True
                 break

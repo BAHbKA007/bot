@@ -129,10 +129,12 @@ def mausklick():
 #     x = x + 1
 # print(str(not r)+' Pixelmatching: ' +  str(sum(a) / len(a)))
 
-if pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
-    print('Speicherfehlermeldung auf dem Bildschirm - starte neu.')
-    while pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
-        pyautogui.moveTo(pyautogui.locateCenterOnScreen(path + 'pic\\OK_Error.png',grayscale=True, confidence=.88))
-        mausklick()
-        time.sleep(1)
-        mausklick()
+# if pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
+#     print('Speicherfehlermeldung auf dem Bildschirm - starte neu.')
+#     while pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
+#         pyautogui.moveTo(pyautogui.locateCenterOnScreen(path + 'pic\\OK_Error.png',grayscale=True, confidence=.88))
+#         mausklick()
+#         time.sleep(1)
+#         mausklick()
+
+print('asasdasda.wewewe'.split('.')[0].upper())
