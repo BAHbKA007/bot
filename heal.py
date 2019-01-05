@@ -43,7 +43,7 @@ def klick(key):
     lib.interception_destroy_context(context)
 
 def life_pix(pix):
-    return pyautogui.pixelMatchesColor(int(leben_x + pix), int(leben_y), (226, 58, 112))
+    return pyautogui.pixelMatchesColor(int(leben_x + pix), int(leben_y), (231, 73, 132)) #(226, 58, 112)
 
 time.sleep(5)
 
