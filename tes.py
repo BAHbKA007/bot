@@ -137,4 +137,6 @@ def mausklick():
 #         time.sleep(1)
 #         mausklick()
 
-print(pyautogui.pixelMatchesColor(win_pos_x + 165, win_pos_y + 76, (181, 0, 24)))
+while True:
+    if pyautogui.pixelMatchesColor(win_pos_x + 26, win_pos_y + 572, (0, 251, 0)):
+        while pyautogui.pixelMatchesColor(win_pos_x + 26, win_pos_y + 572, (0, 251, 0)):
