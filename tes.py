@@ -7,6 +7,12 @@ start_time = int(time.time())
 path = str(os.path.dirname(__file__)) + '\\'
 wins = []
 proc = []
+
+# Auflösung holen
+desktop_size = []
+for i in pyautogui.size():
+    desktop_size.append(int(i/2))
+
 # win32gui.EnumWindows(lambda x, y: y.append(x), wins)
 # for winId in wins:
 #     winName = win32gui.GetWindowText(winId)
@@ -76,6 +82,16 @@ def find_proc():
     return proc
 def discon(address):
     return not not os.system('ping %s -n 1 > NUL' % (address,))
+def mausklick():
+    context = lib.interception_create_context()
+
+    stroke = ffi.new('InterceptionMouseStroke *')
+        
+    stroke.state  = SCANCODE.INTERCEPTION_MOUSE_LEFT_BUTTON_DOWN
+    lib.interception_send(context, 11, stroke, 1)
+    stroke.state  = SCANCODE.INTERCEPTION_MOUSE_LEFT_BUTTON_UP
+    lib.interception_send(context, 11,  stroke, 1)
+    lib.interception_destroy_context(context)
 
 #print(pyautogui.pixelMatchesColor(int(pyautogui.size()[0]) / 2, int(pyautogui.size()[1]) / 2, (240, 240, 240)))
 
@@ -113,8 +129,10 @@ def discon(address):
 #     x = x + 1
 # print(str(not r)+' Pixelmatching: ' +  str(sum(a) / len(a)))
 
-while pyautogui.locateCenterOnScreen(path + 'asd.png',grayscale=True, confidence=.9):
-    pyautogui.moveTo(pyautogui.locateCenterOnScreen(path + 'asd.png',grayscale=True, confidence=.9))
-    print('yes')
-    time.sleep(5)
-print('no')
+if pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
+    print('Speicherfehlermeldung auf dem Bildschirm - starte neu.')
+    while pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
+        pyautogui.moveTo(pyautogui.locateCenterOnScreen(path + 'pic\\OK_Error.png',grayscale=True, confidence=.88))
+        mausklick()
+        time.sleep(1)
+        mausklick()
