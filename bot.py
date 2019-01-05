@@ -510,7 +510,7 @@ def main(r):
                     run = run + 1
                     ews_count = ews_count - 1
 
-                    printstr = str(time.time() - start_time_loop)[0:5] + ' Laufzeit | run = ' + str(run)
+                    printstr = str(time.time() - start_time_loop)[0:5] + ' Laufzeit | run = ' + str(run) + ' | Scroll: ' + str(ews_count)
                     print(printstr)
 
                 except Exception as e:
