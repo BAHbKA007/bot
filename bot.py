@@ -63,9 +63,6 @@ class SCANCODE:
         '9' : 0x0A
     }
 
-def discon(address):
-    return not not os.system('ping %s -n 1 > NUL' % (address,))
-
 def anmelden(benutzer,pw):
     context = lib.interception_create_context()
     kstroke = ffi.new('InterceptionKeyStroke *')
