@@ -53,6 +53,7 @@ win32gui.SetForegroundWindow(win32gui.FindWindow(None, "Lineage II"))
 klick(SCANCODE.F10)
 time.sleep(1)
 klick(SCANCODE.F4)
+time.sleep(0.5)
 klick(SCANCODE.F5)
 
 while True:
@@ -67,6 +68,7 @@ while True:
     if ( start_time - int(math.ceil(time.time())) ) % 20 == 0:
         print('Balance')
         klick(SCANCODE.F2)
+        time.sleep(0.5)
         klick(SCANCODE.F3)
         klick(SCANCODE.F10)
 
@@ -74,4 +76,7 @@ while True:
     if ( start_time - int(math.ceil(time.time())) ) % 45 == 0:
         print('Bank')
         klick(SCANCODE.F9)
-        klick(SCANCODE.F10)   
+        time.sleep(0.5)
+        klick(SCANCODE.F10)
+
+    time.sleep(0.5)
