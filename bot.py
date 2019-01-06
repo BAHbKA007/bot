@@ -160,13 +160,13 @@ def main(r):
 
             finder_count = finder_count + 1
             if pyautogui.pixelMatchesColor(int(ench_window_x + 10 + x_schieber * 37), int(ench_window_y + 51 + y_schieber * 35), (16, 16, 16)):
-                for proc in psutil.process_iter():
-                # check whether the process name matches
-                    if proc.name() == 'l2.bin' or proc.name() == 'l2.exe':
-                        print('L2 Prozess beenden')
-                        proc.kill()
-                with open(path + "bot.run", "w") as fh:
-                    fh.write(str(0))
+                # for proc in psutil.process_iter():
+                # # check whether the process name matches
+                #     if proc.name() == 'l2.bin' or proc.name() == 'l2.exe':
+                #         print('L2 Prozess beenden')
+                #         proc.kill()
+                # with open(path + "bot.run", "w") as fh:
+                #     fh.write(str(0))
                 print('Keine Gegenstände mehr zum verbessern! Beende Spiel')
                 # subprocess.call(["shutdown", "/s"])     
                 input()
