@@ -335,16 +335,16 @@ def main(r):
         mausklick()
         b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
 
-        while b == None:
-            print('Scroll Anzahl holen.')
-            ews = find_pic(PICTURE,0.99)
-            time.sleep(2)
-            b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
+        # while b == None:
+        #     print('Scroll Anzahl holen.')
+        #     ews = find_pic(PICTURE,0.99)
+        #     time.sleep(2)
+        #     b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
 
-        pyautogui.screenshot('temp.png', region=(b[0],b[1], 300, 23))
-        image = imread('temp.png')
-        negative = 255 - image
-        ews_count = int(pytesseract.image_to_string(negative)[41:].split(')')[0].replace(",","").replace(" ","").replace("(",""))
+        # pyautogui.screenshot('temp.png', region=(b[0],b[1], 300, 23))
+        # image = imread('temp.png')
+        # negative = 255 - image
+        # ews_count = int(pytesseract.image_to_string(negative)[41:].split(')')[0].replace(",","").replace(" ","").replace("(",""))
 
 
         # Enchant Fenster Koordinaten
@@ -397,16 +397,6 @@ def main(r):
 
                     # alle 30 Sekunden
                     if ( start_time - int(math.ceil(time.time())) ) % 15 == 0:
-
-                        #ews Koordinaten, Farbe + Anzahl BEWS
-                        print('Scroll Anzahl holen.')
-                        ews = find_pic(PICTURE,0.99)
-                        mausklick()
-                        b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
-                        pyautogui.screenshot('temp.png', region=(b[0],b[1], 300, 23))
-                        image = imread('temp.png')
-                        negative = 255 - image
-                        ews_count = int(pytesseract.image_to_string(negative)[41:].split(')')[0].replace(",","").replace(" ","").replace("(",""))
 
                         print('Prüfungen: Disconnect und Spiel an')
                         #Prüfen ob Disconnect Fehlermeldung auf dem Bildschirm
