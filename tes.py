@@ -1,12 +1,25 @@
-import time, pyautogui, win32gui, os, re, math, subprocess, psutil, traceback, win32api, win32con, requests
+import time, pyautogui, win32gui, os, re, math, subprocess, psutil, traceback, win32api, win32con, requests, pytesseract
 from PIL import Image,ImageGrab
 from interception import ffi, lib
-
+from skimage.io import imread
 
 start_time = int(time.time())
 path = str(os.path.dirname(__file__)) + '\\'
 wins = []
 proc = []
+
+#               PICTURE
+#
+#
+#
+PICTURE = 'eas.png'
+#
+#
+if PICTURE.find('w') != -1:
+    max_enchant = '18.png'
+else:
+    max_enchant = '14.png'
+#
 
 # Auflösung holen
 desktop_size = []
@@ -54,6 +67,11 @@ class SCANCODE:
         '8' : 0x9,
         '9' : 0x0A
     }
+
+def find_pic(a, conf=.9, x=800, y=600, x_inner=0, y_inner=0):
+    pos = pyautogui.locateCenterOnScreen(path + 'pic\\' + a, region=(win_pos_x + x_inner, win_pos_y + y_inner,x,y),grayscale=True, confidence=conf)
+    pyautogui.moveTo(pos)
+    return pos 
 
 def anmelden(benutzer,pw):
     context = lib.interception_create_context()
@@ -137,6 +155,18 @@ def mausklick():
 #         time.sleep(1)
 #         mausklick()
 
-while True:
-    if pyautogui.pixelMatchesColor(win_pos_x + 26, win_pos_y + 572, (0, 251, 0)):
-        while pyautogui.pixelMatchesColor(win_pos_x + 26, win_pos_y + 572, (0, 251, 0)):
+print('Scroll Anzahl holen.')
+ews = find_pic(PICTURE,0.99)
+mausklick()
+b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
+
+while b == None:
+    print('Scroll Anzahl holen.')
+    ews = find_pic(PICTURE,0.99)
+    time.sleep(2)
+    b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
+
+pyautogui.screenshot('temp.png', region=(b[0],b[1], 300, 23))
+image = imread('temp.png')
+negative = 255 - image
+ews_count = int(pytesseract.image_to_string(negative)[41:].split(')')[0].replace(",","").replace(" ","").replace("(",""))
