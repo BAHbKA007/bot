@@ -168,7 +168,7 @@ def main(r):
                 with open(path + "bot.run", "w") as fh:
                     fh.write(str(0))
                 print('Keine Gegenstände mehr zum verbessern! Beende Spiel')
-                subprocess.call(["shutdown", "/s"])     
+                # subprocess.call(["shutdown", "/s"])     
                 input()
 
             pyautogui.screenshot('ench_screen.png', region=(ench_window_x + 10 + x_schieber * 37, ench_window_y + 51 + y_schieber * 35, 12, 8))
@@ -387,11 +387,11 @@ def main(r):
                     # EWS Prüfung             
                     if ews_count < 0 and find_pic(PICTURE,0.99) == None:
                         print('Keine EWS mehr')
-                        for proc in psutil.process_iter():
-                            # check whether the process name matches
-                            if proc.name() == 'l2.bin' or proc.name() == 'l2.exe':
-                                print('L2 Prozess beenden')
-                                proc.kill()
+                        # for proc in psutil.process_iter():
+                        #     # check whether the process name matches
+                        #     if proc.name() == 'l2.bin' or proc.name() == 'l2.exe':
+                        #         print('L2 Prozess beenden')
+                        #         proc.kill()
                         input()
                         break
 
