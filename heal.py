@@ -72,6 +72,7 @@ while True:
 
     if not life_pix(75):
         while not life_pix(130):
+            klick(SCANCODE.F10)
             print('heal')
             klick(SCANCODE.F1)
 
