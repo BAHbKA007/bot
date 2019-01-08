@@ -69,13 +69,13 @@ def main():
         while pyautogui.pixelMatchesColor(win_pos_x + 26, win_pos_y + 572, (0, 251, 0)):
             print('Balance')
             klick(SCANCODE.F2)
-            time.sleep(0.05)
+            time.sleep(0.6)
             klick(SCANCODE.F3)
             time.sleep(2)
             klick(SCANCODE.F3)
             time.sleep(1)
             klick(SCANCODE.F10)
-            time.sleep(0.02)
+            time.sleep(0.1)
             klick(SCANCODE.F10)
 
     # Bank
