@@ -58,6 +58,7 @@ def mausklick():
     lib.interception_destroy_context(context)
 
 def main():
+    global win_pos_y,win_pos_x,leben_y,leben_x
     start = time.time()
     if int(time.time()) % 60 == 0:
         #Party Fenster Koordinaten und Lebesanzeige Position
