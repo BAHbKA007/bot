@@ -79,7 +79,10 @@ def main():
             klick(SCANCODE.F10)
             print('heal')
             klick(SCANCODE.F1)
-
+            run = run + 1
+            if run == 20:
+                break
+                
     if pyautogui.pixelMatchesColor(win_pos_x + 26, win_pos_y + 572, (0, 251, 0)):
         while pyautogui.pixelMatchesColor(win_pos_x + 26, win_pos_y + 572, (0, 251, 0)):
             print('Balance')
