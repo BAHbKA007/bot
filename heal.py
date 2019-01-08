@@ -61,42 +61,34 @@ def mausklick():
     lib.interception_destroy_context(context)
 
 def main():
-    run = 0
     if not pyautogui.pixelMatchesColor(win_pos_x + 49, win_pos_y + 76, (181, 0, 24)):
-        while not pyautogui.pixelMatchesColor(win_pos_x + 165, win_pos_y + 76, (181, 0, 24)):
-            klick(SCANCODE.F8)
-            time.sleep(.05)
-            print('heal self')
-            klick(SCANCODE.F1)
-            run = run + 1
-            if run == 20:
-                break
+        klick(SCANCODE.F8)
+        time.sleep(.05)
+        print('heal self')
+        klick(SCANCODE.F1)
+        time.sleep(.05)
 
     klick(SCANCODE.F10)
+    time.sleep(.05)
 
     if not life_pix(75):
-        while not life_pix(130):
-            klick(SCANCODE.F10)
-            print('heal')
-            time.sleep(.05)
-            klick(SCANCODE.F1)
-            time.sleep(.05)
-            run = run + 1
-            if run == 20:
-                break
+        klick(SCANCODE.F10)
+        print('heal')
+        time.sleep(.05)
+        klick(SCANCODE.F1)
+        time.sleep(.05)
 
     if pyautogui.pixelMatchesColor(win_pos_x + 26, win_pos_y + 572, (0, 251, 0)):
-        while pyautogui.pixelMatchesColor(win_pos_x + 26, win_pos_y + 572, (0, 251, 0)):
-            print('Balance')
-            klick(SCANCODE.F2)
-            time.sleep(0.6)
-            klick(SCANCODE.F3)
-            time.sleep(2)
-            klick(SCANCODE.F3)
-            time.sleep(1)
-            klick(SCANCODE.F10)
-            time.sleep(0.1)
-            klick(SCANCODE.F10)
+        print('Balance')
+        klick(SCANCODE.F2)
+        time.sleep(0.6)
+        klick(SCANCODE.F3)
+        time.sleep(2)
+        klick(SCANCODE.F3)
+        time.sleep(1)
+        klick(SCANCODE.F10)
+        time.sleep(0.1)
+        klick(SCANCODE.F10)
 
     # Bank
     if ( start_time - int(math.ceil(time.time())) ) % 45 == 0:
@@ -104,8 +96,6 @@ def main():
         klick(SCANCODE.F9)
         time.sleep(2)
         klick(SCANCODE.F10)   
-
-    run = 0
 
 time.sleep(5)
 
