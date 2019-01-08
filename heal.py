@@ -72,7 +72,7 @@ def main():
     if not farbe:
         klick(SCANCODE.F8)
         time.sleep(.05)
-        print('heal self ' + pyautogui.pixel(win_pos_x + 49, win_pos_y + 76) )
+        print('heal self ' + str(pyautogui.pixel(win_pos_x + 49, win_pos_y + 76) ) )
         klick(SCANCODE.F1)
         time.sleep(.05)
 
@@ -82,7 +82,7 @@ def main():
     farbe = pyautogui.pixelMatchesColor(int(leben_x + 75), int(leben_y), (231, 73, 132))
     if not farbe:
         klick(SCANCODE.F10)
-        print('heal ' + str(pyautogui.pixel(int(leben_x + 75), int(leben_y))))
+        print('heal ' + str(pyautogui.pixel(int(leben_x + 75), int(leben_y) ) ) )
         time.sleep(.05)
         klick(SCANCODE.F1)
         time.sleep(.05)
