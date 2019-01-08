@@ -52,12 +52,13 @@ def mausklick():
 
 def main():
     start = time.time()
-    #Party Fenster Koordinaten und Lebesanzeige Position
-    b = pyautogui.locateOnScreen(path+'party.png', grayscale=True)
-    #pyautogui.screenshot('temp.png', region=(b[0]+15,b[1]+8, 150, 1)) 
+    if (time.time() / 60) % 60 == 0:
+        #Party Fenster Koordinaten und Lebesanzeige Position
+        b = pyautogui.locateOnScreen(path+'party.png', grayscale=True)
+        #pyautogui.screenshot('temp.png', region=(b[0]+15,b[1]+8, 150, 1)) 
 
-    leben_x = b[0]+15 # 150 Pixel lang
-    leben_y = b[1]+8
+        leben_x = b[0]+15 # 150 Pixel lang
+        leben_y = b[1]+8
 
     farbe = pyautogui.pixelMatchesColor(win_pos_x + 49, win_pos_y + 76, (181, 0, 24))
     if not farbe:
@@ -110,4 +111,7 @@ time.sleep(0.5)
 klick(SCANCODE.F6)
 
 while True:
-    main()
+    try:
+        main()
+    except Exception as e:
+        main()
