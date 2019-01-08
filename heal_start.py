@@ -9,4 +9,4 @@ while True:
     else:
         continue
 
-    time.sleep(10)
+    time.sleep(5)

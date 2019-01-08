@@ -1,4 +1,4 @@
-import pyautogui, win32gui, os, time, math
+import pyautogui, win32gui, os, time, math, sys
 from interception import ffi, lib
 
 path = str(os.path.dirname(__file__)) + '\\pic\\'
@@ -107,6 +107,11 @@ def main():
         time.sleep(2)
         klick(SCANCODE.F10)
 
+    farbe = pyautogui.pixel(int(leben_x + 75), int(leben_y) )
+    
+    if farbe == (255,255,-1):
+        sys.exit(0)
+
     print(time.time()-start) 
 
 time.sleep(5)
@@ -120,7 +125,5 @@ time.sleep(0.5)
 klick(SCANCODE.F6)
 
 while True:
-    try:
-        main()
-    except Exception as e:
-        main()
+
+    main()
