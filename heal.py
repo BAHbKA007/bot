@@ -49,6 +49,17 @@ def klick(key):
 def life_pix(pix):
     return pyautogui.pixelMatchesColor(int(leben_x + pix), int(leben_y), (231, 73, 132)) #(226, 58, 112)
 
+def mausklick():
+    context = lib.interception_create_context()
+
+    stroke = ffi.new('InterceptionMouseStroke *')
+        
+    stroke.state  = SCANCODE.INTERCEPTION_MOUSE_LEFT_BUTTON_DOWN
+    lib.interception_send(context, 11, stroke, 1)
+    stroke.state  = SCANCODE.INTERCEPTION_MOUSE_LEFT_BUTTON_UP
+    lib.interception_send(context, 11,  stroke, 1)
+    lib.interception_destroy_context(context)
+
 def main():
     run = 0
     if not pyautogui.pixelMatchesColor(win_pos_x + 49, win_pos_y + 76, (181, 0, 24)):
@@ -89,7 +100,8 @@ def main():
         time.sleep(2)
         klick(SCANCODE.F10)   
 
-    run = 0 
+    run = 0
+    mausklick()
 
 time.sleep(5)
 
