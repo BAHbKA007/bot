@@ -53,7 +53,7 @@ def main():
     if not pyautogui.pixelMatchesColor(win_pos_x + 49, win_pos_y + 76, (181, 0, 24)):
         while not pyautogui.pixelMatchesColor(win_pos_x + 165, win_pos_y + 76, (181, 0, 24)):
             klick(SCANCODE.F8)
-            time.sleep(.5)
+            time.sleep(.05)
             print('heal self')
             klick(SCANCODE.F1)
 
@@ -69,13 +69,13 @@ def main():
         while pyautogui.pixelMatchesColor(win_pos_x + 26, win_pos_y + 572, (0, 251, 0)):
             print('Balance')
             klick(SCANCODE.F2)
-            time.sleep(0.5)
+            time.sleep(0.05)
             klick(SCANCODE.F3)
             time.sleep(2)
             klick(SCANCODE.F3)
             time.sleep(1)
             klick(SCANCODE.F10)
-            time.sleep(0.2)
+            time.sleep(0.02)
             klick(SCANCODE.F10)
 
     # Bank
