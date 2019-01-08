@@ -51,6 +51,7 @@ def mausklick():
     lib.interception_destroy_context(context)
 
 def main():
+    start = time.time()
     #Party Fenster Koordinaten und Lebesanzeige Position
     b = pyautogui.locateOnScreen(path+'party.png', grayscale=True)
     #pyautogui.screenshot('temp.png', region=(b[0]+15,b[1]+8, 150, 1)) 
@@ -94,7 +95,9 @@ def main():
         print('Bank')
         klick(SCANCODE.F9)
         time.sleep(2)
-        klick(SCANCODE.F10)   
+        klick(SCANCODE.F10)
+
+    print(time.time()-start) 
 
 time.sleep(5)
 
