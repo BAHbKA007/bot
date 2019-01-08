@@ -61,19 +61,21 @@ def mausklick():
     lib.interception_destroy_context(context)
 
 def main():
-    if not pyautogui.pixelMatchesColor(win_pos_x + 49, win_pos_y + 76, (181, 0, 24)):
+    farbe = pyautogui.pixelMatchesColor(win_pos_x + 49, win_pos_y + 76, (181, 0, 24))
+    if not farbe:
         klick(SCANCODE.F8)
         time.sleep(.05)
-        print('heal self')
+        print('heal self ' + str(farbe))
         klick(SCANCODE.F1)
         time.sleep(.05)
 
     klick(SCANCODE.F10)
     time.sleep(.05)
 
-    if not life_pix(75):
+    farbe = pyautogui.pixelMatchesColor(int(leben_x + pix), int(leben_y), (231, 73, 132))
+    if not farbe:
         klick(SCANCODE.F10)
-        print('heal')
+        print('heal ' + str(farbe))
         time.sleep(.05)
         klick(SCANCODE.F1)
         time.sleep(.05)
