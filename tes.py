@@ -155,18 +155,11 @@ def mausklick():
 #         time.sleep(1)
 #         mausklick()
 
-print('Scroll Anzahl holen.')
-ews = find_pic(PICTURE,0.99)
-mausklick()
-b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
+start = time.time()
+i = 0
 
-while b == None:
-    print('Scroll Anzahl holen.')
-    ews = find_pic(PICTURE,0.99)
-    time.sleep(2)
-    b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
+for i in range(1000):
+    pyautogui.pixel(100, 200)
+    i = i + 1
 
-pyautogui.screenshot('temp.png', region=(b[0],b[1], 300, 23))
-image = imread('temp.png')
-negative = 255 - image
-ews_count = int(pytesseract.image_to_string(negative)[41:].split(')')[0].replace(",","").replace(" ","").replace("(",""))
+print( (time.time()-start) / i )

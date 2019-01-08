@@ -49,18 +49,7 @@ def klick(key):
 def life_pix(pix):
     return pyautogui.pixelMatchesColor(int(leben_x + pix), int(leben_y), (231, 73, 132)) #(226, 58, 112)
 
-time.sleep(5)
-
-klick(SCANCODE.F10)
-time.sleep(1)
-klick(SCANCODE.F4)
-time.sleep(0.5)
-klick(SCANCODE.F5)
-time.sleep(0.5)
-klick(SCANCODE.F6)
-
-while True:
-
+def main():
     if not pyautogui.pixelMatchesColor(win_pos_x + 49, win_pos_y + 76, (181, 0, 24)):
         while not pyautogui.pixelMatchesColor(win_pos_x + 165, win_pos_y + 76, (181, 0, 24)):
             klick(SCANCODE.F8)
@@ -94,6 +83,17 @@ while True:
         print('Bank')
         klick(SCANCODE.F9)
         time.sleep(2)
-        klick(SCANCODE.F10)
+        klick(SCANCODE.F10)    
 
-    time.sleep(0.5)
+time.sleep(5)
+
+klick(SCANCODE.F10)
+time.sleep(1)
+klick(SCANCODE.F4)
+time.sleep(0.5)
+klick(SCANCODE.F5)
+time.sleep(0.5)
+klick(SCANCODE.F6)
+
+while True:
+    main()
