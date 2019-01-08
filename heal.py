@@ -78,7 +78,9 @@ def main():
         while not life_pix(130):
             klick(SCANCODE.F10)
             print('heal')
+            time.sleep(.05)
             klick(SCANCODE.F1)
+            time.sleep(.05)
             run = run + 1
             if run == 20:
                 break
