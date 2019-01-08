@@ -29,13 +29,6 @@ win_pos_y = win_pos[1]
 win32gui.MoveWindow(win32gui.FindWindow(None, "Lineage II"), 550, 0, 816, 639, True)
 win32gui.SetForegroundWindow(win32gui.FindWindow(None, "Lineage II"))
 
-#Party Fenster Koordinaten und Lebesanzeige Position
-b = pyautogui.locateOnScreen(path+'party.png', grayscale=True)
-#pyautogui.screenshot('temp.png', region=(b[0]+15,b[1]+8, 150, 1)) 
-
-leben_x = b[0]+15 # 150 Pixel lang
-leben_y = b[1]+8
-
 def klick(key):
     context = lib.interception_create_context()
 
@@ -45,9 +38,6 @@ def klick(key):
     lib.interception_send(context, 1, stroke, 1)
 
     lib.interception_destroy_context(context)
-
-def life_pix(pix):
-    return pyautogui.pixelMatchesColor(int(leben_x + pix), int(leben_y), (231, 73, 132)) #(226, 58, 112)
 
 def mausklick():
     context = lib.interception_create_context()
@@ -61,6 +51,13 @@ def mausklick():
     lib.interception_destroy_context(context)
 
 def main():
+    #Party Fenster Koordinaten und Lebesanzeige Position
+    b = pyautogui.locateOnScreen(path+'party.png', grayscale=True)
+    #pyautogui.screenshot('temp.png', region=(b[0]+15,b[1]+8, 150, 1)) 
+
+    leben_x = b[0]+15 # 150 Pixel lang
+    leben_y = b[1]+8
+
     farbe = pyautogui.pixelMatchesColor(win_pos_x + 49, win_pos_y + 76, (181, 0, 24))
     if not farbe:
         klick(SCANCODE.F8)
@@ -72,7 +69,7 @@ def main():
     klick(SCANCODE.F10)
     time.sleep(.05)
 
-    farbe = pyautogui.pixelMatchesColor(int(leben_x + pix), int(leben_y), (231, 73, 132))
+    farbe = pyautogui.pixelMatchesColor(int(leben_x + 75), int(leben_y), (231, 73, 132))
     if not farbe:
         klick(SCANCODE.F10)
         print('heal ' + str(farbe))
