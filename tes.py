@@ -2,6 +2,7 @@ import time, pyautogui, win32gui, os, re, math, subprocess, psutil, traceback, w
 from PIL import Image,ImageGrab
 from interception import ffi, lib
 from skimage.io import imread
+from interception.utils import raise_process_priority
 
 start_time = int(time.time())
 path = str(os.path.dirname(__file__)) + '\\'
@@ -54,6 +55,7 @@ class SCANCODE:
     INTERCEPTION_MOUSE_LEFT_BUTTON_DOWN   = 0x001
     INTERCEPTION_MOUSE_LEFT_BUTTON_UP     = 0x002
     TAB = 0x0F
+    SCANCODE_ESC = 0x01
 
     anmeldedaten = {
         'a' : 0x1E,
@@ -155,11 +157,16 @@ def mausklick():
 #         time.sleep(1)
 #         mausklick()
 
-start = time.time()
-i = 0
+raise_process_priority()
+context = lib.interception_create_context()
 
-for i in range(1000):
-    pyautogui.pixel(100, 200)
-    i = i + 1
+lib.interception_set_filter(context, lib.interception_is_keyboard, lib.INTERCEPTION_FILTER_KEY_ALL)
 
-print( (time.time()-start) / i )
+stroke = ffi.new('InterceptionKeyStroke *')
+
+while True:
+    device = lib.interception_wait(context)
+    if stroke.code == SCANCODE.SCANCODE_ESC:
+        print('ESC')
+
+lib.interception_destroy_context(context)

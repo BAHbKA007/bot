@@ -48,7 +48,7 @@ class SCANCODE:
     INTERCEPTION_MOUSE_LEFT_BUTTON_DOWN   = 0x001
     INTERCEPTION_MOUSE_LEFT_BUTTON_UP     = 0x002
     TAB = 0x0F
-    MONITORPOWER = 0xF170
+    SCANCODE_ESC = 0x01
 
     anmeldedaten = {
         'a' : 0x1E,

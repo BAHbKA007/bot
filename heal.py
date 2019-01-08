@@ -8,7 +8,7 @@ class SCANCODE:
     INTERCEPTION_MOUSE_LEFT_BUTTON_DOWN   = 0x001
     INTERCEPTION_MOUSE_LEFT_BUTTON_UP     = 0x002
     TAB = 0x0F
-    MONITORPOWER = 0xF170
+    SCANCODE_ESC = 0x01
 
     F1=0x3B
     F2=0x3C
@@ -82,7 +82,7 @@ def main():
             run = run + 1
             if run == 20:
                 break
-                
+
     if pyautogui.pixelMatchesColor(win_pos_x + 26, win_pos_y + 572, (0, 251, 0)):
         while pyautogui.pixelMatchesColor(win_pos_x + 26, win_pos_y + 572, (0, 251, 0)):
             print('Balance')
@@ -104,7 +104,6 @@ def main():
         klick(SCANCODE.F10)   
 
     run = 0
-    mausklick()
 
 time.sleep(5)
 
