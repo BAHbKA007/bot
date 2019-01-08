@@ -3,6 +3,7 @@ from interception import ffi, lib
 
 path = str(os.path.dirname(__file__)) + '\\pic\\'
 start_time = int(math.ceil(time.time()))
+os.system("title Heal")
 
 #Party Fenster Koordinaten und Lebesanzeige Position
 b = pyautogui.locateOnScreen(path+'party.png', grayscale=True)
