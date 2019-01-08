@@ -52,7 +52,7 @@ def mausklick():
 
 def main():
     start = time.time()
-    if (time.time() / 60) % 60 == 0:
+    if int(time.time()) % 60 == 0:
         #Party Fenster Koordinaten und Lebesanzeige Position
         b = pyautogui.locateOnScreen(path+'party.png', grayscale=True)
         #pyautogui.screenshot('temp.png', region=(b[0]+15,b[1]+8, 150, 1)) 
