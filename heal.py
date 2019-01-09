@@ -102,8 +102,6 @@ def main():
         time.sleep(0.5)
         klick(SCANCODE.F5)
         time.sleep(0.5)
-        klick(SCANCODE.F6)
-        time.sleep(0.1)
         klick(SCANCODE.F10)
         klick(SCANCODE.F10)
 
