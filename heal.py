@@ -22,6 +22,7 @@ class SCANCODE:
     F9=0x43
     F10=0x44
     F11=0x45
+    F12=0x46
 
 win_pos = win32gui.GetWindowRect(win32gui.FindWindow(None, "Lineage II"))
 win_pos_x = win_pos[0] + 7
@@ -61,6 +62,10 @@ def mausklick():
 def main():
     global win_pos_y,win_pos_x,leben_y,leben_x
     start = time.time()
+
+    klick(SCANCODE.F11)
+    time.sleep(0.05)
+
     if int(time.time()) % 60 == 0:
         #Party Fenster Koordinaten und Lebesanzeige Position
         b = pyautogui.locateOnScreen(path+'party.png', grayscale=True)
@@ -70,6 +75,12 @@ def main():
         leben_y = b[1]+8
 
     farbe = pyautogui.pixelMatchesColor(win_pos_x + 49, win_pos_y + 76, (181, 0, 24))
+
+    if farbe == (255,255,-1):
+        klick(SCANCODE.F12)
+        time.sleep(0.05)
+        sys.exit(0)
+
     if not farbe:
         klick(SCANCODE.F8)
         time.sleep(.05)
@@ -99,6 +110,13 @@ def main():
         klick(SCANCODE.F10)
         time.sleep(0.1)
         klick(SCANCODE.F10)
+        klick(SCANCODE.F10)
+        time.sleep(1)
+        klick(SCANCODE.F4)
+        time.sleep(0.5)
+        klick(SCANCODE.F5)
+        time.sleep(0.5)
+        klick(SCANCODE.F6)
 
     # Bank
     if ( start_time - int(math.ceil(time.time())) ) % 45 == 0:
@@ -109,18 +127,7 @@ def main():
 
     farbe = pyautogui.pixel(int(leben_x + 75), int(leben_y) )
 
-    if farbe == (255,255,-1):
-        sys.exit(0)
-
     print(time.time()-start) 
-
-klick(SCANCODE.F10)
-time.sleep(1)
-klick(SCANCODE.F4)
-time.sleep(0.5)
-klick(SCANCODE.F5)
-time.sleep(0.5)
-klick(SCANCODE.F6)
 
 while True:
 
