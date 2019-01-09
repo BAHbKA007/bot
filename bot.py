@@ -35,7 +35,7 @@ with open(path + "bot.run", "r") as fh:
 #
 #
 #
-PICTURE = 'eas.png'
+PICTURE = 'ews.png'
 #
 #
 if PICTURE.find('w') != -1:
