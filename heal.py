@@ -5,13 +5,6 @@ path = str(os.path.dirname(__file__)) + '\\pic\\'
 start_time = int(math.ceil(time.time()))
 os.system("title Heal")
 
-#Party Fenster Koordinaten und Lebesanzeige Position
-b = pyautogui.locateOnScreen(path+'party.png', grayscale=True)
-#pyautogui.screenshot('temp.png', region=(b[0]+15,b[1]+8, 150, 1)) 
-
-leben_x = b[0]+15 # 150 Pixel lang
-leben_y = b[1]+8
-
 class SCANCODE: 
     INTERCEPTION_MOUSE_LEFT_BUTTON_DOWN   = 0x001
     INTERCEPTION_MOUSE_LEFT_BUTTON_UP     = 0x002
@@ -36,6 +29,13 @@ win_pos_y = win_pos[1]
 
 win32gui.MoveWindow(win32gui.FindWindow(None, "Lineage II"), 550, 0, 816, 639, True)
 win32gui.SetForegroundWindow(win32gui.FindWindow(None, "Lineage II"))
+
+#Party Fenster Koordinaten und Lebesanzeige Position
+b = pyautogui.locateOnScreen(path+'party.png', grayscale=True)
+#pyautogui.screenshot('temp.png', region=(b[0]+15,b[1]+8, 150, 1)) 
+
+leben_x = b[0]+15 # 150 Pixel lang
+leben_y = b[1]+8
 
 def klick(key):
     context = lib.interception_create_context()
@@ -113,8 +113,6 @@ def main():
         sys.exit(0)
 
     print(time.time()-start) 
-
-time.sleep(5)
 
 klick(SCANCODE.F10)
 time.sleep(1)
