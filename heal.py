@@ -115,6 +115,7 @@ def main():
         klick(SCANCODE.F10)
 
     klick(SCANCODE.F10)
+    time.sleep(.05)
     klick(SCANCODE.F10)
 
     print(str(time.time()-start)[0:6]) 
