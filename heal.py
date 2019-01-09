@@ -66,30 +66,19 @@ def main():
     klick(SCANCODE.F11)
     time.sleep(0.05)
 
-    if int(time.time()) % 60 == 0:
-        #Party Fenster Koordinaten und Lebesanzeige Position
-        b = pyautogui.locateOnScreen(path+'party.png', grayscale=True)
-        #pyautogui.screenshot('temp.png', region=(b[0]+15,b[1]+8, 150, 1)) 
-
-        leben_x = b[0]+15 # 150 Pixel lang
-        leben_y = b[1]+8
-
-    farbe = pyautogui.pixelMatchesColor(win_pos_x + 49, win_pos_y + 76, (181, 0, 24))
-
+    farbe = pyautogui.pixel(int(leben_x + 75), int(leben_y) )
     if farbe == (255,255,-1):
         klick(SCANCODE.F12)
         time.sleep(0.05)
         sys.exit(0)
 
+    farbe = pyautogui.pixelMatchesColor(win_pos_x + 49, win_pos_y + 76, (181, 0, 24))
     if not farbe:
         klick(SCANCODE.F8)
         time.sleep(.05)
         print('heal self ')
         klick(SCANCODE.F1)
         time.sleep(.05)
-
-    klick(SCANCODE.F10)
-    time.sleep(.05)
 
     farbe = pyautogui.pixelMatchesColor(int(leben_x + 75), int(leben_y), (231, 73, 132))
     if not farbe:
@@ -108,15 +97,15 @@ def main():
         klick(SCANCODE.F3)
         time.sleep(1)
         klick(SCANCODE.F10)
-        time.sleep(0.1)
-        klick(SCANCODE.F10)
-        klick(SCANCODE.F10)
         time.sleep(1)
         klick(SCANCODE.F4)
         time.sleep(0.5)
         klick(SCANCODE.F5)
         time.sleep(0.5)
         klick(SCANCODE.F6)
+        time.sleep(0.1)
+        klick(SCANCODE.F10)
+        klick(SCANCODE.F10)
 
     # Bank
     if ( start_time - int(math.ceil(time.time())) ) % 45 == 0:
@@ -125,9 +114,7 @@ def main():
         time.sleep(2)
         klick(SCANCODE.F10)
 
-    farbe = pyautogui.pixel(int(leben_x + 75), int(leben_y) )
-
-    print(time.time()-start) 
+    print(str(time.time()-start)[0:6]) 
 
 while True:
 
