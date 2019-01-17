@@ -330,9 +330,9 @@ def main(r):
             break
 
         #ews Koordinaten, Farbe + Anzahl BEWS
-        print('Scroll Anzahl holen.')
-        ews = find_pic(PICTURE,0.99)
-        mausklick()
+        # print('Scroll Anzahl holen.')
+        # ews = find_pic(PICTURE,0.99)
+        # mausklick()
         # b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png',grayscale=True, confidence=.9)
 
         # while b == None:
