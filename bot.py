@@ -333,13 +333,13 @@ def main(r):
         print('Scroll Anzahl holen.')
         ews = find_pic(PICTURE,0.99)
         mausklick()
-        b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
+        b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png',grayscale=True, confidence=.9)
 
         while b == None:
             print('Scroll Anzahl holen.')
             ews = find_pic(PICTURE,0.99)
             time.sleep(2)
-            b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png')
+            b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png',grayscale=True, confidence=.9)
 
         pyautogui.screenshot('temp.png', region=(b[0],b[1], 300, 23))
         image = imread('temp.png')
