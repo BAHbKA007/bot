@@ -354,27 +354,45 @@ def main(r):
         ench_window_x = ench_window[0]
         ench_window_y = ench_window[1] 
 
-        # CP Koordinaten
-        cp = 0#find_pic('cp.png',0.99)
-        
-        # relog Koordinaten
-        relog = find_pic('relog.png',0.99)
+        while True: 
 
-        # relog Koordinaten
-        sit = find_pic('sit.png',0.99)
+            print('while')
 
-        if ews != None and cp != None and relog != None and sit != None:
+            try:
+                while_count = while_count + 1
+                start_time_loop = time.time()
 
-            if r == 0:
-                setzen()
+                if ( start_time - int(math.ceil(time.time())) ) % 3600 == 0:
+                    for proc in psutil.process_iter():
+                        # check whether the process name matches
+                        if proc.name() == 'l2.bin' or proc.name() == 'l2.exe':
+                            print('L2 Prozess beenden')
+                            proc.kill()
+                    time.sleep(3)
+                    print('L2 neustarten')
+                    main(0)
+                    
+                # EWS Prüfung             
+                if ews_count < 0 and find_pic(PICTURE,0.99) == None:
+                    print('Keine EWS mehr')
+                    # for proc in psutil.process_iter():
+                    #     # check whether the process name matches
+                    #     if proc.name() == 'l2.bin' or proc.name() == 'l2.exe':
+                    #         print('L2 Prozess beenden')
+                    #         proc.kill()
+                    input()
+                    break
 
-            while True:             
+                # alle 30 Sekunden
+                if ( start_time - int(math.ceil(time.time())) ) % 15 == 0:
 
-                try:
-                    while_count = while_count + 1
-                    start_time_loop = time.time()
+                    print('Prüfungen: Disconnect und Spiel an')
+                    #Prüfen ob Disconnect Fehlermeldung auf dem Bildschirm
+                    if pyautogui.locateCenterOnScreen(path + 'pic\\disc.png', region=(win_pos_x + 258, win_pos_y + 270,40,40),grayscale=True, confidence=.9) != None:
+                        www_get(run, arc_count, 1, 0)
+                        print('Disconnected')
+                        time.sleep(1)
 
-                    if ( start_time - int(math.ceil(time.time())) ) % 3600 == 0:
                         for proc in psutil.process_iter():
                             # check whether the process name matches
                             if proc.name() == 'l2.bin' or proc.name() == 'l2.exe':
@@ -382,144 +400,114 @@ def main(r):
                                 proc.kill()
                         time.sleep(3)
                         print('L2 neustarten')
-                        main(0)
-                        
-                    # EWS Prüfung             
-                    if ews_count < 0 and find_pic(PICTURE,0.99) == None:
-                        print('Keine EWS mehr')
-                        # for proc in psutil.process_iter():
-                        #     # check whether the process name matches
-                        #     if proc.name() == 'l2.bin' or proc.name() == 'l2.exe':
-                        #         print('L2 Prozess beenden')
-                        #         proc.kill()
-                        input()
-                        break
-
-                    # alle 30 Sekunden
-                    if ( start_time - int(math.ceil(time.time())) ) % 15 == 0:
-
-                        print('Prüfungen: Disconnect und Spiel an')
-                        #Prüfen ob Disconnect Fehlermeldung auf dem Bildschirm
-                        if pyautogui.locateCenterOnScreen(path + 'pic\\disc.png', region=(win_pos_x + 258, win_pos_y + 270,40,40),grayscale=True, confidence=.9) != None:
-                            www_get(run, arc_count, 1, 0)
-                            print('Disconnected')
-                            time.sleep(1)
-
-                            for proc in psutil.process_iter():
-                                # check whether the process name matches
-                                if proc.name() == 'l2.bin' or proc.name() == 'l2.exe':
-                                    print('L2 Prozess beenden')
-                                    proc.kill()
-                            time.sleep(3)
-                            print('L2 neustarten')
-                            break_var = True
-                            break
-                        
-                        # Speicherfehlermeldung
-                        if pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
-                            print('Speicherfehlermeldung auf dem Bildschirm - starte neu.')
-                            while pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
-                                pyautogui.moveTo(pyautogui.locateCenterOnScreen(path + 'pic\\OK_Error.png',grayscale=True, confidence=.88))
-                                mausklick()
-                                time.sleep(1)
-                                mausklick()
-                            break_var = True
-                            break
-                        
-                        # Spiel an
-                        if win32gui.FindWindow(None, "Lineage II") == 0:
-                            print('Siel nicht gefunden!!!')
-                            break_var = True
-                            break
-                    
-                    # CP craft
-                    # if run % 2000 == 0 and run != 0:
-                    #     setzen()
-                    #     pyautogui.moveTo(cp)
-                    #     mausklick()
-                    #     time.sleep(30)
-                    #     setzen()
-                    #     time.sleep(3)
-
-                    # Serverrestart umgehen
-                    if time.strftime("%H:%M") == "03:33":
-                        print('sleep Nacht')
-                        for proc in psutil.process_iter():
-                            # check whether the process name matches
-                            if proc.name() == 'l2.bin':
-                                proc.kill()
-                                print('Warte 20 Minuten auf Serverdown')
-                                time.sleep(1200)
                         break_var = True
                         break
-
-                    # Echnant
-                    pyautogui.moveTo(ews)
-                    mausklick()
-                    time.sleep(v)
-
-                    # Arc
-                    pyautogui.moveTo(ench_window_x + 10 + x_schieber * 37 + 16, ench_window_y + 51 + y_schieber * 35 + 16)
-                    mausklick()
-                    time.sleep(v)
-
-                    # Koordinaten Kontrolle
-                    item_finder()
-
-                    # alle 5 Minuten
-                    if ( start_time - int(math.ceil(time.time())) ) % 300 == 0:
-                        try:
-                            print('Reset Koordinaten Enchant window')
-                            pyautogui.moveTo(ews)
-                            mausklick()
-                            ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,800,600),grayscale=True, confidence=.9)
-                            ench_window_x = ench_window[0]
-                            ench_window_y = ench_window[1]
-
-                            if find_pic('login.png',.9,352,359,20,20) != None:
-                                print('relog')
-                                logIn()
-                            else:
-                                print('kein login on Screen')
-                                pass
-                        except Exception as e:
-                            www_get(0, 0, 1, 0)
-
-                            with open(path + "bot.run", "w") as fh:
-                                fh.write(str(run))
-
-                            print("type error: " + str(e))
-                            print(traceback.format_exc())
-                            break_var = True
-                            break
-                            
-                    #OK Button Enchant Fenster
-                    pyautogui.moveTo(ench_window_x + 90, ench_window_y + 383)
-                    mausklick()
-                    time.sleep(v + ok) #0.25
                     
-                    www_get(run, arc_count, 0, 0)
+                    # Speicherfehlermeldung
+                    if pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
+                        print('Speicherfehlermeldung auf dem Bildschirm - starte neu.')
+                        while pyautogui.pixelMatchesColor(desktop_size[0],desktop_size[1], (240, 240, 240)):
+                            pyautogui.moveTo(pyautogui.locateCenterOnScreen(path + 'pic\\OK_Error.png',grayscale=True, confidence=.88))
+                            mausklick()
+                            time.sleep(1)
+                            mausklick()
+                        break_var = True
+                        break
+                    
+                    # Spiel an
+                    if win32gui.FindWindow(None, "Lineage II") == 0:
+                        print('Siel nicht gefunden!!!')
+                        break_var = True
+                        break
+                
+                # CP craft
+                # if run % 2000 == 0 and run != 0:
+                #     setzen()
+                #     pyautogui.moveTo(cp)
+                #     mausklick()
+                #     time.sleep(30)
+                #     setzen()
+                #     time.sleep(3)
 
-                    #bot.run beschreiben
-                    with open(path + "bot.run", "w") as fh:
-                        fh.write(str(run))
-
-                    run = run + 1
-                    ews_count = ews_count - 1
-
-                    printstr = str(time.time() - start_time_loop)[0:5] + ' Laufzeit | run = ' + str(run) + ' | Scroll: ' + str(ews_count)
-                    print(printstr)
-
-                except Exception as e:
-                    www_get(0, 0, 1, 0)
-
-                    with open(path + "bot.run", "w") as fh:
-                        fh.write(str(run))
-
-                    print("type error: " + str(e))
-                    print(traceback.format_exc())
+                # Serverrestart umgehen
+                if time.strftime("%H:%M") == "03:33":
+                    print('sleep Nacht')
+                    for proc in psutil.process_iter():
+                        # check whether the process name matches
+                        if proc.name() == 'l2.bin':
+                            proc.kill()
+                            print('Warte 20 Minuten auf Serverdown')
+                            time.sleep(1200)
                     break_var = True
                     break
+
+                # Echnant
+                pyautogui.moveTo(ews)
+                mausklick()
+                time.sleep(v)
+
+                # Arc
+                pyautogui.moveTo(ench_window_x + 10 + x_schieber * 37 + 16, ench_window_y + 51 + y_schieber * 35 + 16)
+                mausklick()
+                time.sleep(v)
+
+                # Koordinaten Kontrolle
+                item_finder()
+
+                # alle 5 Minuten
+                if ( start_time - int(math.ceil(time.time())) ) % 300 == 0:
+                    try:
+                        print('Reset Koordinaten Enchant window')
+                        pyautogui.moveTo(ews)
+                        mausklick()
+                        ench_window = pyautogui.locateOnScreen(path + 'pic\\enchantwindow.png', region=(win_pos_x, win_pos_y,800,600),grayscale=True, confidence=.9)
+                        ench_window_x = ench_window[0]
+                        ench_window_y = ench_window[1]
+
+                        if find_pic('login.png',.9,352,359,20,20) != None:
+                            print('relog')
+                            logIn()
+                        else:
+                            print('kein login on Screen')
+                            pass
+                    except Exception as e:
+                        www_get(0, 0, 1, 0)
+
+                        with open(path + "bot.run", "w") as fh:
+                            fh.write(str(run))
+
+                        print("type error: " + str(e))
+                        print(traceback.format_exc())
+                        break_var = True
+                        break
+                        
+                #OK Button Enchant Fenster
+                pyautogui.moveTo(ench_window_x + 90, ench_window_y + 383)
+                mausklick()
+                time.sleep(v + ok) #0.25
+                
+                www_get(run, arc_count, 0, 0)
+
+                #bot.run beschreiben
+                with open(path + "bot.run", "w") as fh:
+                    fh.write(str(run))
+
+                run = run + 1
+                ews_count = ews_count - 1
+
+                printstr = str(time.time() - start_time_loop)[0:5] + ' Laufzeit | run = ' + str(run) + ' | Scroll: ' + str(ews_count)
+                print(printstr)
+
+            except Exception as e:
+                www_get(0, 0, 1, 0)
+
+                with open(path + "bot.run", "w") as fh:
+                    fh.write(str(run))
+
+                print("type error: " + str(e))
+                print(traceback.format_exc())
+                break_var = True
+                break
 
 
 
