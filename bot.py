@@ -341,9 +341,9 @@ def main(r):
         #     time.sleep(2)
         #     b = pyautogui.locateOnScreen(path + 'pic\\' + 'BEWS.png',grayscale=True, confidence=.9)
 
-        pyautogui.screenshot('temp.png', region=(b[0],b[1], 300, 23))
-        image = imread('temp.png')
-        negative = 255 - image
+        # pyautogui.screenshot('temp.png', region=(b[0],b[1], 300, 23))
+        # image = imread('temp.png')
+        # negative = 255 - image
         #ews_count = int( pytesseract.image_to_string(negative)[41:].split(')')[0].replace(",","").replace(" ","").replace("(","").replace("S","5") )
         ews_count = 2160
 
