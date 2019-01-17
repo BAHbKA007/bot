@@ -150,11 +150,6 @@ def main(r):
                 print("type error: " + str(e))
                 print(traceback.format_exc())
 
-        def setzen():
-            pyautogui.moveTo(sit)
-            mausklick()
-            time.sleep(2)   
-
         def item_finder():
             global x_schieber, y_schieber, arc_count, run, finder_count
 
@@ -355,8 +350,6 @@ def main(r):
         ench_window_y = ench_window[1] 
 
         while True: 
-
-            print('while')
 
             try:
                 while_count = while_count + 1
