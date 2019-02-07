@@ -39,7 +39,7 @@ PICTURE = 'ews.png'
 #
 #
 if PICTURE.find('w') != -1:
-    max_enchant = '16.png'
+    max_enchant = '6.png'
 else:
     max_enchant = '14.png'
 #
