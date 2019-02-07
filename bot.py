@@ -197,7 +197,12 @@ def main(r):
                 else:
                     requests.get('http://s.leichtbewaff.net/?stat='+str(run), verify=False)
                     run = 0
-        
+                
+                # Wenn enchant_max erreicht Cancel im Enchant Fenster
+                pyautogui.moveTo(ench_window_x + 170, ench_window_y + 383)
+                mausklick()
+                time.sleep(v + ok) #0.25
+
         def logIn():
             start = int(math.ceil(time.time()))
 
