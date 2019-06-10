@@ -39,7 +39,7 @@ PICTURE = 'ews.png'
 #
 #
 if PICTURE.find('w') != -1:
-    max_enchant = '16.png'
+    max_enchant = '18.png'
 else:
     max_enchant = '14.png'
 #
@@ -57,7 +57,11 @@ class SCANCODE:
         'k' : 0x25,
         '0' : 0x0B,
         '1' : 0x2,
+		'2' : 0x3,
+		'3' : 0x4,
+		'4' : 0x5,
         '5' : 0x6,
+		'6' : 0x7,
         '7' : 0x8,
         '8' : 0x9,
         '9' : 0x0A
