@@ -273,7 +273,7 @@ def main(r):
                 try:
                     time.sleep(5)
                     print('warte auf Programmstart')
-                    if (time.time() - start) > 30:
+                    if (time.time() - start) > 40:
                         for proc in psutil.process_iter():
                             # check whether the process name matches
                             if proc.name() == 'l2.bin' or proc.name() == 'l2.exe':
